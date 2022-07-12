@@ -6,15 +6,15 @@ Aplicativo web que tiene como objetivo aumentar los ingresos del pequeño y medi
 ------------
 ## El proyecto fue desarrollado con:
 
-##Frontend
+## Frontend
 -  React
 -  Redux, Redux  Thunk
 -  React Router Dom
 
-##Backend
+## Backend
 - Firebase
 
-**Table of Contents**
+** Table of Contents **
 
 [TOCM]
 
