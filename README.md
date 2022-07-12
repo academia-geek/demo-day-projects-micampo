@@ -14,7 +14,7 @@ Aplicativo web que tiene como objetivo aumentar los ingresos del pequeño y medi
 ## Backend
 - Firebase
 
-** Table of Contents **
+**Table of Contents**
 
 [TOCM]
 
