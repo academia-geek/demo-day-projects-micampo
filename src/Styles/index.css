@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Ubuntu:wght@400;700&display=swap');
+:root {
+    --green: #699A07;
+    --orange:#FF9D00;
+    --blackish: #1d1d1d;
+    --gray: rgba(0, 0, 0, 0.7);
+    --grayish:#E5E5E5;
+    -clear: rgba(248, 248, 248, 1);
+    --white: #FFFFFF;
+    --roboto: 'Roboto', sans-serif;
+    --ubuntu: 'Ubuntu', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}

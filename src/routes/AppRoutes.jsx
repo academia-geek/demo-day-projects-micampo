@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
 import DashboardRoutes from './DashboardRoutes';
+import Navbar from '../components/Navbar';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true)
@@ -34,7 +35,9 @@ const AppRoutes = () => {
 
    return (
       <BrowserRouter>
+      <Navbar/>
          <Routes>
+            
 
             <Route path='/home' element={
                <PublicRoutes isAuth={isLogget} >

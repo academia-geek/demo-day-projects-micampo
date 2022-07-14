@@ -13,6 +13,8 @@ Los diseños se crearon con los siguientes anchos:
 - Bright Green : #699A07
 - Principal Orange : #FF9D00
 - Background: #1D1D1D
+-White Background: #E5E5E5
+
 
 ## Tipografía
 
