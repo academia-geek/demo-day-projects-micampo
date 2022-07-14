@@ -8,7 +8,8 @@ import Register from './components/auth/Register';
 ReactDOM.createRoot(document.getElementById('root')).render(
    <React.StrictMode>
       <Provider store={store}>
-         <LogIn />
+         {/* <LogIn /> */}
+         {/* <Register /> */}
       </Provider>
    </React.StrictMode>
 );
