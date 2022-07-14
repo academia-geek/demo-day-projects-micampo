@@ -3,9 +3,8 @@ import React from 'react'
 const Home = () => {
   return (
    <>
-    <nav>
-      
-    </nav>
+    <nav></nav>
+    <div></div>
     </>
   )
 }

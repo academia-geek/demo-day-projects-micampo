@@ -12,6 +12,10 @@ export const Colores = {
 export const Logo = styled.img`
 width:10%;
 margin:0;
+padding:0;
+background-color: red;
 @media(max-width:600px){
     width:30%;
 }`
+
+
