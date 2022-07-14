@@ -7,7 +7,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
 import DashboardRoutes from './DashboardRoutes';
-import Navbar from '../components/Navbar';
+import Nav1 from '../components/Navbar';
+import Aliados from '../containers/Aliados';
+import Agroinsumos from '../containers/Agroinsumos';
+import Us from '../containers/Us';
+import Mercado from '../containers/Mercado';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true)
@@ -35,7 +39,7 @@ const AppRoutes = () => {
 
    return (
       <BrowserRouter>
-      <Navbar/>
+      <Nav1/>
          <Routes>
             
 
@@ -44,7 +48,26 @@ const AppRoutes = () => {
                   <Home />
                </PublicRoutes>
             } />
-
+            <Route path='/mercado' element={
+               <PublicRoutes isAuth={isLogget} >
+                  <Mercado/>
+               </PublicRoutes>
+            } />
+            <Route path='/aliados' element={
+               <PublicRoutes isAuth={isLogget} >
+                  <Aliados />
+               </PublicRoutes>
+            } />
+            <Route path='/agroinsumos' element={
+               <PublicRoutes isAuth={isLogget} >
+                  <Agroinsumos/>
+               </PublicRoutes>
+            } />
+            <Route path='/nosotros' element={
+               <PublicRoutes isAuth={isLogget} >
+                  <Us/>
+               </PublicRoutes>
+            } />
             <Route path='/login' element={
                <PublicRoutes isAuth={isLogget}>
                   <Login />
