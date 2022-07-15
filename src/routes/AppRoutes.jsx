@@ -15,7 +15,7 @@ import Mercado from '../containers/Mercado';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true)
-   const [isLogget, setIsLogget] = useState(false)
+   const [isLogget, setIsLogget] = useState(true)
 
    // useEffect(() => {
    //    const auth = getAuth();
