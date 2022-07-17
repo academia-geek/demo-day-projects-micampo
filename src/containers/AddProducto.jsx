@@ -17,7 +17,7 @@ const AddProducto = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(value);
+      //console.log(value);
       dispatch(addProdAsync(value))
       reset();
       toast.success("Producto agregado con exito!");
@@ -28,7 +28,7 @@ const AddProducto = () => {
       imgUpload(file)
          .then((resp) => {
             value.img = resp
-            console.log(resp)
+            //console.log(resp)
          })
          .catch((error) => { console.warn(error) });
    }

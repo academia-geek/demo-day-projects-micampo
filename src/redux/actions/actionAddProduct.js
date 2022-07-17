@@ -1,18 +1,11 @@
 import { addDoc, collection } from 'firebase/firestore'
 import { DB } from '../../firebase/firebaseConfig'
-import { typesAddProd } from '../types/types'
 
 export const addProdAsync = (pro) => {
-   return async (dispatch) => {
+   return async () => {
       addDoc(collection(DB, "productos"), pro)
-         .then(res => dispatch(addProducto(pro)))
-         .catch(err => console.log(err))
-   }
-}
+         .then(res => console.log('Agregado'))
 
-export const addProducto = (producto) => {
-   return {
-      type: typesAddProd.addPro,
-      payload: producto
+         .catch(err => console.log(err))
    }
 }
