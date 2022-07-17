@@ -39,9 +39,9 @@ const AppRoutes = () => {
 
    return (
       <BrowserRouter>
-      <Nav1/>
+         <Nav1 />
          <Routes>
-            
+
 
             <Route path='/home' element={
                <PublicRoutes isAuth={isLogget} >
@@ -50,7 +50,7 @@ const AppRoutes = () => {
             } />
             <Route path='/mercado' element={
                <PublicRoutes isAuth={isLogget} >
-                  <Mercado/>
+                  <Mercado />
                </PublicRoutes>
             } />
             <Route path='/aliados' element={
@@ -60,12 +60,12 @@ const AppRoutes = () => {
             } />
             <Route path='/agroinsumos' element={
                <PublicRoutes isAuth={isLogget} >
-                  <Agroinsumos/>
+                  <Agroinsumos />
                </PublicRoutes>
             } />
             <Route path='/nosotros' element={
                <PublicRoutes isAuth={isLogget} >
-                  <Us/>
+                  <Us />
                </PublicRoutes>
             } />
             <Route path='/login' element={
