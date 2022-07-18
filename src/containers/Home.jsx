@@ -1,8 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Carousel from 'react-bootstrap/Carousel';
-import { Agro, Divi, Fondo, H4, Imagro, Tarjeta, Texto, Grande } from '../Styles/Home'
-import {TbTruckDelivery} from 'react-icons/tb'
+import { Agro, Divi, Fondo, H4, Imagro, Tarjeta, Texto, Grande, Productos, ContBotones, Search, Tercera, ProductosA } from '../Styles/Home'
+import Search1 from '../components/Search'
+import {TbTruckDelivery,TbMessages} from 'react-icons/tb'
+import {BsLayoutSidebar} from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom';
+import App from '../components/Dropdown';
+
+
 const Home = () => {
+ 
+  const navigate = useNavigate()
   return (
    <>
     <Fondo>
@@ -42,9 +50,12 @@ const Home = () => {
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
-    <div className="carousel"><Grande>Compra, cultiva y desarrolla</Grande> <p>Bienvenido a MiCampo, una app en la que podras vender o comprar productos agricolar de todo tipo, podras ver el movimiento de cualquier producto, y podras hablar con cualquiera de nuestros aliados.</p></div>
+    <div className="carousel"><Grande>Compra, cultiva y desarrolla</Grande> <p>Bienvenido a MiCampo, una app en la que podras vender o comprar productos agrícolas de todo tipo, podrás ver el movimiento del mercado de cualquier producto, y podras contactarte con cualquiera de nuestros aliados.</p>
+    <ContBotones><Productos onClick={()=> navigate('/aliados')}>Productos <BsLayoutSidebar/></Productos><Productos><TbMessages/></Productos></ContBotones></div>
 </Fondo>
-    
+<Search> 
+     <Search1/> <App/> </Search>
+<Tercera><ProductosA>Productos agrícolas</ProductosA><div></div></Tercera>
     </>
   )
 }
