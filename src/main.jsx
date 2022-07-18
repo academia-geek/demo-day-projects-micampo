@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './app/store/store';
 import 'animate.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'antd/dist/antd.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './Styles/index.css'
 import AppRoutes from './routes/AppRoutes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
