@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Home from "../containers/Home";
-import Login from "../containers/Login";
 import QuienesSomos from "../containers/QuienesSomos";
-import Registro from "../containers/Registro";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
@@ -12,6 +10,8 @@ import Aliados from '../containers/Aliados';
 import Agroinsumos from '../containers/Agroinsumos';
 import Us from '../containers/Us';
 import Mercado from '../containers/Mercado';
+import LogIn from '../components/auth/Login';
+import Register from '../components/auth/Register';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true)
@@ -70,17 +70,17 @@ const AppRoutes = () => {
             } />
             <Route path='/login' element={
                <PublicRoutes isAuth={isLogget}>
-                  <Login />
+                  <LogIn />
                </PublicRoutes>
             } />
 
-            <Route path='/login' element={
+            <Route path='/register' element={
                <PublicRoutes isAuth={isLogget}>
-                  <Registro />
+                  <Register />
                </PublicRoutes>
             } />
 
-            <Route path='/login' element={
+            <Route path='/sobre-nosotros' element={
                <PublicRoutes isAuth={isLogget}>
                   <QuienesSomos />
                </PublicRoutes>

@@ -1,9 +1,9 @@
 import { addDoc, collection } from 'firebase/firestore'
-import { DB } from '../../firebase/firebaseConfig'
+import { db } from '../../firebase/firebaseConfig'
 
 export const addProdAsync = (pro) => {
    return async () => {
-      addDoc(collection(DB, "productos"), pro)
+      addDoc(collection(db, "productos"), pro)
          .then(res => console.log('Agregado'))
 
          .catch(err => console.log(err))

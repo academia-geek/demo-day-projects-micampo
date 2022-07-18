@@ -3,7 +3,7 @@ import useForm from '../hooks/useForm'
 import { useDispatch } from 'react-redux'
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { imgUpload } from '../helpers/imgUpload';
-import { addProdAsync } from '../redux/actions/actionAddProduct';
+import { addProdAsync } from '../app/actions/actionAddProduct';
 import { ToastContainer, toast } from 'react-toastify';
 
 const AddProducto = () => {

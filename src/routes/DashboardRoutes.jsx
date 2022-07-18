@@ -2,6 +2,7 @@ import React from 'react'
 import Logeado from '../containers/Logeado'
 import { Routes, Route } from "react-router-dom";
 import AddProducto from '../containers/AddProducto';
+import Home from '../containers/Home';
 
 const DashboardRoutes = () => {
    return (
