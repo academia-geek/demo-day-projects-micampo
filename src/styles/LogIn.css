@@ -1,0 +1,91 @@
+.login-main-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(29, 29, 29, 0.9);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 80%;
+    padding-bottom: 45px;
+    padding-top: 45px;
+}
+
+.login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: 50%;
+    background: #1D1D1D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 5px 5px 0px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.logIn-input {
+    width: 172px;
+    height: 40px;
+    filter: drop-shadow(4px 4px 0px #FFFFFF);
+    background: #87AE39;
+    border: 1px solid #FFFFFF;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 40px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    margin: 1rem;
+}
+
+.social-media-buttons h2 {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: -0.06em;
+    color: #FFFFFF;
+    text-shadow: 4px 4px 0px #87AE39;
+    text-align: center;
+}
+
+.social-media-buttons>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.social-media-buttons>div>button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 8px;
+    background: #FFFFFF;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+    color: #000000;
+}
+
+.google-button {
+    margin-right: 1rem;
+}
+
+.facebook-button {
+    margin-left: 1rem;
+}

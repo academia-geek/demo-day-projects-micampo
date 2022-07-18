@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.spinner-box {
+    height: 80vh;
+    width: 100vw;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.charging-logo-section {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LOGIN AND REGISTER STYLES */
+.auth-main-container {
+    background-image: url("https://res.cloudinary.com/gartners/image/upload/v1658110433/DemoDay/Portada1_tllkdi.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    width: 100vw;
+}
+
+.register-content>h1,
+.login-content>h1,
+.user-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 4px 4px 0px #87AE39;
+    font-size: 55px;
+    line-height: 50px;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+    line-height: 30px;
+    margin: 0;
+}
+
+.register-content>form,
+.login-content>form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.advertisement-main-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 30%;
+    background: #1D1D1D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 5px 5px 0px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-right: 66px;
+}
+
+.advertisement-main-box img {
+    width: 80%;
+    height: auto;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.name-input,
+.email-input,
+.password-input {
+    background: #FFFFFF !important;
+    border: 1px solid #87AE39 !important;
+    box-shadow: 4px 4px 0px #87AE39 !important;
+    width: 301px !important;
+    height: 40px !important;
+    font-weight: 300 !important;
+    font-size: 16px !important;
+    line-height: 50px !important;
+    padding: 1rem !important;
+    margin: 1rem !important;
+}
