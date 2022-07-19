@@ -120,7 +120,6 @@ display:flex;
 flex-direction:row;
 position:relative;
 padding: 3rem 10rem;
-
 &::before{
 content:'';
 background-image:url(https://res.cloudinary.com/dcsn54xoj/image/upload/v1658098942/MiCampo/Rectangle_srfico.png);
@@ -141,6 +140,7 @@ export const Tercera = styled.div`
 background-color: #F8F8F8;
 padding:3rem; 
 display:flex; 
+flex-direction:column;
 margin-top:-3rem;
 `
 export const ProductosA = styled.h1`
@@ -149,7 +149,8 @@ color:black;
 font-size:5rem;
 letter-spacing:-6px;
 text-align:center; 
-width:100%;`
+width:70%;
+padding-top:2rem;`
 
 export const Bar = styled.input`
 border:none; 
@@ -161,3 +162,80 @@ border:none;
     border:none;
     outline:none;
 }`
+
+export const Linea = styled.div`
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+grid-gap:2rem;
+padding:3rem 5rem;`
+
+export const ContImagen= styled.div`
+border-radius:10%; 
+width:90%;
+height:90%;
+overflow: hidden;`
+
+export const ProdImg= styled.img`
+height:100%;
+width:100%;
+overflow: hidden;
+position:relative;
+
+`
+
+export const BotVerde = styled.button`
+background-color:#699A07; 
+width:10%; 
+border:none;
+color:white;
+font-weight:600;
+border-radius:15px;
+padding:0.5rem;
+display:block;
+margin-left:auto;
+margin-right:auto;
+margin-bottom:2rem;`
+
+export const TituloCont = styled.div`
+display:flex;
+flex-direction:row;
+align-items:center;
+justify-content:center;
+margin:0;
+padding:0;` 
+
+export const Cuarta = styled.div`
+background-color: #FFFFFF;
+padding:3rem; 
+display:flex; 
+flex-direction:column;
+margin-top:-3rem;
+`
+
+export const Aliado =styled.img`
+clip-path: circle(50% at 50% 50%);
+height:85%;
+width:80%;
+margin:1rem;
+align-self:center;
+`
+
+export const TarjetaAliado = styled.div`
+display:flex;
+flex-direction:column; 
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+border-top-left-radius:50%;
+border-top-right-radius:50%;
+border-bottom-left-radius:5%;
+border-bottom-right-radius:5%;
+align-items:center;
+background-color:#FCFCFC;
+overflow: hidden;`
+
+export const Negro = styled.div`
+background-color:#1d1d1d;
+width:100%;
+color:white;
+overflow: hidden;
+padding:0.5rem;
+`

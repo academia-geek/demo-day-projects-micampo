@@ -15,7 +15,7 @@ import Register from '../components/auth/Register';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true)
-   const [isLogget, setIsLogget] = useState(true)
+   const [isLogget, setIsLogget] = useState(false)
 
    // useEffect(() => {
    //    const auth = getAuth();
