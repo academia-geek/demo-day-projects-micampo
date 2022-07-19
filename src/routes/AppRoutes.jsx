@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
 
@@ -17,31 +17,34 @@ import Register from '../components/auth/Register';
 import User from '../containers/User';
 import LoadingScreen from '../components/LoadingScreen';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { loginCheckAction } from '../app/actions/loginCheck.actions';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true);
    const [isLogget, setIsLogget] = useState(false);
-
-   const loginSuccess = useSelector((state) => state.login)
-
-   useEffect(() => {
-      console.log('loginSuccess', loginSuccess);
-   }, [loginSuccess]);
+   const dispatch = useDispatch();
+   const loginCheckInfo = useSelector((state) => state.loginCheck);
 
    useEffect(() => {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
          if (user?.uid) {
-            setIsLogget(true)
+            setIsLogget(true);
+            dispatch(loginCheckAction(true));
          } else {
-            setIsLogget(false)
+            setIsLogget(false);
+            dispatch(loginCheckAction(false));
          }
-         setCheckAut(false)
-      })
-   }, [setIsLogget, setCheckAut])
+         setCheckAut(false);
+      });
+   }, [setIsLogget, setCheckAut]);
+
+   useEffect(() => {
+      console.log(loginCheckInfo);
+   }, [loginCheckInfo]);
 
    if (checkAuth) {
-      return <LoadingScreen />
+      return <LoadingScreen />;
    }
 
    return (
