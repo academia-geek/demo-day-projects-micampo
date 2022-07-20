@@ -85,6 +85,7 @@ const User = () => {
    useEffect(() => {
       if (user.isSuccess) {
          setIsLoading(false);
+         console.log(user);
          setName(user.name);
          setEmail(user.email);
          setPhoto(user.photoURL);
@@ -150,7 +151,7 @@ const User = () => {
                   </div>
                </div>
             </div>
-         </div>
+
          {isEditing ? (
             <div className='edit-components'>
                <h2 className='subtitle'>Editar perfil</h2>
@@ -313,6 +314,7 @@ const User = () => {
                </div> */}
             </div>
          )}
+         </div>
       </div>
    );
 };

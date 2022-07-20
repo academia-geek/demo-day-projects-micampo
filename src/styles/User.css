@@ -1,6 +1,6 @@
 .user-main-container {
     width: 100vw;
-    height: 100vh;
+    height: 91.5vh;
     background: #1D1D1D;
     display: flex;
     flex-direction: column;
@@ -8,6 +8,7 @@
     justify-content: center;
     background-image: url("https://res.cloudinary.com/gartners/image/upload/v1658127876/DemoDay/Rectangle_mnmfze.png");
 }
+
 .header-section {
     background: #1D1D1D;
     padding: 40px;
@@ -15,15 +16,16 @@
     border-radius: 5px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
 .photo-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
+
 .profile-photo {
-    width: 20rem;
+    width: 10rem;
     height: auto;
     max-width: 20rem;
     max-height: 20rem;
@@ -110,8 +112,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80%;
-    width: auto;
     padding-inline: 100px;
     background: #1d1d1d83;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

@@ -49,8 +49,26 @@ const AppRoutes = () => {
 
    return (
       <BrowserRouter>
-         {/* <Nav1 /> */}
+         <Nav1 />
          <Routes>
+            <Route
+               path='/login'
+               element={
+                  <PublicRoutes isAuth={isLogget}>
+                     <LogIn />
+                  </PublicRoutes>
+               }
+            />
+
+            <Route
+               path='/register'
+               element={
+                  <PublicRoutes isAuth={isLogget}>
+                     <Register />
+                  </PublicRoutes>
+               }
+            />
+            
             <Route
                path='/lg/home'
                element={
@@ -92,24 +110,6 @@ const AppRoutes = () => {
                element={
                   <PublicRoutes isAuth={isLogget}>
                      <Us />
-                  </PublicRoutes>
-               }
-            />
-
-            <Route
-               path='/login'
-               element={
-                  <PublicRoutes isAuth={isLogget}>
-                     <LogIn />
-                  </PublicRoutes>
-               }
-            />
-
-            <Route
-               path='/register'
-               element={
-                  <PublicRoutes isAuth={isLogget}>
-                     <Register />
                   </PublicRoutes>
                }
             />
