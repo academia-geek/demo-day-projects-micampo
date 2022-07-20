@@ -152,168 +152,181 @@ const User = () => {
                </div>
             </div>
 
-         {isEditing ? (
-            <div className='edit-components'>
-               <h2 className='subtitle'>Editar perfil</h2>
-               <div>
-                  {isEditingName ? (
-                     <div>
-                        <input
-                           className='mb-3 form-control'
-                           type='text'
-                           name='name'
-                           placeholder='Name'
-                           autoComplete='off'
-                           onChange={(e) => setName(e.target.value)}
-                        />
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingName(false);
-                              dispatch(updateUserAction(user.data, name));
-                           }}>
-                           Save
-                        </button>
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingName(false);
-                              setName(user.name);
-                           }}>
-                           Cancel
-                        </button>
-                     </div>
-                  ) : (
-                     <div>
-                        <span>Name: {user.name}</span>
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingName(true);
-                           }}>
-                           Edit
-                        </button>
-                     </div>
-                  )}
+            {isEditing ? (
+               <div className='edit-components'>
+                  <h2 className='subtitle'>Editar perfil</h2>
+                  <>
+                     {isEditingName ? (
+                        <div className='edit-compelte-field'>
+                           <input
+                              className='input-edit-user'
+                              type='text'
+                              name='name'
+                              placeholder='Nuevo nombre'
+                              autoComplete='off'
+                              onChange={(e) => setName(e.target.value)}
+                           />
+                           <button
+                              className='save-user-button'
+                              onClick={() => {
+                                 setIsEditingName(false);
+                                 dispatch(updateUserAction(user.data, name));
+                              }}>
+                              Save
+                           </button>
+                           <button
+                              className='cancel-user-button'
+                              onClick={() => {
+                                 setIsEditingName(false);
+                                 setName(user.name);
+                              }}>
+                              Cancel
+                           </button>
+                        </div>
+                     ) : (
+                        <div className='edit-compelte-field'>
+                           <span className='edit-user-span'>
+                              Name: {user.name}
+                           </span>
+                           <button
+                              className='open-edit-user-button'
+                              onClick={() => {
+                                 setIsEditingName(true);
+                              }}>
+                              Edit
+                           </button>
+                        </div>
+                     )}
+                  </>
+                  <>
+                     {isEditingEmail ? (
+                        <div className='edit-compelte-field'>
+                           <input
+                              className='input-edit-user'
+                              type='email'
+                              name='email'
+                              placeholder='Nuevo email'
+                              autoComplete='off'
+                              onChange={(e) => setEmail(e.target.value)}
+                           />
+                           <button
+                              className='save-user-button'
+                              onClick={() => {
+                                 setIsEditingEmail(false);
+                                 dispatch(updateEmailAction(user.data, email));
+                              }}>
+                              Save
+                           </button>
+                           <button
+                              className='cancel-user-button'
+                              onClick={() => {
+                                 setIsEditingEmail(false);
+                                 setEmail(user.email);
+                              }}>
+                              Cancel
+                           </button>
+                        </div>
+                     ) : (
+                        <div className='edit-compelte-field'>
+                           <span className='edit-user-span'>
+                              Email: {user.email}
+                           </span>
+                           <button
+                              className='open-edit-user-button'
+                              onClick={() => {
+                                 setIsEditingEmail(true);
+                              }}>
+                              Edit
+                           </button>
+                        </div>
+                     )}
+                  </>
+                  <>
+                     {isEditingPassword ? (
+                        <div className='edit-compelte-field'>
+                           <input
+                              className='input-edit-user'
+                              type='password'
+                              name='password'
+                              placeholder='Nueva contraseña'
+                              autoComplete='off'
+                              onChange={(e) => setPassword(e.target.value)}
+                           />
+                           <button
+                              className='save-user-button'
+                              onClick={() => {
+                                 setIsEditingPassword(false);
+                                 dispatch(
+                                    updatePasswordAction(user.data, password)
+                                 );
+                              }}>
+                              Save
+                           </button>
+                           <button
+                              className='cancel-user-button'
+                              onClick={() => {
+                                 setIsEditingPassword(false);
+                                 setPassword(user.password);
+                              }}>
+                              Cancel
+                           </button>
+                        </div>
+                     ) : (
+                        <div className='edit-compelte-field'>
+                           <span className='edit-user-span'>
+                              Password: **********
+                           </span>
+                           <button
+                              className='open-edit-user-button'
+                              onClick={() => {
+                                 setIsEditingPassword(true);
+                              }}>
+                              Edit
+                           </button>
+                        </div>
+                     )}
+                  </>
+                  <button
+                     className='cancel-button'
+                     onClick={() => {
+                        setIsEditing(false);
+                     }}>
+                     Cancelar
+                  </button>
+                  <button className='delete-user-button'>
+                     Eliminar tu cuenta
+                  </button>
                </div>
-               <div>
-                  {isEditingEmail ? (
-                     <div>
-                        <input
-                           className='mb-3 form-control'
-                           type='email'
-                           name='email'
-                           placeholder='Email address'
-                           autoComplete='off'
-                           onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingEmail(false);
-                              dispatch(updateEmailAction(user.data, email));
-                           }}>
-                           Save
-                        </button>
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingEmail(false);
-                              setEmail(user.email);
-                           }}>
-                           Cancel
-                        </button>
-                     </div>
-                  ) : (
-                     <div>
-                        <span>Email: {user.email}</span>
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingEmail(true);
-                           }}>
-                           Edit
-                        </button>
-                     </div>
-                  )}
-               </div>
-               <div>
-                  {isEditingPassword ? (
-                     <div>
-                        <input
-                           type='password'
-                           name='password'
-                           placeholder='Password'
-                           autoComplete='off'
-                           onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button
-                           onClick={() => {
-                              setIsEditingPassword(false);
-                              dispatch(
-                                 updatePasswordAction(user.data, password)
-                              );
-                           }}>
-                           Save
-                        </button>
-                        <button
-                           onClick={() => {
-                              setIsEditingPassword(false);
-                              setPassword(user.password);
-                           }}>
-                           Cancel
-                        </button>
-                     </div>
-                  ) : (
-                     <div>
-                        <span>Password: **********</span>
-                        <button
-                           onClick={() => {
-                              setIsEditingPassword(true);
-                           }}>
-                           Edit
-                        </button>
-                     </div>
-                  )}
-               </div>
-               <button
-                  onClick={() => {
-                     setIsEditing(false);
-                  }}>
-                  Cancelar
-               </button>
-               <button>Eliminar tu cuenta</button>
-            </div>
-         ) : (
-            <div className='edit-components'>
-               <h2 className='subtitle'>¿Que deseas hacer?</h2>
-               <button
-                  className='edit-user-button'
-                  onClick={() => {
-                     setIsEditing(true);
-                  }}>
-                  Editar Cuenta
-               </button>
-               <button
-                  className='close-sesion-button'
-                  onClick={() => {
-                     dispatch(logoutAction());
-                  }}>
-                  Cerrar sesión
-               </button>
-               <button className='delete-user-button'>
-                  Eliminar tu cuenta
-               </button>
+            ) : (
+               <div className='edit-components'>
+                  <h2 className='subtitle'>¿Que deseas hacer?</h2>
+                  <button
+                     className='edit-user-button'
+                     onClick={() => {
+                        setIsEditing(true);
+                     }}>
+                     Editar Cuenta
+                  </button>
+                  <button
+                     className='close-sesion-button'
+                     onClick={() => {
+                        dispatch(logoutAction());
+                     }}>
+                     Cerrar sesión
+                  </button>
+                  <button className='delete-user-button'>
+                     Eliminar tu cuenta
+                  </button>
 
-               {/* <div>
+                  {/* <div>
                   <small><p>
                      SECCION NUEVA DONDE APARECERAN SELECCIONES DEL USUARIO,
                      DEPENDIENDO DE TIPO DE USUARIO (COMPRADOR,VENDEDOR DE
                      PRODUCTOS AGRICOLAS O VENDEDOR DE INSUMOS)
                   </p></small>
                </div> */}
-            </div>
-         )}
+               </div>
+            )}
          </div>
       </div>
    );
