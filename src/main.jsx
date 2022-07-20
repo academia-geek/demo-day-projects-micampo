@@ -6,7 +6,11 @@ import 'animate.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
 import 'react-toastify/dist/ReactToastify.css';
+import './styles/main.css'
 import './Styles/index.css'
+import './styles/LogIn.css'
+import './styles/Register.css'
+import './styles/User.css'
 import AppRoutes from './routes/AppRoutes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

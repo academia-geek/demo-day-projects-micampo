@@ -49,7 +49,7 @@ const AppRoutes = () => {
 
    return (
       <BrowserRouter>
-         <Nav1 />
+         {/* <Nav1 /> */}
          <Routes>
             <Route
                path='/lg/home'
