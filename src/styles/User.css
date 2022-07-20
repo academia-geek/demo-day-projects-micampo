@@ -170,6 +170,26 @@
     transition: all 0.3s ease-in-out;
 }
 
+.upload-new-photo-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 172px;
+    height: 60px;
+    filter: drop-shadow(4px 4px 0px #FFFFFF);
+    background: #87AE39;
+    border: 1px solid #FFFFFF;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 30px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    margin: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
 .close-sesion-button:hover,
 .edit-user-button:hover,
 .delete-user-button:hover,
@@ -177,7 +197,9 @@
 .cancel-user-button:hover,
 .save-user-button:hover,
 .cancel-button:hover,
-.delete-user-button:hover {
+.delete-user-button:hover,
+.upload-new-photo-button:hover,
+.save-photo-button:hover {
     background-color: #e3e3e3;
     color: #333;
 }
@@ -195,14 +217,18 @@
     transition: all 0.3s ease-in-out;
 }
 
-.edit-compelte-field {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    background: #1d1d1d83;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 0px 5px 5px 0px;
+.save-photo-button {
+    cursor: pointer;
+    width: 172px;
+    height: 40px;
+    filter: drop-shadow(4px 4px 0px #FFFFFF);
+    background: #87AE39;
+    border: 1px solid #FFFFFF;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 40px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    margin: 1rem;
     transition: all 0.3s ease-in-out;
 }

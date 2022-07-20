@@ -12,19 +12,23 @@ import ModalInfo from '../components/ModalInfo';
 import LoadingScreen from '../components/LoadingScreen';
 import '../styles/User.css';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../firebase/firebaseConfig';
 
 const style = {
+   display: 'flex',
+   flexDirection: 'column',
+   alignItems: 'center',
+   justifyContent: 'center',
    position: 'absolute',
    top: '50%',
    left: '50%',
    transform: 'translate(-50%, -50%)',
-   width: 400,
-   bgcolor: 'background.paper',
-   border: '2px solid #000',
-   boxShadow: 24,
-   p: 4,
+   width: 500,
+   bgcolor: '#1D1D1D',
+   height: 500,
+   borderRadius: 10,
+   padding: 5,
+   textAlign: 'center',
+   color: '#fff',
 };
 
 const User = () => {
@@ -37,7 +41,7 @@ const User = () => {
    const [name, setName] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
-   const [photo, setPhoto] = useState('');
+   const [photo, setPhoto] = useState();
    const [hasPhoto, setHasPhoto] = useState(false);
 
    const handleOpen = () => setIsEditingPhoto(true);
@@ -45,35 +49,6 @@ const User = () => {
 
    const dispatch = useDispatch();
    const user = useSelector((state) => state.user);
-
-   const userDataInitialState = [
-      {
-         type: '',
-         user: '',
-         gender: '',
-         age: '',
-         ubication: '',
-      },
-   ];
-
-   const searchDocOrCreateDoc = async (userUID) => {
-      const docRef = doc(db, 'usuarios', userUID);
-      const consult = await getDoc(docRef);
-
-      if (consult.exists()) {
-         const infoDoc = consult.data();
-         return infoDoc;
-      } else {
-         await setDoc(docRef, { data: [...userDataInitialState] });
-         const consult = await getDoc(docRef);
-         const infoDoc = consult.data();
-         return infoDoc;
-      }
-   };
-
-   const getData = async () => {
-      return await searchDocOrCreateDoc(user.uid);
-   };
 
    useEffect(() => {
       dispatch(getUserAction());
@@ -85,7 +60,6 @@ const User = () => {
    useEffect(() => {
       if (user.isSuccess) {
          setIsLoading(false);
-         console.log(user);
          setName(user.name);
          setEmail(user.email);
          setPhoto(user.photoURL);
@@ -113,7 +87,7 @@ const User = () => {
                         <Box sx={style}>
                            <ModalInfo user={user.data} />
                            <button
-                              className=''
+                              className='cancel-button'
                               onClick={() => {
                                  setIsEditingPhoto(false);
                                  setPhoto(user.photoURL);

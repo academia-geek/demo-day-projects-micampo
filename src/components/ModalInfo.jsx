@@ -5,6 +5,7 @@ import { Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { storage } from '../firebase/firebaseConfig';
 import { updatePhotoAction } from '../app/actions/user.actions';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const Prueba = ({ user }) => {
    const auth = getAuth();
@@ -60,15 +61,28 @@ const Prueba = ({ user }) => {
             method='post'
             onChange={handleOnChangeImage}
             onSubmit={handleOnClick}>
-            <p>
-               <input type='file' name='file' accept='image/*' />
-            </p>
+            <div>
+               <label htmlFor="file" className='upload-new-photo-button'>
+                  <AddPhotoAlternateIcon />
+               </label>
+               <input
+                  type='file'
+                  name='file'
+                  accept='image/*'
+                  id='file'
+                  style={{ display: 'none' }}
+                  required
+               />
+            </div>
 
             <img style={{ width: '100px' }} src={imageSrc} />
 
             {imageSrc && !uploadData && (
                <p>
-                  <button>Guardar</button>
+                  <button
+                     type='submit'
+                     className='save-photo-button'
+                  >Guardar</button>
                </p>
             )}
 
