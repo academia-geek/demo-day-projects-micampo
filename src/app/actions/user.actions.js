@@ -1,5 +1,5 @@
 import { typesUser } from "../types/types";
-import { getAuth, onAuthStateChanged, RecaptchaVerifier, signInWithPhoneNumber, updateEmail, updateProfile } from "firebase/auth";
+import { deleteUser, getAuth, onAuthStateChanged, RecaptchaVerifier, signInWithPhoneNumber, updateEmail, updateProfile } from "firebase/auth";
 
 export const getUserAction = () => {
     const auth = getAuth();
@@ -32,14 +32,16 @@ export const updateUserAction = (user, name) => {
 
 export const deleteUserAction = () => {
     const auth = getAuth();
+    const user = auth.currentUser;
     return (dispatch) => {
         dispatch({ type: typesUser.DELETE_USER });
-        auth.currentUser.delete().then(() => {
-            dispatch({ type: typesUser.DELETE_USER_SUCCESS });
-        }).catch((error) => {
-            dispatch({ type: typesUser.DELETE_USER_FAILURE, payload: error.message });
-        }
-        );
+        deleteUser(user)
+            .then(() => {
+                dispatch({ type: typesUser.DELETE_USER_SUCCESS });
+            })
+            .catch((error) => {
+                dispatch({ type: typesUser.DELETE_USER_FAILURE, payload: error.message });
+            });
     }
 }
 

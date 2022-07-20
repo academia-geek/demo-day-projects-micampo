@@ -5,6 +5,7 @@ import {
    updatePasswordAction,
    updateUserAction,
    updateEmailAction,
+   deleteUserAction,
 } from '../app/actions/user.actions';
 import { logoutAction } from '../app/actions/login.actions';
 import { Modal, Box, Avatar } from '@mui/material';
@@ -43,6 +44,7 @@ const User = () => {
    const [password, setPassword] = useState('');
    const [photo, setPhoto] = useState();
    const [hasPhoto, setHasPhoto] = useState(false);
+   const [isDeletingUser, setIsDeletingUser] = useState(false);
 
    const handleOpen = () => setIsEditingPhoto(true);
    const handleClose = () => setIsEditingPhoto(false);
@@ -131,7 +133,7 @@ const User = () => {
                   <h2 className='subtitle'>Editar perfil</h2>
                   <>
                      {isEditingName ? (
-                        <div className='edit-compelte-field'>
+                        <div className='edit-complete-field'>
                            <input
                               className='input-edit-user'
                               type='text'
@@ -158,7 +160,7 @@ const User = () => {
                            </button>
                         </div>
                      ) : (
-                        <div className='edit-compelte-field'>
+                        <div className='edit-complete-field'>
                            <span className='edit-user-span'>
                               Name: {user.name}
                            </span>
@@ -174,7 +176,7 @@ const User = () => {
                   </>
                   <>
                      {isEditingEmail ? (
-                        <div className='edit-compelte-field'>
+                        <div className='edit-complete-field'>
                            <input
                               className='input-edit-user'
                               type='email'
@@ -201,7 +203,7 @@ const User = () => {
                            </button>
                         </div>
                      ) : (
-                        <div className='edit-compelte-field'>
+                        <div className='edit-complete-field'>
                            <span className='edit-user-span'>
                               Email: {user.email}
                            </span>
@@ -217,7 +219,7 @@ const User = () => {
                   </>
                   <>
                      {isEditingPassword ? (
-                        <div className='edit-compelte-field'>
+                        <div className='edit-complete-field'>
                            <input
                               className='input-edit-user'
                               type='password'
@@ -246,7 +248,7 @@ const User = () => {
                            </button>
                         </div>
                      ) : (
-                        <div className='edit-compelte-field'>
+                        <div className='edit-complete-field'>
                            <span className='edit-user-span'>
                               Password: **********
                            </span>
@@ -288,9 +290,42 @@ const User = () => {
                      }}>
                      Cerrar sesión
                   </button>
-                  <button className='delete-user-button'>
+                  <button
+                     className='delete-user-button'
+                     onClick={() => setIsDeletingUser(true)}>
                      Eliminar tu cuenta
                   </button>
+                  {isDeletingUser && (
+                     <>
+                        <Modal
+                           open={isDeletingUser}
+                           onClose={() => isDeletingUser(false)}
+                           aria-labelledby='modal-modal-title'
+                           aria-describedby='modal-modal-description'>
+                           <Box sx={style}>
+                              <h2 className='subtitle'>¿Estas seguro?</h2>
+                              <p className='delete-user-modal-text'>
+                                 Esta acción no se puede deshacer.
+                              </p>
+                              <button
+                                 className='delete-user-button'
+                                 onClick={() => {
+                                    dispatch(deleteUserAction(user.data));
+                                    setIsDeletingUser(false);
+                                 }}>
+                                 Eliminar
+                              </button>
+                              <button
+                                 className='cancel-button'
+                                 onClick={() => {
+                                    setIsDeletingUser(false);
+                                 }}>
+                                 Cancelar
+                              </button>
+                           </Box>
+                        </Modal>
+                     </>
+                  )}
 
                   {/* <div>
                   <small><p>
