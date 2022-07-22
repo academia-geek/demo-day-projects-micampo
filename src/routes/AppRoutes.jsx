@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
@@ -18,12 +18,37 @@ import User from '../containers/User';
 import LoadingScreen from '../components/LoadingScreen';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { loginCheckAction } from '../app/actions/loginCheck.actions';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase/firebaseConfig';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true);
    const [isLogget, setIsLogget] = useState(false);
    const dispatch = useDispatch();
-   const loginCheckInfo = useSelector((state) => state.loginCheck);
+   const userDataInitialState = [
+      {
+         type: '',
+         user: '',
+         gender: '',
+         age: '',
+         ubication: '',
+      },
+   ];
+
+   const searchDocOrCreateDoc = async (userUID) => {
+      const docRef = doc(db, 'usuarios', userUID);
+      const consult = await getDoc(docRef);
+
+      if (consult.exists()) {
+         const infoDoc = consult.data();
+         return infoDoc;
+      } else {
+         await setDoc(docRef, { data: [...userDataInitialState] });
+         const consult = await getDoc(docRef);
+         const infoDoc = consult.data();
+         return infoDoc;
+      }
+   };
 
    useEffect(() => {
       const auth = getAuth();
@@ -31,6 +56,7 @@ const AppRoutes = () => {
          if (user?.uid) {
             setIsLogget(true);
             dispatch(loginCheckAction(true));
+            searchDocOrCreateDoc(user.uid);
          } else {
             setIsLogget(false);
             dispatch(loginCheckAction(false));
@@ -38,10 +64,6 @@ const AppRoutes = () => {
          setCheckAut(false);
       });
    }, [setIsLogget, setCheckAut]);
-
-   useEffect(() => {
-      console.log(loginCheckInfo);
-   }, [loginCheckInfo]);
 
    if (checkAuth) {
       return <LoadingScreen />;
@@ -68,7 +90,7 @@ const AppRoutes = () => {
                   </PublicRoutes>
                }
             />
-            
+
             <Route
                path='/lg/home'
                element={
