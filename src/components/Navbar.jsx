@@ -16,8 +16,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 const Nav1 = () => {
    return (
       <>
-
-         <Navbar key='md' expand='md' className='mb-3 fondo' style={{ color: 'white', backgroundColor: '#699A07' }} >
+         <Navbar key='md' expand='md' className='fondo' style={{ color: 'white', backgroundColor: '#699A07' }} >
             <Container fluid >
                <Navbar.Brand href='#'>
                   <img

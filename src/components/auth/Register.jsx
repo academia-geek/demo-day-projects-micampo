@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import '../../styles/Register.css';
 import { registerAction } from '../../app/actions/login.actions';
 import LoadingScreen from '../LoadingScreen';
 import { useNavigate } from 'react-router-dom';
@@ -11,21 +10,21 @@ import { useNavigate } from 'react-router-dom';
 
 const SignupSchema = Yup.object().shape({
    email: Yup.string()
-      .email('Invalid email')
-      .required('Please Enter your email'),
+      .email('Email no válido')
+      .required('Email requerido'),
    password: Yup.string()
-      .required('Please Enter your password')
-      .min(6, 'Password must be at least 6 characters')
-      .max(20, 'Password must be less than 20 characters'),
+      .required('Contraseña requerida')
+      .min(6, 'Contraseña debe tener al menos 6 caracteres')
+      .max(20, 'Contraseña debe tener máximo 20 caracteres'),
    passwordConfirm: Yup.string()
-      .required('Please Enter your password')
-      .min(6, 'Password must be at least 6 characters')
-      .max(20, 'Password must be less than 20 characters')
-      .oneOf([Yup.ref('password'), null], 'Passwords must match'),
+      .required('Confirmar contraseña requerida')
+      .min(6, 'Contraseña debe tener al menos 6 caracteres')
+      .max(20, 'Contraseña debe tener máximo 20 caracteres')
+      .oneOf([Yup.ref('password'), null], 'Contraseñas no coinciden'),
    name: Yup.string()
-      .required('Please Enter your name')
-      .min(3, 'Name must be at least 3 characters')
-      .max(20, 'Name must be less than 20 characters'),
+      .required('Nombre requerido')
+      .min(3, 'Nombre debe tener al menos 3 caracteres')
+      .max(20, 'Nombre debe tener máximo 20 caracteres'),
 });
 
 // ------------ End Yup Validation ------------ //
@@ -69,49 +68,51 @@ const Register = () => {
                   }}>
                   {({ errors, touched }) => (
                      <Form>
-                        {errors.name && touched.name ? (
-                           <div>{errors.name}</div>
-                        ) : null}
                         <Field
-                           className='mb-3 form-control name-input'
+                           className='name-input'
                            type='name'
                            name='name'
                            placeholder='Nombre'
                            autoComplete='name'
                         />
-                        {errors.email && touched.email ? (
-                           <div>{errors.email}</div>
+                        {errors.name && touched.name ? (
+                           <div className='form-error'>{errors.name}</div>
                         ) : null}
+
                         <Field
-                           className='mb-3 form-control email-input'
+                           className='email-input'
                            name='email'
                            placeholder='Email'
                            autoComplete='off'
                         />
-
-                        {errors.password && touched.password ? (
-                           <div>{errors.password}</div>
+                        {errors.email && touched.email ? (
+                           <div className='form-error'>{errors.email}</div>
                         ) : null}
+
                         <Field
-                           className='mb-3 form-control password-input'
+                           className='password-input'
                            type='password'
                            name='password'
                            placeholder='Contraseña'
                            autoComplete='off'
                         />
-
-                        {errors.passwordConfirm && touched.passwordConfirm ? (
-                           <div>{errors.passwordConfirm}</div>
+                        {errors.password && touched.password ? (
+                           <div className='form-error'>{errors.password}</div>
                         ) : null}
+
                         <Field
-                           className='mb-3 form-control password-input'
+                           className='password-input'
                            type='password'
                            name='passwordConfirm'
                            placeholder='Confirmar Contraseña'
                            autoComplete='off'
                         />
-
-                        <div className='d-grid gap-2'>
+                        {errors.passwordConfirm && touched.passwordConfirm ? (
+                           <div className='form-error'>
+                              {errors.passwordConfirm}
+                           </div>
+                        ) : null}
+                        <div>
                            <button
                               className='register-input'
                               variant='primary'
@@ -135,8 +136,7 @@ const Register = () => {
                         cursor: 'pointer',
                         marginLeft: '5px',
                      }}
-                     onClick={() => navigate('/login')}
-                     >
+                     onClick={() => navigate('/login')}>
                      Iniciar sesión
                   </span>
                </div>

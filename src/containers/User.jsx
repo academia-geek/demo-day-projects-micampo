@@ -5,6 +5,7 @@ import {
    updatePasswordAction,
    updateUserAction,
    updateEmailAction,
+   deleteUserAction,
 } from '../app/actions/user.actions';
 import { logoutAction } from '../app/actions/login.actions';
 import { Modal, Box, Avatar } from '@mui/material';
@@ -12,19 +13,23 @@ import ModalInfo from '../components/ModalInfo';
 import LoadingScreen from '../components/LoadingScreen';
 import '../styles/User.css';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../firebase/firebaseConfig';
 
 const style = {
+   display: 'flex',
+   flexDirection: 'column',
+   alignItems: 'center',
+   justifyContent: 'center',
    position: 'absolute',
    top: '50%',
    left: '50%',
    transform: 'translate(-50%, -50%)',
-   width: 400,
-   bgcolor: 'background.paper',
-   border: '2px solid #000',
-   boxShadow: 24,
-   p: 4,
+   width: 500,
+   bgcolor: '#1D1D1D',
+   height: 500,
+   borderRadius: 10,
+   padding: 5,
+   textAlign: 'center',
+   color: '#fff',
 };
 
 const User = () => {
@@ -37,43 +42,15 @@ const User = () => {
    const [name, setName] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
-   const [photo, setPhoto] = useState('');
+   const [photo, setPhoto] = useState();
    const [hasPhoto, setHasPhoto] = useState(false);
+   const [isDeletingUser, setIsDeletingUser] = useState(false);
 
    const handleOpen = () => setIsEditingPhoto(true);
    const handleClose = () => setIsEditingPhoto(false);
 
    const dispatch = useDispatch();
    const user = useSelector((state) => state.user);
-
-   const userDataInitialState = [
-      {
-         type: '',
-         user: '',
-         gender: '',
-         age: '',
-         ubication: '',
-      },
-   ];
-
-   const searchDocOrCreateDoc = async (userUID) => {
-      const docRef = doc(db, 'usuarios', userUID);
-      const consult = await getDoc(docRef);
-
-      if (consult.exists()) {
-         const infoDoc = consult.data();
-         return infoDoc;
-      } else {
-         await setDoc(docRef, { data: [...userDataInitialState] });
-         const consult = await getDoc(docRef);
-         const infoDoc = consult.data();
-         return infoDoc;
-      }
-   };
-
-   const getData = async () => {
-      return await searchDocOrCreateDoc(user.uid);
-   };
 
    useEffect(() => {
       dispatch(getUserAction());
@@ -112,7 +89,7 @@ const User = () => {
                         <Box sx={style}>
                            <ModalInfo user={user.data} />
                            <button
-                              className=''
+                              className='cancel-button'
                               onClick={() => {
                                  setIsEditingPhoto(false);
                                  setPhoto(user.photoURL);
@@ -150,169 +127,216 @@ const User = () => {
                   </div>
                </div>
             </div>
-         </div>
-         {isEditing ? (
-            <div className='edit-components'>
-               <h2 className='subtitle'>Editar perfil</h2>
-               <div>
-                  {isEditingName ? (
-                     <div>
-                        <input
-                           className='mb-3 form-control'
-                           type='text'
-                           name='name'
-                           placeholder='Name'
-                           autoComplete='off'
-                           onChange={(e) => setName(e.target.value)}
-                        />
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingName(false);
-                              dispatch(updateUserAction(user.data, name));
-                           }}>
-                           Save
-                        </button>
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingName(false);
-                              setName(user.name);
-                           }}>
-                           Cancel
-                        </button>
-                     </div>
-                  ) : (
-                     <div>
-                        <span>Name: {user.name}</span>
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingName(true);
-                           }}>
-                           Edit
-                        </button>
-                     </div>
-                  )}
-               </div>
-               <div>
-                  {isEditingEmail ? (
-                     <div>
-                        <input
-                           className='mb-3 form-control'
-                           type='email'
-                           name='email'
-                           placeholder='Email address'
-                           autoComplete='off'
-                           onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingEmail(false);
-                              dispatch(updateEmailAction(user.data, email));
-                           }}>
-                           Save
-                        </button>
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingEmail(false);
-                              setEmail(user.email);
-                           }}>
-                           Cancel
-                        </button>
-                     </div>
-                  ) : (
-                     <div>
-                        <span>Email: {user.email}</span>
-                        <button
-                           className=''
-                           onClick={() => {
-                              setIsEditingEmail(true);
-                           }}>
-                           Edit
-                        </button>
-                     </div>
-                  )}
-               </div>
-               <div>
-                  {isEditingPassword ? (
-                     <div>
-                        <input
-                           type='password'
-                           name='password'
-                           placeholder='Password'
-                           autoComplete='off'
-                           onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button
-                           onClick={() => {
-                              setIsEditingPassword(false);
-                              dispatch(
-                                 updatePasswordAction(user.data, password)
-                              );
-                           }}>
-                           Save
-                        </button>
-                        <button
-                           onClick={() => {
-                              setIsEditingPassword(false);
-                              setPassword(user.password);
-                           }}>
-                           Cancel
-                        </button>
-                     </div>
-                  ) : (
-                     <div>
-                        <span>Password: **********</span>
-                        <button
-                           onClick={() => {
-                              setIsEditingPassword(true);
-                           }}>
-                           Edit
-                        </button>
-                     </div>
-                  )}
-               </div>
-               <button
-                  onClick={() => {
-                     setIsEditing(false);
-                  }}>
-                  Cancelar
-               </button>
-               <button>Eliminar tu cuenta</button>
-            </div>
-         ) : (
-            <div className='edit-components'>
-               <h2 className='subtitle'>¿Que deseas hacer?</h2>
-               <button
-                  className='edit-user-button'
-                  onClick={() => {
-                     setIsEditing(true);
-                  }}>
-                  Editar Cuenta
-               </button>
-               <button
-                  className='close-sesion-button'
-                  onClick={() => {
-                     dispatch(logoutAction());
-                  }}>
-                  Cerrar sesión
-               </button>
-               <button className='delete-user-button'>
-                  Eliminar tu cuenta
-               </button>
 
-               {/* <div>
+            {isEditing ? (
+               <div className='edit-components'>
+                  <h2 className='subtitle'>Editar perfil</h2>
+                  <>
+                     {isEditingName ? (
+                        <div className='edit-complete-field'>
+                           <input
+                              className='input-edit-user'
+                              type='text'
+                              name='name'
+                              placeholder='Nuevo nombre'
+                              autoComplete='off'
+                              onChange={(e) => setName(e.target.value)}
+                           />
+                           <button
+                              className='save-user-button'
+                              onClick={() => {
+                                 setIsEditingName(false);
+                                 dispatch(updateUserAction(user.data, name));
+                              }}>
+                              Save
+                           </button>
+                           <button
+                              className='cancel-user-button'
+                              onClick={() => {
+                                 setIsEditingName(false);
+                                 setName(user.name);
+                              }}>
+                              Cancel
+                           </button>
+                        </div>
+                     ) : (
+                        <div className='edit-complete-field'>
+                           <span className='edit-user-span'>
+                              Name: {user.name}
+                           </span>
+                           <button
+                              className='open-edit-user-button'
+                              onClick={() => {
+                                 setIsEditingName(true);
+                              }}>
+                              Edit
+                           </button>
+                        </div>
+                     )}
+                  </>
+                  <>
+                     {isEditingEmail ? (
+                        <div className='edit-complete-field'>
+                           <input
+                              className='input-edit-user'
+                              type='email'
+                              name='email'
+                              placeholder='Nuevo email'
+                              autoComplete='off'
+                              onChange={(e) => setEmail(e.target.value)}
+                           />
+                           <button
+                              className='save-user-button'
+                              onClick={() => {
+                                 setIsEditingEmail(false);
+                                 dispatch(updateEmailAction(user.data, email));
+                              }}>
+                              Save
+                           </button>
+                           <button
+                              className='cancel-user-button'
+                              onClick={() => {
+                                 setIsEditingEmail(false);
+                                 setEmail(user.email);
+                              }}>
+                              Cancel
+                           </button>
+                        </div>
+                     ) : (
+                        <div className='edit-complete-field'>
+                           <span className='edit-user-span'>
+                              Email: {user.email}
+                           </span>
+                           <button
+                              className='open-edit-user-button'
+                              onClick={() => {
+                                 setIsEditingEmail(true);
+                              }}>
+                              Edit
+                           </button>
+                        </div>
+                     )}
+                  </>
+                  <>
+                     {isEditingPassword ? (
+                        <div className='edit-complete-field'>
+                           <input
+                              className='input-edit-user'
+                              type='password'
+                              name='password'
+                              placeholder='Nueva contraseña'
+                              autoComplete='off'
+                              onChange={(e) => setPassword(e.target.value)}
+                           />
+                           <button
+                              className='save-user-button'
+                              onClick={() => {
+                                 setIsEditingPassword(false);
+                                 dispatch(
+                                    updatePasswordAction(user.data, password)
+                                 );
+                              }}>
+                              Save
+                           </button>
+                           <button
+                              className='cancel-user-button'
+                              onClick={() => {
+                                 setIsEditingPassword(false);
+                                 setPassword(user.password);
+                              }}>
+                              Cancel
+                           </button>
+                        </div>
+                     ) : (
+                        <div className='edit-complete-field'>
+                           <span className='edit-user-span'>
+                              Password: **********
+                           </span>
+                           <button
+                              className='open-edit-user-button'
+                              onClick={() => {
+                                 setIsEditingPassword(true);
+                              }}>
+                              Edit
+                           </button>
+                        </div>
+                     )}
+                  </>
+                  <button
+                     className='cancel-button'
+                     onClick={() => {
+                        setIsEditing(false);
+                     }}>
+                     Cancelar
+                  </button>
+                  <button className='delete-user-button'>
+                     Eliminar tu cuenta
+                  </button>
+               </div>
+            ) : (
+               <div className='edit-components'>
+                  <h2 className='subtitle'>¿Que deseas hacer?</h2>
+                  <button
+                     className='edit-user-button'
+                     onClick={() => {
+                        setIsEditing(true);
+                     }}>
+                     Editar Cuenta
+                  </button>
+                  <button
+                     className='close-sesion-button'
+                     onClick={() => {
+                        dispatch(logoutAction());
+                     }}>
+                     Cerrar sesión
+                  </button>
+                  <button
+                     className='delete-user-button'
+                     onClick={() => setIsDeletingUser(true)}>
+                     Eliminar tu cuenta
+                  </button>
+                  {isDeletingUser && (
+                     <>
+                        <Modal
+                           open={isDeletingUser}
+                           onClose={() => isDeletingUser(false)}
+                           aria-labelledby='modal-modal-title'
+                           aria-describedby='modal-modal-description'>
+                           <Box sx={style}>
+                              <h2 className='subtitle'>¿Estas seguro?</h2>
+                              <p className='delete-user-modal-text'>
+                                 Esta acción no se puede deshacer.
+                              </p>
+                              <button
+                                 className='delete-user-button'
+                                 onClick={() => {
+                                    dispatch(deleteUserAction(user.data));
+                                    setIsDeletingUser(false);
+                                 }}>
+                                 Eliminar
+                              </button>
+                              <button
+                                 className='cancel-button'
+                                 onClick={() => {
+                                    setIsDeletingUser(false);
+                                 }}>
+                                 Cancelar
+                              </button>
+                           </Box>
+                        </Modal>
+                     </>
+                  )}
+
+                  {/* <div>
                   <small><p>
                      SECCION NUEVA DONDE APARECERAN SELECCIONES DEL USUARIO,
                      DEPENDIENDO DE TIPO DE USUARIO (COMPRADOR,VENDEDOR DE
                      PRODUCTOS AGRICOLAS O VENDEDOR DE INSUMOS)
                   </p></small>
                </div> */}
-            </div>
-         )}
+               </div>
+            )}
+         </div>
       </div>
    );
 };

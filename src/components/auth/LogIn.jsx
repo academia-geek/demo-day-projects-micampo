@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
-import '../../styles/LogIn.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
    loginWithGoogle,
@@ -13,13 +12,11 @@ import { useNavigate } from 'react-router-dom';
 // ------------ Yup Validations ------------ //
 
 const SignupSchema = Yup.object().shape({
-   email: Yup.string()
-      .email('Invalid email')
-      .required('Please Enter your email'),
+   email: Yup.string().email('Email invalido').required('Email requerido'),
    password: Yup.string()
-      .required('Please Enter your password')
-      .min(6, 'Password must be at least 6 characters')
-      .max(20, 'Password must be less than 20 characters'),
+      .required('Contraseña requerida')
+      .min(6, 'Contraseña muy corta')
+      .max(20, 'Contraseña muy larga'),
 });
 
 // ------------ End Yup Validation ------------ //
@@ -27,7 +24,6 @@ const SignupSchema = Yup.object().shape({
 const LogIn = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
-   const loginInfo = useSelector((state) => state.login);
    const login = useSelector((state) => state.login);
 
    if (login.isLoading) {
@@ -57,32 +53,29 @@ const LogIn = () => {
                   {({ errors, touched }) => (
                      <Form>
                         <Field
-                           className='mb-3 form-control email-input'
+                           className='email-input'
                            type='email'
                            name='email'
                            placeholder='Email'
                            autoComplete='off'
                         />
                         {errors.email && touched.email ? (
-                           <div>{errors.email}</div>
+                           <div className='form-error'>{errors.email}</div>
                         ) : null}
 
                         <Field
-                           className='mb-3 form-control password-input'
+                           className='password-input'
                            type='password'
                            name='password'
                            placeholder='Contraseña'
                            autoComplete='current-password'
                         />
                         {errors.password && touched.password ? (
-                           <div>{errors.password}</div>
+                           <div className='form-error'>{errors.password}</div>
                         ) : null}
 
-                        <div className='d-grid gap-2'>
-                           <button
-                              variant='primary'
-                              type='Submit'
-                              className='logIn-input'>
+                        <div>
+                           <button type='Submit' className='logIn-input'>
                               Inicia Sesion
                            </button>
                         </div>

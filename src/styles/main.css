@@ -31,14 +31,13 @@ body {
     align-items: center;
 }
 
-/* LOGIN AND REGISTER STYLES */
 .auth-main-container {
     background-image: url("https://res.cloudinary.com/gartners/image/upload/v1658110433/DemoDay/Portada1_tllkdi.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    height: 100vh;
+    height: 91.5vh;
     width: 100vw;
 }
 
@@ -110,4 +109,19 @@ body {
     line-height: 50px !important;
     padding: 1rem !important;
     margin: 1rem !important;
+}
+
+.form-error {
+    position: relative;
+    background: #FFF0F0;
+    border: 1px solid #FF0000;
+    box-shadow: 3px 3px 0px #FF0000;
+    border-radius: 5px;
+    padding: auto;
+    margin: auto;
+    font-size: 12px;
+    color: #FF0000;
+    text-align: center;
+    font-weight: 700;
+    width: 301px;
 }
