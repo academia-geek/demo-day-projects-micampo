@@ -3,14 +3,12 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
-
 import Home from '../containers/Home';
 import QuienesSomos from '../containers/QuienesSomos';
 import DashboardRoutes from './DashboardRoutes';
 import Nav1 from '../components/Navbar';
 import Aliados from '../containers/Aliados';
 import Agroinsumos from '../containers/Agroinsumos';
-import Us from '../containers/Us';
 import Mercado from '../containers/Mercado';
 import LogIn from '../components/auth/Login';
 import Register from '../components/auth/Register';
@@ -125,28 +123,10 @@ const AppRoutes = () => {
             />
 
             <Route
-               path='/lg/nosotros'
-               element={
-                  <PublicRoutes isAuth={isLogget}>
-                     <Us />
-                  </PublicRoutes>
-               }
-            />
-
-            <Route
                path='/lg/sobre-nosotros'
                element={
                   <PublicRoutes isAuth={isLogget}>
                      <QuienesSomos />
-                  </PublicRoutes>
-               }
-            />
-
-            <Route
-               path='/lg/user-dashboard'
-               element={
-                  <PublicRoutes isAuth={isLogget}>
-                     <User />
                   </PublicRoutes>
                }
             />
