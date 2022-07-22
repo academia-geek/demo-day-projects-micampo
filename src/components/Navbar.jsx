@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsHeart } from 'react-icons/bs';
 import { FaUserCircle } from 'react-icons/fa';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -11,8 +11,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Nav1 = () => {
+   const navigate = useNavigate();
+   const logged = useSelector((state) => state.loginCheck.loginCheck);
+   useEffect(() => {
+      console.log(logged, 'navbar');
+   }, [logged]);
+
    return (
       <>
          <Navbar
@@ -21,7 +29,8 @@ const Nav1 = () => {
             className='fondo'
             style={{ color: 'white', backgroundColor: '#699A07' }}>
             <Container fluid>
-               <Navbar.Brand href='#'>
+               <Navbar.Brand
+                  onClick={() => navigate(logged ? '/home' : '/lg/home')}>
                   <img
                      width='60'
                      height='60'
@@ -49,25 +58,53 @@ const Nav1 = () => {
                   <Offcanvas.Body>
                      <Nav className='flex-grow-1 pe-3 letras'>
                         <Iconos>
-                           <Nav.Link className='navbar' href='/home'>
+                           <Nav.Link
+                              className='navbar'
+                              onClick={() =>
+                                 navigate(logged ? '/home' : '/lg/home')
+                              }>
                               Inicio
                            </Nav.Link>
-                           <Nav.Link className='navbar' href='/aliados'>
+                           <Nav.Link
+                              className='navbar'
+                              onClick={() =>
+                                 navigate(logged ? '/aliados' : '/lg/aliados')
+                              }>
                               Aliados
                            </Nav.Link>
-                           <Nav.Link className='navbar' href='/agroinsumos'>
+                           <Nav.Link
+                              className='navbar'
+                              onClick={() =>
+                                 navigate(
+                                    logged ? 'agroinsumos' : '/lg/agroinsumos'
+                                 )
+                              }>
                               Agroinsumos
                            </Nav.Link>
-                           <Nav.Link className='navbar' href='/mercado'>
+                           <Nav.Link
+                              className='navbar'
+                              onClick={() =>
+                                 navigate(logged ? '/mercado' : '/lg/mercado')
+                              }>
                               Mercado
                            </Nav.Link>
-                           <Nav.Link className='navbar' href='/nosotros'>
+                           <Nav.Link
+                              className='navbar'
+                              onClick={() =>
+                                 navigate(
+                                    logged
+                                       ? '/sobre-nosotros'
+                                       : '/lg/sobre-nosotros'
+                                 )
+                              }>
                               Sobre Nosotros
                            </Nav.Link>
                         </Iconos>
-                        <Boton>
-                           Iniciar Sesión <AiOutlineLogin />{' '}
-                        </Boton>
+                        {!logged && (
+                           <Boton onClick={() => navigate(!logged && '/login')}>
+                              Iniciar Sesión <AiOutlineLogin />{' '}
+                           </Boton>
+                        )}
                         <Iconos>
                            <Nav.Link className='navbar' href='/home'>
                               <BsHeart />
@@ -75,7 +112,15 @@ const Nav1 = () => {
                            <Nav.Link className='navbar' href='/home'>
                               <FiShoppingCart />
                            </Nav.Link>
-                           <Nav.Link className='navbar' href='/home'>
+                           <Nav.Link
+                              className='navbar'
+                              onClick={() =>
+                                 navigate(
+                                    logged
+                                       ? '/perfil-usuario'
+                                       : '/lg/perfil-usuario'
+                                 )
+                              }>
                               <FaUserCircle />
                            </Nav.Link>
                         </Iconos>

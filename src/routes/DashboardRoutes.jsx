@@ -6,6 +6,9 @@ import Home from '../containers/Home';
 import User from '../containers/User';
 import QuienesSomos from '../containers/QuienesSomos';
 import Validations from '../containers/validations/Validations';
+import Aliados from '../containers/Aliados';
+import Agroinsumos from '../containers/Agroinsumos';
+import Mercado from '../containers/Mercado';
 
 const DashboardRoutes = () => {
    return (
@@ -14,7 +17,10 @@ const DashboardRoutes = () => {
             {/* <Route path='/logeado' element={<Logeado />} /> */}
             <Route path='/add' element={<AddProducto />} />
             <Route path='/home' element={<Home />} />
-            <Route path='/user-dashboard' element={<User />} />
+            <Route path='/perfil-usuario' element={<User />} />
+            <Route path='/aliados' element={<Aliados/>} />
+            <Route path='/agroinsumos' element={<Agroinsumos/>} />
+            <Route path='/mercado' element={<Mercado/>} />
             <Route path='/sobre-nosotros' element={<QuienesSomos />} />
             <Route path='validaciones' element={<Validations />} />
             <Route path='*' element={<Navigate to='/home' />} />

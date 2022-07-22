@@ -30,6 +30,9 @@
 .navbar:hover {
     color: #FF9D00 !important;
 }
+.navbar:active {
+    color: #FF9D00 !important;
+}
 
 .fondo {
     font-family: var(--roboto);
@@ -64,5 +67,25 @@
     margin: 0rem 3rem;
     background: rgba(29, 29, 29, 0.8);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
 }
+
+@media (max-width: 600px){
+    .carousel{
+        width: 100%;
+        height: 40%;
+        margin:1rem;
+        padding:1rem;
+        
+    }
+}
+
+@media (min-width: 700px){
+    .carousel{
+        width: 50%;
+        height: 80%;
+        margin:1rem;
+        padding:1rem;
+        
+    }
+}
+

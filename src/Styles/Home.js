@@ -35,7 +35,26 @@ flex-direction: row ;
 color:white;
 justify-content: space-between;
 padding:3rem 5rem;
+@media (max-width:600px){
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: center;
+}
 `
+
+export const Text = styled.p`
+font-size:1rem;
+width:100%;
+@media (max-width:700px){
+    font-size:0.7rem;
+    padding:0.5rem;
+    
+}
+@media (max-width:1200px){
+    font-size:0.8rem; 
+    margin:0rem;
+    padding:0rem;
+}`
 export const Agro = styled.h1`
 color:white;
 width:95%;
@@ -58,7 +77,11 @@ flex-direction:row;
 color:white; 
 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 border-radius: 20px;
-margin-top:0.5rem;`
+margin-top:0.5rem;
+@media (max-width: 768px) {
+    margin:0;
+    width:100%;
+}`
 
 export const Imagro = styled.img`
 background: #D9D9D9;
@@ -84,15 +107,26 @@ grid-template-columns:1fr 1fr;
 justify-items:center;
 width:100%;
 grid-gap:0.3rem;
-align-items:center;`
+align-items:center;
+`
 
 export const Grande = styled.h1`
 color:white; 
 font-weight:700;
-font-size:3rem;
+font-size:2.7rem;
 width: 100%;
 margin: 2rem 3rem 0rem 3rem;
 padding:0rem;
+@media (max-width:600px){
+    font-size:1rem; 
+    margin:0rem;
+    padding:0rem;
+}
+@media (min-width:700px){
+    font-size:2.5rem; 
+    margin:0rem;
+    padding:0rem;
+}
 `
 
 export const Productos = styled.button`
@@ -102,14 +136,27 @@ border:none;
 padding:0.5rem 1rem;
 border-radius:4px;
 font-weight:700;
-font-size: 1rem;`
+font-size: 1rem;
+@media (max-width:600px){
+    font-size:0.5rem; 
+    margin:0;
+}
+@media (max-width:1200px){
+    font-size:0.8rem; 
+    margin:0;
+}`
 
 export const ContBotones = styled.div`
 display: flex;
 flex-direction:row;
 justify-content:space-between;
 width:100%;
-margin: 0rem 2rem;`
+margin: 0rem 2rem;
+@media (max-width:600px){
+    margin:0;
+    display:none;
+    
+}`
 
 export const Search = styled.div`
 height:55vh;
@@ -120,7 +167,6 @@ display:flex;
 flex-direction:row;
 position:relative;
 padding: 3rem 10rem;
-
 &::before{
 content:'';
 background-image:url(https://res.cloudinary.com/dcsn54xoj/image/upload/v1658098942/MiCampo/Rectangle_srfico.png);
@@ -141,6 +187,7 @@ export const Tercera = styled.div`
 background-color: #F8F8F8;
 padding:3rem; 
 display:flex; 
+flex-direction:column;
 margin-top:-3rem;
 `
 export const ProductosA = styled.h1`
@@ -149,7 +196,12 @@ color:black;
 font-size:5rem;
 letter-spacing:-6px;
 text-align:center; 
-width:100%;`
+width:70%;
+padding-top:2rem;
+@media (max-width:800px){
+    font-size:3rem;
+    padding:0;
+}`
 
 export const Bar = styled.input`
 border:none; 
@@ -161,3 +213,161 @@ border:none;
     border:none;
     outline:none;
 }`
+
+export const Linea = styled.div`
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+grid-gap:2rem;
+padding:3rem 5rem;
+@media(max-width:800px){
+    display:flex;
+    flex-direction:column;
+}`
+
+export const ContImagen= styled.div`
+border-radius:10%; 
+width:90%;
+height:90%;
+overflow: hidden;`
+
+export const ProdImg= styled.img`
+height:100%;
+width:100%;
+overflow: hidden;
+position:relative;
+
+`
+
+export const BotVerde = styled.button`
+background-color:#699A07; 
+width:10%; 
+border:none;
+color:white;
+font-weight:600;
+border-radius:15px;
+padding:0.5rem;
+display:block;
+margin-left:auto;
+margin-right:auto;
+margin-bottom:2rem;
+@media(max-width:767px) {
+    width:30%;
+}`
+
+export const TituloCont = styled.div`
+display:flex;
+flex-direction:row;
+align-items:center;
+justify-content:center;
+margin:0;
+padding:0;` 
+
+export const Cuarta = styled.div`
+background-color: #FFFFFF;
+padding:3rem; 
+display:flex; 
+flex-direction:column;
+margin-top:-3rem;
+`
+
+export const Aliado =styled.img`
+clip-path: circle(50% at 50% 50%);
+height:85%;
+width:80%;
+margin:1rem;
+align-self:center;
+`
+
+export const TarjetaAliado = styled.div`
+display:flex;
+flex-direction:column; 
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+border-top-left-radius:50%;
+border-top-right-radius:50%;
+border-bottom-left-radius:5%;
+border-bottom-right-radius:5%;
+align-items:center;
+background-color:#FCFCFC;
+overflow: hidden;`
+
+export const Negro = styled.div`
+background-color:#1d1d1d;
+height:30%;
+width:100%;
+color:white;
+overflow: hidden;
+padding:0.5rem;
+display:flex;
+justify-content:space-between;
+align-items:center;
+`
+
+export const Image  = styled.img`
+@media (max-width:700px) {
+    display:none;
+    
+}
+`
+
+export const Enter = styled.p`
+color:#699A07;
+font-weight:700;
+font-size:0.8rem;`
+
+
+export const Ali=styled.p`
+padding-top:0.5rem;
+color:white;
+font-size:1.2rem;
+font-weight:700;
+line-height: 1rem;
+@media(max-width:600px) {
+    font-size:0.8rem;
+}
+`
+export const Spali = styled.span`
+color:white;
+font-size:0.8rem;`
+
+export const Agroin = styled.div`
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+padding:0;
+margin:0;
+border-radius:5%;
+display:flex;
+flex-direction:column;
+overflow:hidden;`
+
+
+export const Quinta = styled.div`
+background-size:contain;
+background-repeat:no-repeat;
+margin:0rem;
+display:grid;
+grid-template-columns: 1fr 1fr 1fr;
+position:relative;
+width:100%;
+padding:3rem;
+grid-gap: 2rem;
+&::before{
+content:'';
+background-image:url(https://res.cloudinary.com/dcsn54xoj/image/upload/v1658438220/MiCampo/Rectangle_1_sfhife.png);
+opacity:0.4;
+background-size:cover;
+background-repeat:no-repeat;
+margin:0rem;
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+padding: 3rem;
+}
+`
+
+export const Tarjetas= styled.div`
+background-color:white;
+display: flex;
+flex-direction:column;
+height:90%;
+`
