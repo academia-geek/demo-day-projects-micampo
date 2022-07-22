@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { BsHeart } from 'react-icons/bs';
 import { FaUserCircle } from 'react-icons/fa';
-import { FiShoppingCart } from 'react-icons/fi'
-import {AiOutlineLogin} from 'react-icons/ai';
+import { FiShoppingCart } from 'react-icons/fi';
+import { AiOutlineLogin } from 'react-icons/ai';
 import { Boton, Iconos } from '../Styles/Home';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -16,13 +15,17 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 const Nav1 = () => {
    return (
       <>
-         <Navbar key='md' expand='md' className='fondo' style={{ color: 'white', backgroundColor: '#699A07' }} >
-            <Container fluid >
+         <Navbar
+            key='md'
+            expand='md'
+            className='fondo'
+            style={{ color: 'white', backgroundColor: '#699A07' }}>
+            <Container fluid>
                <Navbar.Brand href='#'>
                   <img
-                  width="60"
-                  height="60"
-                     className="d-inline-block align-top logo"
+                     width='60'
+                     height='60'
+                     className='d-inline-block align-top logo'
                      src='https://res.cloudinary.com/villalbad10/image/upload/v1657638689/micampo/IMG_1657638185108_1_o8gzy3.png'
                      alt='logo'
                   />
@@ -35,9 +38,9 @@ const Nav1 = () => {
                   <Offcanvas.Header closeButton>
                      <Offcanvas.Title id={`offcanvasNavbarLabel-expand-md`}>
                         <img
-                           width="60"
-                           height="60"
-                           className="d-inline-block align-top "
+                           width='60'
+                           height='60'
+                           className='d-inline-block align-top '
                            src='https://res.cloudinary.com/villalbad10/image/upload/v1657638689/micampo/IMG_1657638185108_1_o8gzy3.png'
                            alt='logo'
                         />
@@ -46,17 +49,35 @@ const Nav1 = () => {
                   <Offcanvas.Body>
                      <Nav className='flex-grow-1 pe-3 letras'>
                         <Iconos>
-                        <Nav.Link className='navbar' href="/home">Inicio</Nav.Link>
-                        <Nav.Link className='navbar' href="/aliados">Aliados</Nav.Link>
-                        <Nav.Link className='navbar' href="/agroinsumos">Agroinsumos</Nav.Link>
-                        <Nav.Link className='navbar' href="/mercado">Mercado</Nav.Link>
-                        <Nav.Link className='navbar' href="/nosotros">Sobre Nosotros</Nav.Link>
+                           <Nav.Link className='navbar' href='/home'>
+                              Inicio
+                           </Nav.Link>
+                           <Nav.Link className='navbar' href='/aliados'>
+                              Aliados
+                           </Nav.Link>
+                           <Nav.Link className='navbar' href='/agroinsumos'>
+                              Agroinsumos
+                           </Nav.Link>
+                           <Nav.Link className='navbar' href='/mercado'>
+                              Mercado
+                           </Nav.Link>
+                           <Nav.Link className='navbar' href='/nosotros'>
+                              Sobre Nosotros
+                           </Nav.Link>
                         </Iconos>
-                        <Boton>Iniciar Sesión <AiOutlineLogin/> </Boton>
+                        <Boton>
+                           Iniciar Sesión <AiOutlineLogin />{' '}
+                        </Boton>
                         <Iconos>
-                        <Nav.Link className='navbar' href="/home"><BsHeart /></Nav.Link>
-                        <Nav.Link className='navbar' href="/home"><FiShoppingCart /></Nav.Link>
-                        <Nav.Link className='navbar' href="/home"><FaUserCircle /></Nav.Link>
+                           <Nav.Link className='navbar' href='/home'>
+                              <BsHeart />
+                           </Nav.Link>
+                           <Nav.Link className='navbar' href='/home'>
+                              <FiShoppingCart />
+                           </Nav.Link>
+                           <Nav.Link className='navbar' href='/home'>
+                              <FaUserCircle />
+                           </Nav.Link>
                         </Iconos>
                      </Nav>
                   </Offcanvas.Body>
@@ -64,7 +85,7 @@ const Nav1 = () => {
             </Container>
          </Navbar>
       </>
-   )
-}
+   );
+};
 
-export default Nav1
+export default Nav1;
