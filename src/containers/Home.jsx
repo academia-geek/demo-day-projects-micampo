@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel';
-import { Agro, Divi, Fondo, H4, Imagro, Tarjeta, Texto, Grande, Productos, ContBotones, Search, Tercera, ProductosA, Linea, ContImagen, ProdImg, BotVerde, TituloCont, Cuarta, Aliado, TarjetaAliado, Negro, Text, Image, Enter, Ali, Spali, Agroin, Quinta } from '../Styles/Home'
+import { Agro, Divi, Fondo, H4, Imagro, Tarjeta, Texto, Grande, Productos, ContBotones, Search, Tercera, ProductosA, Linea, ContImagen, ProdImg, BotVerde, TituloCont, Cuarta, Aliado, TarjetaAliado, Negro, Text, Image, Enter, Ali, Spali, Agroin, Quinta, Tarjetas } from '../Styles/Home'
 // import Search1 from '../components/Search'
 import { TbTruckDelivery, TbMessages } from 'react-icons/tb'
 import { GoLocation } from 'react-icons/go'
@@ -85,7 +85,7 @@ const Home = () => {
         <TarjetaAliado><Aliado src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658260704/MiCampo/image_2_poo7fg.png" alt="" /><Negro> <Ali> Don Carlos <br /> <Spali><GoLocation />Finca el rocío</Spali></Ali> <Enter>Contactar Aliado <BsArrowRightShort /></Enter></Negro></TarjetaAliado></Linea><BotVerde onClick={() => navigate("/aliados")}>Ver más</BotVerde></Cuarta>
 
       <Tercera><TituloCont><ProductosA>AgroInsumos</ProductosA><Image src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658431991/MiCampo/Vector_1_cfagxz.png" alt="" /></TituloCont><Linea><Agroin><img src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658000712/MiCampo/image_1_qzzjzf.png" alt="" /><Negro> <Ali>Agroinsumo <br /> <Spali><GoLocation />Finca el rocío</Spali></Ali> <Enter>Contactar Aliado <BsArrowRightShort /></Enter></Negro></Agroin></Linea><BotVerde onClick={() => navigate("/aliados")}>Ver más</BotVerde></Tercera>
-      <Quinta><img src="" alt=""/><h3>Calidad</h3><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></Quinta>
+      <Quinta><Tarjetas><img src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658494100/MiCampo/icon-park-solid_good-two_apuvrk.png" alt=""/><h3>Calidad</h3><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></Tarjetas><Tarjetas><img src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658494100/MiCampo/icon-park-solid_good-two_apuvrk.png" alt=""/><h3>Calidad</h3><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></Tarjetas></Quinta>
     </>
   )
 }

@@ -340,20 +340,19 @@ overflow:hidden;`
 
 
 export const Quinta = styled.div`
-height:55vh;
 background-size:contain;
 background-repeat:no-repeat;
 margin:0rem;
 display:grid;
 grid-template-columns: 1fr 1fr 1fr;
 position:relative;
-padding: 3rem 10rem;
 width:100%;
+padding:3rem;
+grid-gap: 2rem;
 &::before{
 content:'';
 background-image:url(https://res.cloudinary.com/dcsn54xoj/image/upload/v1658438220/MiCampo/Rectangle_1_sfhife.png);
 opacity:0.4;
-height:55vh;
 background-size:cover;
 background-repeat:no-repeat;
 margin:0rem;
@@ -364,4 +363,11 @@ right:0;
 bottom:0;
 padding: 3rem;
 }
+`
+
+export const Tarjetas= styled.div`
+background-color:white;
+display: flex;
+flex-direction:column;
+height:90%;
 `
