@@ -25,15 +25,12 @@ const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true);
    const [isLogget, setIsLogget] = useState(false);
    const dispatch = useDispatch();
-   const userDataInitialState = [
-      {
-         type: '',
-         user: '',
-         gender: '',
-         age: '',
-         ubication: '',
-      },
-   ];
+   const userDataInitialState = {
+      type: '',
+      gender: '',
+      age: '',
+      ubication: '',
+   };
 
    const searchDocOrCreateDoc = async (userUID) => {
       const docRef = doc(db, 'usuarios', userUID);
@@ -43,7 +40,7 @@ const AppRoutes = () => {
          const infoDoc = consult.data();
          return infoDoc;
       } else {
-         await setDoc(docRef, { data: [...userDataInitialState] });
+         await setDoc(docRef, { data: { ...userDataInitialState } });
          const consult = await getDoc(docRef);
          const infoDoc = consult.data();
          return infoDoc;

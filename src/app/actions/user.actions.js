@@ -33,9 +33,9 @@ export const updateUserAction = (user, name) => {
 export const deleteUserAction = () => {
     const auth = getAuth();
     const user = auth.currentUser;
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch({ type: typesUser.DELETE_USER });
-        deleteUser(user)
+        await deleteUser(user)
             .then(() => {
                 dispatch({ type: typesUser.DELETE_USER_SUCCESS });
             })
