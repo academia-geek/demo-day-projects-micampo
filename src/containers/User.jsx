@@ -53,10 +53,8 @@ const User = () => {
    const user = useSelector((state) => state.user);
 
    useEffect(() => {
-      dispatch(getUserAction());
       if (user.photoURL) {
          setHasPhoto(true);
-         console.log(user);
       }
    }, [isLoading]);
 

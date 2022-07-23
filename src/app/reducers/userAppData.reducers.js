@@ -1,6 +1,6 @@
 import { typeUserAppData } from "../types/types";
 
-const initialStateUserAppData = {
+export const initialStateUserAppData = {
     userAppData: {},
     isLoading: false,
     error: null,

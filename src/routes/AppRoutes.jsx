@@ -18,6 +18,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { loginCheckAction } from '../app/actions/loginCheck.actions';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
+import { getUserAppDataAction } from '../app/actions/userAppData.actions';
+import { getUserAction } from '../app/actions/user.actions';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true);
@@ -36,11 +38,13 @@ const AppRoutes = () => {
 
       if (consult.exists()) {
          const infoDoc = consult.data();
+         dispatch(getUserAppDataAction(infoDoc));
          return infoDoc;
       } else {
          await setDoc(docRef, { data: { ...userDataInitialState } });
          const consult = await getDoc(docRef);
          const infoDoc = consult.data();
+         dispatch(getUserAppDataAction(infoDoc));
          return infoDoc;
       }
    };
@@ -50,6 +54,7 @@ const AppRoutes = () => {
       onAuthStateChanged(auth, (user) => {
          if (user?.uid) {
             setIsLogget(true);
+            dispatch(getUserAction());
             dispatch(loginCheckAction(true));
             searchDocOrCreateDoc(user.uid);
          } else {
