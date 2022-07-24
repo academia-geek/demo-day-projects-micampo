@@ -21,7 +21,6 @@ const Home = () => {
     DatosCol.forEach(element => {
       datos.push({ ...element.data() })
     })
-    console.log(datos)
     return datos
   }
 

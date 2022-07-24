@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+// import { setUserAppDataAction } from '../../app/actions/userAppData.actions';
 import AgeValidation from '../../components/validations/AgeValidation';
 import GenderValidation from '../../components/validations/GenderValidation';
 import TypeUserValidation from '../../components/validations/TypeUserValidation';
@@ -13,13 +14,9 @@ const Validations = () => {
    const [UbicationOpen, setUbicationOpen] = useState(false);
    const [finished, setFinished] = useState(false);
    const navigate = useNavigate();
+   const dispatch = useDispatch();
    const user = useSelector((state) => state.user);
    const userAppDataInitialState = useSelector((state) => state.userAppData);
-
-   useEffect(() => {
-      console.log(user)
-      console.log(userAppDataInitialState);
-   }, [user, userAppDataInitialState]);
 
    const handleNext = () => {
       switch (true) {

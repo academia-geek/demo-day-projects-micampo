@@ -309,7 +309,7 @@ const User = () => {
                               <button
                                  className='delete-user-button'
                                  onClick={() => {
-                                    dispatch(deleteUserAction(user.data));
+                                    dispatch(deleteUserAction());
                                     setIsDeletingUser(false);
                                  }}>
                                  Eliminar
