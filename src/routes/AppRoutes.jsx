@@ -41,8 +41,7 @@ const AppRoutes = () => {
          if (
             infoDoc.data.age === '' ||
             infoDoc.data.gender === '' ||
-            infoDoc.data.type === '' ||
-            infoDoc.data.ubication === ''
+            infoDoc.data.type === ''
 
          ) {
             if (window.location.pathname !== '/validaciones') {

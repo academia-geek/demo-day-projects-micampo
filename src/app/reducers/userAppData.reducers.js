@@ -1,7 +1,7 @@
 import { typeUserAppData } from "../types/types";
 
 export const initialStateUserAppData = {
-    userAppData: {},
+    data: {},
     isLoading: false,
     error: null,
 }
@@ -18,7 +18,7 @@ export const userAppDataReducer = (state = initialStateUserAppData, action) => {
             return {
                 ...state,
                 isLoading: false,
-                userAppData: action.payload,
+                data: action.payload,
             }
         case typeUserAppData.GET_USER_APPDATA_FAILURE:
             return {
@@ -36,7 +36,7 @@ export const userAppDataReducer = (state = initialStateUserAppData, action) => {
             return {
                 ...state,
                 isLoading: false,
-                userAppData: {data: action.payload},
+                data: action.payload,
             }
         case typeUserAppData.UPDATE_USER_APPDATA_FAILURE:
             return {
