@@ -1,15 +1,35 @@
-import React from 'react'
-import * as Yup from 'yup';
-import { Field, Form, Formik } from 'formik';
-
-const AgeSchema = Yup.object().shape({
-  age: Yup.string().required('Tipo de usuario requerido'),
-});
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserAppDataAction } from '../../app/actions/userAppData.actions';
 
 const AgeValidation = () => {
-  return (
-    <div>AgeValidation</div>
-  )
-}
+   const dispatch = useDispatch();
+   const userAppData = useSelector((state) => state.userAppData.userAppData.data);
+   const [age, setAge] = useState({...userAppData});
 
-export default AgeValidation
+   const handleChange = (e) => {
+      setAge({...userAppData, [e.target.name]: e.target.value});
+   };
+
+   return (
+      <>
+         <form
+            onSubmit={(e) => {
+               e.preventDefault();
+               dispatch(updateUserAppDataAction(age));
+            }}>
+            <input
+               type='number'
+               placeholder='14'
+               min={14}
+               name='age'
+               onChange={handleChange}
+               required
+            />
+            <button type='Submit'>Confirmar</button>
+         </form>
+      </>
+   );
+};
+
+export default AgeValidation;

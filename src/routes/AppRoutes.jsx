@@ -45,7 +45,6 @@ const AppRoutes = () => {
             infoDoc.data.ubication === ''
 
          ) {
-            console.log(infoDoc.data)
             if (window.location.pathname !== '/validaciones') {
                window.location.href = '/validaciones';
             }

@@ -18,6 +18,8 @@ const Validations = () => {
    const user = useSelector((state) => state.user);
    const userAppDataInitialState = useSelector((state) => state.userAppData);
 
+   const userAppData = useSelector((state) => state.userAppData);
+
    const handleNext = () => {
       switch (true) {
          case ageOpen:
@@ -33,7 +35,7 @@ const Validations = () => {
             setUbicationOpen(true);
             break;
          case UbicationOpen:
-            setUbicationOpen(false);
+            setUbicationOpen(true);
             break;
          default:
             break;
@@ -62,6 +64,11 @@ const Validations = () => {
             break;
       }
    };
+
+   useEffect(() => {
+      console.log('userAppData', userAppData);
+   }, [userAppData]);
+
    return (
       <>
          <h2>Ayudanos verificando estos datos acerca de ti</h2>

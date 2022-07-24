@@ -36,7 +36,7 @@ export const userAppDataReducer = (state = initialStateUserAppData, action) => {
             return {
                 ...state,
                 isLoading: false,
-                userAppData: action.payload,
+                userAppData: {data: action.payload},
             }
         case typeUserAppData.UPDATE_USER_APPDATA_FAILURE:
             return {
