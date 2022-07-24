@@ -28,7 +28,6 @@ export const Fondo = styled.div`
 background: rgba(0, 0, 0, 0.73) url(https://res.cloudinary.com/dcsn54xoj/image/upload/v1657990544/MiCampo/28170bbfb63600885e97bf5ecf9def3b_jr9vcf.png);
 background-size: cover;
 height:100vh;
-margin-top:-1rem; 
 background-blend-mode: darken;
 display: flex;
 flex-direction: row ;
@@ -180,7 +179,7 @@ top:0;
 left:0;
 right:0;
 bottom:0;
-padding: 3rem;
+padding:3rem;
 }
 `
 export const Tercera = styled.div`
@@ -339,35 +338,27 @@ flex-direction:column;
 overflow:hidden;`
 
 
-export const Quinta = styled.div`
-background-size:contain;
-background-repeat:no-repeat;
-margin:0rem;
-display:grid;
-grid-template-columns: 1fr 1fr 1fr;
-position:relative;
-width:100%;
-padding:3rem;
-grid-gap: 2rem;
-&::before{
-content:'';
+export const Quinta = styled.div`   
 background-image:url(https://res.cloudinary.com/dcsn54xoj/image/upload/v1658438220/MiCampo/Rectangle_1_sfhife.png);
-opacity:0.4;
-background-size:cover;
-background-repeat:no-repeat;
-margin:0rem;
-position:absolute;
-top:0;
-left:0;
-right:0;
-bottom:0;
-padding: 3rem;
-}
+display:grid;
+grid-template-columns:1fr 1fr 1fr; 
+padding:5rem;
+justify-items:center;
+height:100vh;
+grid-gap:1rem;
+margin-bottom:5rem;
 `
-
 export const Tarjetas= styled.div`
-background-color:white;
+background:white;
 display: flex;
 flex-direction:column;
-height:90%;
+height:100%;
+width:100%;
+padding:1rem;
+align-items:center;
+border-radius:5%;
 `
+
+export const Icono = styled.img`
+height:40%;
+width:25%; `

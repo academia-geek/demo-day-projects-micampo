@@ -10,7 +10,6 @@ import DashboardRoutes from './DashboardRoutes';
 import Nav1 from '../components/Navbar';
 import Aliados from '../containers/Aliados';
 import Agroinsumos from '../containers/Agroinsumos';
-import Us from '../containers/Us';
 import Mercado from '../containers/Mercado';
 import LogIn from '../components/auth/Login';
 import Register from '../components/auth/Register';
@@ -116,7 +115,7 @@ const AppRoutes = () => {
             />
 
             <Route
-               path='/lg/agroinsumos'
+               path='/lg/agroinsumos  '
                element={
                   <PublicRoutes isAuth={isLogget}>
                      <Agroinsumos />
@@ -124,14 +123,6 @@ const AppRoutes = () => {
                }
             />
 
-            <Route
-               path='/lg/nosotros'
-               element={
-                  <PublicRoutes isAuth={isLogget}>
-                     <Us />
-                  </PublicRoutes>
-               }
-            />
 
             <Route
                path='/lg/sobre-nosotros'
@@ -143,7 +134,7 @@ const AppRoutes = () => {
             />
 
             <Route
-               path='/lg/user-dashboard'
+               path='/lg/perfil-usuario'
                element={
                   <PublicRoutes isAuth={isLogget}>
                      <User />

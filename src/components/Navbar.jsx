@@ -36,13 +36,13 @@ const Nav1 = () => {
                      alt='logo'
                   />
                </Navbar.Brand>
-               <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
+               <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} className={'offcanvas'} />
                <Navbar.Offcanvas
                   id={`offcanvasNavbar-expand-md`}
                   aria-labelledby={`offcanvasNavbarLabel-expand-md`}
                   placement='end'>
                   <Offcanvas.Header closeButton>
-                     <Offcanvas.Title id={`offcanvasNavbarLabel-expand-md`}>
+                     <Offcanvas.Title id={`offcanvasNavbarLabel-expand-md`} style={{backgroundColor:'red'}}>
                         <img
                            width="60"
                            height="60"
@@ -53,7 +53,7 @@ const Nav1 = () => {
                      </Offcanvas.Title>
                   </Offcanvas.Header>
                   <Offcanvas.Body>
-                     <Nav className='flex-grow-1 pe-3 letras'>
+                     <Nav className='flex-grow-1 pe-3 letras '>
                         <Iconos>
                         <Nav.Link className='navbar' onClick={()=>navigate(logged?'/home':'/lg/home')}>Inicio</Nav.Link>
                         <Nav.Link className='navbar' onClick={()=>navigate(logged?'/aliados':'/lg/aliados')}>Aliados</Nav.Link>
