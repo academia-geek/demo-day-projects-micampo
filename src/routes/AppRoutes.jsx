@@ -37,7 +37,7 @@ const AppRoutes = () => {
 
       if (consult.exists()) {
          const infoDoc = consult.data();
-         dispatch(getUserAppDataAction(infoDoc));
+         dispatch(getUserAppDataAction(infoDoc.data));
          if (
             infoDoc.data.age === '' ||
             infoDoc.data.gender === '' ||

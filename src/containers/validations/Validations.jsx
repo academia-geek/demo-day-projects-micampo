@@ -4,15 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateUserAppDataAction } from '../../app/actions/userAppData.actions';
 import LoadingScreen from '../../components/LoadingScreen';
-import UbicationValidation from '../../components/validations/UbicationValidation';
+import { db } from '../../firebase/firebaseConfig';
 
 const Validations = () => {
    const [ageOpen, setAgeOpen] = useState(true);
    const [GenderOpen, setGenderOpen] = useState(false);
    const [TypeUserOpen, setTypeUserOpen] = useState(false);
-   const [UbicationOpen, setUbicationOpen] = useState(false);
    const [finished, setFinished] = useState(false);
-   const [newData, setNewData] = useState({});
+   const [newData, setNewData] = useState({
+      age: '',
+      gender: '',
+      type: '',
+      ubication: '',
+   });
    const [genderValue, setGenderValue] = useState('');
    const [typeValue, setTypeValue] = useState('');
    const navigate = useNavigate();
@@ -32,11 +36,7 @@ const Validations = () => {
             setTypeUserOpen(true);
             break;
          case TypeUserOpen:
-            setTypeUserOpen(false);
-            setUbicationOpen(true);
-            break;
-         case UbicationOpen:
-            setUbicationOpen(true);
+            setTypeUserOpen(true);
             break;
          default:
             break;
@@ -56,10 +56,6 @@ const Validations = () => {
          case TypeUserOpen:
             setTypeUserOpen(false);
             setGenderOpen(true);
-            break;
-         case UbicationOpen:
-            setUbicationOpen(false);
-            setTypeUserOpen(true);
             break;
          default:
             break;
@@ -81,21 +77,16 @@ const Validations = () => {
    };
 
    const handleSend = () => {
+      // UPDATEFIREBASEDATA
+      const docRef = doc(db, 'usuarios', user.uid);
+      updateDoc(docRef, {
+         data: {
+            ...newData,
+         },
+      });
       dispatch(updateUserAppDataAction(newData));
+      navigate('/home')
    };
-
-   useEffect(() => {
-      console.log(userAppData);
-      // if (userAppData.userAppData.length > 0) {
-      //    if (
-      //       userAppData.userAppData.data.age !== '' &&
-      //       userAppData.userAppData.data.gender !== '' &&
-      //       userAppData.userAppData.data.type !== ''
-      //    ) {
-      //       const docRef = doc(db, 'usuarios', user.uid);
-      //    }
-      // }
-   }, [userAppData]);
 
    if (userAppData.isLoading || userAppData.data.length >= 0) {
       return <LoadingScreen />;
@@ -185,7 +176,6 @@ const Validations = () => {
                </div>
             </>
          )}
-         {UbicationOpen && <UbicationValidation />}
          <button onClick={handleBack}>Atrás</button>
          <button onClick={handleNext}>Siguiente</button>
 
