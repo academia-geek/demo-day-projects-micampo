@@ -11,17 +11,20 @@ const Validations = () => {
    const [GenderOpen, setGenderOpen] = useState(false);
    const [TypeUserOpen, setTypeUserOpen] = useState(false);
    const [finished, setFinished] = useState(false);
+   const user = useSelector((state) => state.user);
    const [newData, setNewData] = useState({
       age: '',
       gender: '',
       type: '',
       ubication: '',
+      uid: user.uid,
+      name: user.name,
+      photoURL: user.photoURL,
    });
    const [genderValue, setGenderValue] = useState('');
    const [typeValue, setTypeValue] = useState('');
    const navigate = useNavigate();
    const dispatch = useDispatch();
-   const user = useSelector((state) => state.user);
 
    const userAppData = useSelector((state) => state.userAppData);
 
@@ -88,7 +91,7 @@ const Validations = () => {
       navigate('/home')
    };
 
-   if (userAppData.isLoading || userAppData.data.length >= 0) {
+   if (userAppData.isLoading || userAppData.data.length === 0 || user.isLoading) {
       return <LoadingScreen />;
    }
 

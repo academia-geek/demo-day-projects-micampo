@@ -29,6 +29,9 @@ const AppRoutes = () => {
       gender: '',
       age: '',
       ubication: '',
+      uid: '',
+      name: '',
+      photoURL: ''
    };
 
    const searchDocOrCreateDoc = async (userUID) => {
