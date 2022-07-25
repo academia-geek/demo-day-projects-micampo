@@ -11,6 +11,7 @@ import './Styles/index.css'
 import './styles/LogIn.css'
 import './styles/Register.css'
 import './styles/User.css'
+import 'leaflet/dist/leaflet.css'
 import AppRoutes from './routes/AppRoutes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

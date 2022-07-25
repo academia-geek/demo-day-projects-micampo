@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { updateUserAppDataAction } from '../../app/actions/userAppData.actions';
 import LoadingScreen from '../../components/LoadingScreen';
 import { db } from '../../firebase/firebaseConfig';
+import ValidateUbication from './ValidateUbication';
 
 const Validations = () => {
    const [ageOpen, setAgeOpen] = useState(true);
    const [GenderOpen, setGenderOpen] = useState(false);
    const [TypeUserOpen, setTypeUserOpen] = useState(false);
+   const [ubicationOpen, setUbicationOpen] = useState(false);
    const [finished, setFinished] = useState(false);
    const user = useSelector((state) => state.user);
    const [newData, setNewData] = useState({
@@ -39,8 +41,11 @@ const Validations = () => {
             setTypeUserOpen(true);
             break;
          case TypeUserOpen:
-            setTypeUserOpen(true);
+            setTypeUserOpen(false);
+            setUbicationOpen(true);
             break;
+         case ubicationOpen:
+            setUbicationOpen(true);
          default:
             break;
       }
@@ -60,6 +65,9 @@ const Validations = () => {
             setTypeUserOpen(false);
             setGenderOpen(true);
             break;
+         case ubicationOpen:
+            setUbicationOpen(false);
+            setTypeUserOpen(true);
          default:
             break;
       }
@@ -88,10 +96,14 @@ const Validations = () => {
          },
       });
       dispatch(updateUserAppDataAction(newData));
-      navigate('/home')
+      navigate('/home');
    };
 
-   if (userAppData.isLoading || userAppData.data.length === 0 || user.isLoading) {
+   if (
+      userAppData.isLoading ||
+      userAppData.data.length === 0 ||
+      user.isLoading
+   ) {
       return <LoadingScreen />;
    }
 
@@ -179,6 +191,7 @@ const Validations = () => {
                </div>
             </>
          )}
+         {/* {ubicationOpen && <ValidateUbication />} */}
          <button onClick={handleBack}>Atrás</button>
          <button onClick={handleNext}>Siguiente</button>
 

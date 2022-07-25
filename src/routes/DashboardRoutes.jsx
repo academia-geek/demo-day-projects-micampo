@@ -10,6 +10,8 @@ import Aliados from '../containers/Aliados';
 import Agroinsumos from '../containers/Agroinsumos';
 import Mercado from '../containers/Mercado';
 import GlobalChat from '../components/chat/GlobalChat';
+import ValidateUbication from '../containers/validations/ValidateUbication';
+import MapView from '../components/MapView';
 
 const DashboardRoutes = () => {
    return (
@@ -25,6 +27,7 @@ const DashboardRoutes = () => {
             <Route path='/sobre-nosotros' element={<QuienesSomos />} />
             <Route path='validaciones' element={<Validations />} />
             <Route path='chat' element={<GlobalChat />} />
+            <Route path='map' element={<MapView />} />
             <Route path='*' element={<Navigate to='/home' />} />
          </Routes>
       </>
