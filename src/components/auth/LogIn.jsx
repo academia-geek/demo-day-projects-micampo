@@ -32,7 +32,7 @@ const LogIn = () => {
       if (login.isError) {
          switch (login.message.code) {
             case 'auth/account-exists-with-different-credential':
-               setError('El email ya existe');
+               setError('Ya hay una cuenta registrada con este email');
                break;
             case 'auth/invalid-email':
                setError('Email invalido');
@@ -43,10 +43,12 @@ const LogIn = () => {
             case 'auth/wrong-password':
                setError('Contraseña incorrecta');
                break;
+            case 'auth/user-disabled':
+               setError('Usuario deshabilitado');
+               break;
             default:
                setError('Error de autenticación');
                break;
-
          }
       }
    }, [login]);

@@ -95,6 +95,10 @@ export const registerAction = (email, password, name) => {
                         const message = error.message;
                         dispatch({ type: typesLogin.REGISTER_FAILURE, payload: { code: code, message: message } });
                     })
+            }).catch(error => {
+                const code = error.code;
+                const message = error.message;
+                dispatch({ type: typesLogin.REGISTER_FAILURE, payload: { code: code, message: message } });
             })
     }
 }
