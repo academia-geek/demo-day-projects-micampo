@@ -19,6 +19,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { loginCheckAction } from '../app/actions/loginCheck.actions';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
+import Footer from '../components/Footer';
+import Productos from '../containers/Productos';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true);
@@ -115,7 +117,7 @@ const AppRoutes = () => {
             />
 
             <Route
-               path='/lg/agroinsumos  '
+               path='/lg/agroinsumos'
                element={
                   <PublicRoutes isAuth={isLogget}>
                      <Agroinsumos />
@@ -141,6 +143,14 @@ const AppRoutes = () => {
                   </PublicRoutes>
                }
             />
+            <Route
+               path='/lg/productos'
+               element={
+                  <PublicRoutes isAuth={isLogget}>
+                     <Productos />
+                  </PublicRoutes>
+               }
+            />
 
             <Route
                path='/*'
@@ -151,6 +161,7 @@ const AppRoutes = () => {
                }
             />
          </Routes>
+         <Footer/>
       </BrowserRouter>
    );
 };

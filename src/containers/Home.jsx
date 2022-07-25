@@ -10,6 +10,7 @@ import { db } from '../firebase/firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 import App from '../components/Dropdown';
 import Footer from '../components/Footer';
+import Nosotros from '../components/Nosotros';
 
 
 
@@ -89,8 +90,7 @@ const Home = () => {
 
       <Tercera><TituloCont><ProductosA>AgroInsumos</ProductosA><Image src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658431991/MiCampo/Vector_1_cfagxz.png" alt="" /></TituloCont><Linea><Agroin><img src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658000712/MiCampo/image_1_qzzjzf.png" alt="" /><Negro> <Ali>Agroinsumo <br /> <Spali><GoLocation />Finca el rocío</Spali></Ali> <Enter>Contactar Aliado <BsArrowRightShort /></Enter></Negro></Agroin></Linea><BotVerde onClick={() => navigate("/aliados")}>Ver más</BotVerde></Tercera>
       <Quinta> <Tarjetas> <Icono src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658494100/MiCampo/icon-park-solid_good-two_apuvrk.png" alt="" /> <h4>Calidad</h4> <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></Tarjetas><Tarjetas> <Icono src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658493982/MiCampo/Vector_3_agq7y3.png" alt="" /><h4>Ubicación</h4><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> </Tarjetas><Tarjetas> <Icono src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658099454/MiCampo/Vector_lgqq8t.png" alt="" /> <h4>Productos agrícolas</h4><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> </Tarjetas><Tarjetas> <Icono src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658493981/MiCampo/carbon_delivery_emoz5p.png" alt="" /><h4>Velocidad</h4><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> </Tarjetas><Tarjetas> <Icono src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658493980/MiCampo/ic_baseline-security_gxhy2w.png" alt="" /><h4>Seguridad</h4><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> </Tarjetas><Tarjetas> <Icono src="" alt="" /> </Tarjetas>  </Quinta>
-      <Cuarta></Cuarta>
-      <Footer/>
+      <Nosotros/>
     </>
   )
 }

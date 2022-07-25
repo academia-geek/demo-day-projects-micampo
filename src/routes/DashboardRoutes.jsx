@@ -9,6 +9,7 @@ import Validations from '../containers/validations/Validations';
 import Aliados from '../containers/Aliados';
 import Agroinsumos from '../containers/Agroinsumos';
 import Mercado from '../containers/Mercado';
+import Productos from '../containers/Productos';
 
 const DashboardRoutes = () => {
    return (
@@ -21,6 +22,7 @@ const DashboardRoutes = () => {
             <Route path='/aliados' element={<Aliados/>} />
             <Route path='/agroinsumos' element={<Agroinsumos/>} />
             <Route path='/mercado' element={<Mercado/>} />
+            <Route path='/productos' element={<Productos/>} />
             <Route path='/sobre-nosotros' element={<QuienesSomos />} />
             <Route path='validaciones' element={<Validations />} />
             <Route path='*' element={<Navigate to='/home' />} />
