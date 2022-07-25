@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import {
    loginWithFacebook,
 } from '../../app/actions/login.actions';
 import { useNavigate } from 'react-router-dom';
+import LoadingScreen from '../LoadingScreen';
 
 // ------------ Yup Validations ------------ //
 
@@ -22,9 +23,33 @@ const SignupSchema = Yup.object().shape({
 // ------------ End Yup Validation ------------ //
 
 const LogIn = () => {
+   const [error, setError] = useState('');
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const login = useSelector((state) => state.login);
+
+   useEffect(() => {
+      if (login.isError) {
+         switch (login.message.code) {
+            case 'auth/account-exists-with-different-credential':
+               setError('El email ya existe');
+               break;
+            case 'auth/invalid-email':
+               setError('Email invalido');
+               break;
+            case 'auth/user-not-found':
+               setError('Usuario no encontrado');
+               break;
+            case 'auth/wrong-password':
+               setError('Contraseña incorrecta');
+               break;
+            default:
+               setError('Error de autenticación');
+               break;
+
+         }
+      }
+   }, [login]);
 
    if (login.isLoading) {
       return <LoadingScreen />;
@@ -41,6 +66,18 @@ const LogIn = () => {
             </div>
             <div className='login-content'>
                <h1>Inicio de sesion</h1>
+               {login.isError && (
+                  <p>
+                     <span
+                        style={{
+                           color: 'red',
+                           fontWeight: 'bold',
+                           fontSize: '1.2rem',
+                        }}>
+                        {error}
+                     </span>
+                  </p>
+               )}
                <Formik
                   initialValues={{
                      email: '',
@@ -95,7 +132,11 @@ const LogIn = () => {
                         Login via Google
                      </button>
                      <button
-                        onClick={() => dispatch(loginWithFacebook())}
+                        onClick={() =>
+                           dispatch(loginWithFacebook()).catch((error) => {
+                              console.log(error);
+                           })
+                        }
                         className='facebook-button'>
                         <img
                            src='https://res.cloudinary.com/gartners/image/upload/v1658112708/DemoDay/Facebook_sesmhm.svg'

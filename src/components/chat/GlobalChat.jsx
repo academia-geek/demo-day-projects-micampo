@@ -7,15 +7,7 @@ import SendMessages from './SendMessages';
 const GlobalChat = () => {
    const scroll = useRef();
    const [messages, setMessages] = useState([]);
-   const [users, setUsers] = useState([]);
    const auth = getAuth();
-
-   const importAllRegisteredUsersFromFirebase = async () => {
-      const docRef = await getDocs(collection(db, 'usuarios'));
-      const users = docRef.docs.map((doc) => doc.data());
-      console.log(users);
-      return users;
-   };
 
    const collectionData = async () => {
       const consult = await getDocs(collection(db, 'messages'));
@@ -28,10 +20,6 @@ const GlobalChat = () => {
 
    useEffect(() => {
       collectionData();
-   }, [messages]);
-
-   useEffect(() => {
-      importAllRegisteredUsersFromFirebase();
    }, []);
 
    return (

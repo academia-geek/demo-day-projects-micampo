@@ -11,6 +11,10 @@ const MapView = () => {
    const getActualPosition = () => {
       navigator.geolocation.getCurrentPosition((position) => {
          const { latitude, longitude } = position.coords;
+         setPosition({
+            lat: latitude,
+            lng: longitude,
+         });
          setLat(latitude);
          setLng(longitude);
       });
@@ -20,16 +24,17 @@ const MapView = () => {
       const marker = markerRef.current;
       if (marker != null) {
          setPosition(marker.getLatLng());
+          setLat(marker.getLatLng().lat);
+          setLng(marker.getLatLng().lng);
       }
    };
 
    useEffect(() => {
       getActualPosition();
    }, []);
-
    useEffect(() => {
-      console.log(position);
-   }, [position]);
+      getActualPosition();
+   }, [actualPositionOrMove]);
 
    return (
       <div
@@ -54,7 +59,8 @@ const MapView = () => {
                   <MapContainer
                      center={[lat, lng]}
                      zoom={17}
-                     scrollWheelZoom={true}
+                     scrollWheelZoom={false}
+                     dragging={false}
                      style={{ width: '50vw', height: '50vh' }}>
                      <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -82,42 +88,46 @@ const MapView = () => {
                </button>
 
                <strong>Arrastra el marcador para cambiar la ubicación</strong>
-               <MapContainer
-                  center={[lat, lng]}
-                  zoom={17}
-                  scrollWheelZoom={true}
-                  style={{ width: '50vw', height: '50vh' }}>
-                  <TileLayer
-                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-                  />
-                  <Marker
-                     position={position}
-                     draggable={true}
-                     eventHandlers={{
-                        dragend: dragend,
-                     }}
-                     dragend={dragend}
-                     ref={markerRef}>
-                     <Popup position={[lat, lng]}>
-                        <span>
-                           <strong
-                              style={{
-                                 fontSize: '0.8rem',
-                                 fontWeight: 'bold',
-                                 color: '#000',
-                                 textAlign: 'center',
-                                 textTransform: 'uppercase',
-                                 letterSpacing: '1px',
-                                 marginBottom: '1rem',
-                                 marginTop: '1rem',
-                              }}>
-                              Arrastrame
-                           </strong>
-                        </span>
-                     </Popup>
-                  </Marker>
-               </MapContainer>
+               {lat !== 0 && lng !== 0 ? (
+                  <MapContainer
+                     center={position}
+                     zoom={17}
+                     scrollWheelZoom={true}
+                     style={{ width: '50vw', height: '50vh' }}>
+                     <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                     />
+                     <Marker
+                        position={position}
+                        draggable={true}
+                        eventHandlers={{
+                           dragend: dragend,
+                        }}
+                        dragend={dragend}
+                        ref={markerRef}>
+                        <Popup>
+                           <span>
+                              <strong
+                                 style={{
+                                    fontSize: '0.8rem',
+                                    fontWeight: 'bold',
+                                    color: '#000',
+                                    textAlign: 'center',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1px',
+                                    marginBottom: '1rem',
+                                    marginTop: '1rem',
+                                 }}>
+                                 Arrastrame
+                              </strong>
+                           </span>
+                        </Popup>
+                     </Marker>
+                  </MapContainer>
+               ) : (
+                  <LoadingScreen />
+               )}
             </>
          )}
       </div>
