@@ -1,6 +1,6 @@
 import React from 'react'
 import useForm from '../hooks/useForm'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { imgUpload } from '../helpers/imgUpload';
 import { addProdAsync } from '../app/actions/actionAddProduct';
@@ -8,10 +8,13 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const AddProducto = () => {
    const dispatch = useDispatch();
+   const { uid } = useSelector(store => store.user)
+
    const [value, reset, handleChange] = useForm({
       img: '',
       nombre: '',
       des: '',
+      user: uid,
       fecha: Date()
    })
 
@@ -36,6 +39,7 @@ const AddProducto = () => {
    return (
       <div className='container'>
          <ToastContainer />
+         <br /> <h2>Agregar Productos</h2>
          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                <Form.Label>Eliga una Imagen del producto</Form.Label>
@@ -62,7 +66,7 @@ const AddProducto = () => {
                <Form.Control name='fecha' value={Date()} disabled onChange={handleChange} required type="text" />
             </Form.Group>
 
-            <Button variant="outline-success" type="submit">  Enviar   </Button>
+            <Button variant="outline-success" type="submit">  Agregar   </Button>
          </Form>
       </div>
    )
