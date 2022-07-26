@@ -1,31 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import useForm from '../hooks/useForm'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, FloatingLabel, Form, Modal } from "react-bootstrap";
+import { Button, Card, FloatingLabel, Form, Modal } from "react-bootstrap";
 import { imgUpload } from '../helpers/imgUpload';
-import { addProdAsync, listarPro } from '../app/actions/actionAddProduct';
+import { addProdAsync, deletePro, listarPro } from '../app/actions/actionAddProduct';
 import { ToastContainer, toast } from 'react-toastify';
-import { BotonAdd } from '../Styles/Home';
+import { BotonAdd, ContMispro } from '../Styles/Home';
 import { misPro } from '../filter/misPro';
+import { AiFillDelete } from 'react-icons/ai';
 
 const AddProducto = () => {
    const [show, setShow] = useState(false);
    const handleClose = () => setShow(false);
    const handleShow = () => setShow(true);
    const [pro, setPro] = useState([])
+   const [misProd, setMisProd] = useState([])
 
    const { uid } = useSelector(store => store.user)
 
    useEffect(() => {
-      listarPro().then(res => setPro(res))
+      listarPro().then(res => setPro(res));
+      const miData = misPro(pro, uid);
+      setMisProd(miData);
    }, [pro])
-
-   useEffect(() => {
-      console.log(pro);
-      const r = misPro(pro, uid);
-      console.log(r);
-   }, [])
-
 
 
    const dispatch = useDispatch();
@@ -56,12 +53,17 @@ const AddProducto = () => {
          .catch((error) => { console.warn(error) });
    }
 
+   const handleDeletePro = (name) => {
+      toast.error("Producto eliminado")
+      dispatch(deletePro(name))
+   }
+
    return (
       <div className='container'>
          <ToastContainer />
          <br /> <h2 className='text-center'>Mis Productos</h2>
 
-         <BotonAdd onClick={handleShow}>Agregar producto</BotonAdd>
+         <BotonAdd onClick={handleShow}>Agregar producto</BotonAdd> <br />
 
          <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -100,6 +102,23 @@ const AddProducto = () => {
                <Button variant="outline-danger" onClick={handleClose}>                  Close               </Button>
             </Modal.Footer>
          </Modal>
+
+         <ContMispro >
+            {
+               misProd.map((res, index) =>
+
+                  <Card key={index} style={{ width: '18rem', margin: '1rem' }}>
+                     <Card.Img variant="top" src={res.img} />
+                     <Card.Body>
+                        <Card.Title> {res.nombre} </Card.Title>
+                        <Button variant="outline-danger" onClick={() => handleDeletePro(res.nombre)}> <AiFillDelete /> </Button>
+                     </Card.Body>
+                  </Card>
+
+               )
+            }
+         </ContMispro>
+
       </div >
    )
 }

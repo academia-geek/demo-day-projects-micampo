@@ -266,6 +266,11 @@ export const BotonAdd = styled.button`
     }
 `
 
+export const ContMispro = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
 export const TituloCont = styled.div`
 display:flex;
 flex-direction:row;
