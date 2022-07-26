@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
+
 import Home from '../containers/Home';
 import QuienesSomos from '../containers/QuienesSomos';
 import DashboardRoutes from './DashboardRoutes';
@@ -17,8 +18,11 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { loginCheckAction } from '../app/actions/loginCheck.actions';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
+import Footer from '../components/Footer';
+import Productos from '../containers/Productos';
 import { getUserAppDataAction } from '../app/actions/userAppData.actions';
 import { getUserAction } from '../app/actions/user.actions';
+import User from '../containers/User';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true);
@@ -139,11 +143,29 @@ const AppRoutes = () => {
                }
             />
 
+
             <Route
                path='/lg/sobre-nosotros'
                element={
                   <PublicRoutes isAuth={isLogget}>
                      <QuienesSomos />
+                  </PublicRoutes>
+               }
+            />
+
+            <Route
+               path='/lg/perfil-usuario'
+               element={
+                  <PublicRoutes isAuth={isLogget}>
+                     <User />
+                  </PublicRoutes>
+               }
+            />
+            <Route
+               path='/lg/productos'
+               element={
+                  <PublicRoutes isAuth={isLogget}>
+                     <Productos />
                   </PublicRoutes>
                }
             />
@@ -157,6 +179,7 @@ const AppRoutes = () => {
                }
             />
          </Routes>
+         <Footer/>
       </BrowserRouter>
    );
 };
