@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,9 +9,7 @@ import { useNavigate } from 'react-router-dom';
 // ------------ Yup Validation ------------ //
 
 const SignupSchema = Yup.object().shape({
-   email: Yup.string()
-      .email('Email no válido')
-      .required('Email requerido'),
+   email: Yup.string().email('Email no válido').required('Email requerido'),
    password: Yup.string()
       .required('Contraseña requerida')
       .min(6, 'Contraseña debe tener al menos 6 caracteres')
@@ -30,10 +28,36 @@ const SignupSchema = Yup.object().shape({
 // ------------ End Yup Validation ------------ //
 
 const Register = () => {
+   const [error, setError] = useState('');
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const login = useSelector((state) => state.login);
 
+   useEffect(() => {
+      console.log(login)
+      if (login.isError) {
+         switch (login.message.code) {
+            case 'auth/account-exists-with-different-credential':
+               setError('El email ya existe');
+               break;
+            case 'auth/invalid-email':
+               setError('Email invalido');
+               break;
+            case 'auth/user-not-found':
+               setError('Usuario no encontrado');
+               break;
+            case 'auth/wrong-password':
+               setError('Contraseña incorrecta');
+               break;
+            case 'auth/user-disabled':
+               setError('Usuario deshabilitado');
+               break;
+            default:
+               setError('Error de autenticación');
+               break;
+         }
+      }
+   }, [login]);
    if (login.isLoading) {
       return <LoadingScreen />;
    }
@@ -49,6 +73,18 @@ const Register = () => {
             </div>
             <div className='register-content'>
                <h1>Registro</h1>
+               {login.isError && (
+                  <p>
+                     <span
+                        style={{
+                           color: 'red',
+                           fontWeight: 'bold',
+                           fontSize: '1.2rem',
+                        }}>
+                        {error}
+                     </span>
+                  </p>
+               )}
                <Formik
                   initialValues={{
                      email: '',

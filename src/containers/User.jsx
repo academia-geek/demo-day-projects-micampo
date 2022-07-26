@@ -53,10 +53,8 @@ const User = () => {
    const user = useSelector((state) => state.user);
 
    useEffect(() => {
-      dispatch(getUserAction());
       if (user.photoURL) {
          setHasPhoto(true);
-         console.log(user);
       }
    }, [isLoading]);
 
@@ -311,7 +309,7 @@ const User = () => {
                               <button
                                  className='delete-user-button'
                                  onClick={() => {
-                                    dispatch(deleteUserAction(user.data));
+                                    dispatch(deleteUserAction());
                                     setIsDeletingUser(false);
                                  }}>
                                  Eliminar

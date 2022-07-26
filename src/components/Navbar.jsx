@@ -17,9 +17,6 @@ import { useSelector } from 'react-redux';
 const Nav1 = () => {
    const navigate = useNavigate();
    const logged = useSelector((state) => state.loginCheck.loginCheck);
-   useEffect(() => {
-      console.log(logged, 'navbar');
-   }, [logged]);
 
    return (
       <>

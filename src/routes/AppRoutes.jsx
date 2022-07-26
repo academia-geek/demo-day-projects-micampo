@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
 import Home from '../containers/Home';
@@ -12,12 +12,13 @@ import Agroinsumos from '../containers/Agroinsumos';
 import Mercado from '../containers/Mercado';
 import LogIn from '../components/auth/Login';
 import Register from '../components/auth/Register';
-import User from '../containers/User';
 import LoadingScreen from '../components/LoadingScreen';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { loginCheckAction } from '../app/actions/loginCheck.actions';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
+import { getUserAppDataAction } from '../app/actions/userAppData.actions';
+import { getUserAction } from '../app/actions/user.actions';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true);
@@ -28,6 +29,9 @@ const AppRoutes = () => {
       gender: '',
       age: '',
       ubication: '',
+      uid: '',
+      name: '',
+      photoURL: ''
    };
 
    const searchDocOrCreateDoc = async (userUID) => {
@@ -36,11 +40,23 @@ const AppRoutes = () => {
 
       if (consult.exists()) {
          const infoDoc = consult.data();
+         dispatch(getUserAppDataAction(infoDoc.data));
+         if (
+            infoDoc.data.age === '' ||
+            infoDoc.data.gender === '' ||
+            infoDoc.data.type === ''
+
+         ) {
+            if (window.location.pathname !== '/validaciones') {
+               window.location.href = '/validaciones';
+            }
+         }
          return infoDoc;
       } else {
          await setDoc(docRef, { data: { ...userDataInitialState } });
          const consult = await getDoc(docRef);
          const infoDoc = consult.data();
+         dispatch(getUserAppDataAction(infoDoc));
          return infoDoc;
       }
    };
@@ -50,6 +66,7 @@ const AppRoutes = () => {
       onAuthStateChanged(auth, (user) => {
          if (user?.uid) {
             setIsLogget(true);
+            dispatch(getUserAction());
             dispatch(loginCheckAction(true));
             searchDocOrCreateDoc(user.uid);
          } else {
