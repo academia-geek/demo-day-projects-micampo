@@ -3,7 +3,7 @@ import useForm from '../hooks/useForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Card, FloatingLabel, Form, Modal } from "react-bootstrap";
 import { imgUpload } from '../helpers/imgUpload';
-import { addProdAsync, listarPro } from '../app/actions/actionAddProduct';
+import { addProdAsync, deletePro, listarPro } from '../app/actions/actionAddProduct';
 import { ToastContainer, toast } from 'react-toastify';
 import { BotonAdd, ContMispro } from '../Styles/Home';
 import { misPro } from '../filter/misPro';
@@ -51,6 +51,11 @@ const AddProducto = () => {
             //console.log(resp)
          })
          .catch((error) => { console.warn(error) });
+   }
+
+   const handleDeletePro = (name) => {
+      toast.error("Producto eliminado")
+      dispatch(deletePro(name))
    }
 
    return (
@@ -106,7 +111,7 @@ const AddProducto = () => {
                      <Card.Img variant="top" src={res.img} />
                      <Card.Body>
                         <Card.Title> {res.nombre} </Card.Title>
-                        <Button variant="outline-danger"> <AiFillDelete /> </Button>
+                        <Button variant="outline-danger" onClick={() => handleDeletePro(res.nombre)}> <AiFillDelete /> </Button>
                      </Card.Body>
                   </Card>
 
