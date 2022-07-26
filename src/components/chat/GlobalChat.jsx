@@ -8,14 +8,25 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { db } from '../../firebase/firebaseConfig';
-import SendMessages from './SendMessages';
+import SendIcon from '@mui/icons-material/Send';
+import ChatIcon from '@mui/icons-material/Chat';
+import CloseIcon from '@mui/icons-material/Close';
 
 const GlobalChat = () => {
-   const scroll = useRef();
+   const [chatOpen, setChatOpen] = useState(false);
    const [messages, setMessages] = useState([]);
    const [msg, setMsg] = useState('');
+   const scroll = useRef();
    const auth = getAuth();
    const user = useSelector((state) => state.user);
+
+   const handleChatOpen = () => {
+      setChatOpen(true);
+   };
+
+   const handleChatClose = () => {
+      setChatOpen(false);
+   };
 
    const sendMessage = async (e) => {
       e.preventDefault();
@@ -46,68 +57,81 @@ const GlobalChat = () => {
       );
       setMessages(orderMessagesByServerTimestamp);
    };
-
+   
    useEffect(() => {
-      collectionData();
-   }, [sendMessage]);
+      // collectionData();
+   }, []);
 
    return (
-      <div>
-         <div className='msgs'>
-            {messages.map(({ id, text, photoURL, uid, createdAt, name }) => (
-               <div key={id}>
-                  <div
-                     className={`msg ${
-                        uid === auth.currentUser.uid ? 'sent' : 'received'
-                     }`}>
-                     <div style={{ display: 'flex' }}>
-                        <img width={50} src={photoURL} alt='' />
-                        <div>
-                           <small
-                              style={{
-                                 display: 'flex',
-                                 flexDirection: 'column',
-                              }}>
-                              <span>{name}</span>
-                              {createdAt && (
-                                 <span>
-                                    {createdAt.toDate().toLocaleTimeString()}
-                                 </span>
-                              )}
-                           </small>
+      <>
+         {chatOpen ? (
+            <div className='chat-container'>
+               <button
+                  className='chat-close-button'
+                  onClick={handleChatClose}
+               >
+                  <CloseIcon />
+               </button>
+               <div className='msgs'>
+                  {messages.map(
+                     ({ id, text, photoURL, uid, createdAt, name }) => (
+                        <div key={id}>
+                           <div
+                              className={`msg ${
+                                 uid === auth.currentUser.uid
+                                    ? 'sent'
+                                    : 'received'
+                              }`}>
+                              <div style={{ display: 'flex' }}>
+                                 <img width={50} src={photoURL} alt='' />
+                                 <div>
+                                    <small
+                                       style={{
+                                          display: 'flex',
+                                          flexDirection: 'column',
+                                       }}>
+                                       <span>{name}</span>
+                                       {createdAt && (
+                                          <span>
+                                             {createdAt
+                                                .toDate()
+                                                .toLocaleTimeString()}
+                                          </span>
+                                       )}
+                                    </small>
+                                 </div>
+                              </div>
+                              <p>{text}</p>
+                           </div>
                         </div>
+                     )
+                  )}
+               </div>
+               <div className='sendMsg-container'>
+                  <form onSubmit={(e)=> sendMessage(e)}>
+                     <div className='sendMsg'>
+                        <input
+                           placeholder='Mensaje'
+                           type='text'
+                           value={msg}
+                           onChange={(e) => setMsg(e.target.value)}
+                        />
+                        <button
+                           className='send-message-button'
+                           type='submit'>
+                           <SendIcon />
+                        </button>
                      </div>
-                     <p>{text}</p>
-                  </div>
+                  </form>
                </div>
-            ))}
-         </div>
-
-         <div>
-            <form onSubmit={sendMessage}>
-               <div className='sendMsg'>
-                  <input
-                     placeholder='Mensaje'
-                     type='text'
-                     value={msg}
-                     onChange={(e) => setMsg(e.target.value)}
-                  />
-                  <button
-                     style={{
-                        width: '18%',
-                        fontSize: '15px',
-                        fontWeight: '550',
-                        margin: '4px 5% -13px 5%',
-                        maxWidth: '200px',
-                     }}
-                     type='submit'>
-                     Enviar
-                  </button>
-               </div>
-            </form>
-         </div>
-         <div ref={scroll}></div>
-      </div>
+               <div ref={scroll}></div>
+            </div>
+         ) : (
+            <button className='chat-button' onClick={handleChatOpen}>
+               <ChatIcon />
+            </button>
+         )}
+      </>
    );
 };
 
