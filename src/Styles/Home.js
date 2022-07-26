@@ -1,3 +1,4 @@
+import { style } from '@mui/system'
 import styled from 'styled-components'
 export const Colores = {
     green: '#699A07',
@@ -224,13 +225,13 @@ padding:3rem 5rem;
     flex-direction:column;
 }`
 
-export const ContImagen= styled.div`
+export const ContImagen = styled.div`
 border-radius:10%; 
 width:90%;
 height:90%;
 overflow: hidden;`
 
-export const ProdImg= styled.img`
+export const ProdImg = styled.img`
 height:100%;
 width:100%;
 overflow: hidden;
@@ -254,13 +255,25 @@ margin-bottom:2rem;
     width:30%;
 }`
 
+export const BotonAdd = styled.button`
+    background-color:#699A07; 
+    border-radius:15px;
+    color: white;
+    border: 1px #699A07 solid;
+    font-weight:600;
+    padding:0.5rem;
+    :hover{
+        color: #FF9D00;
+    }
+`
+
 export const TituloCont = styled.div`
 display:flex;
 flex-direction:row;
 align-items:center;
 justify-content:center;
 margin:0;
-padding:0;` 
+padding:0;`
 
 export const Cuarta = styled.div`
 background-color: #FFFFFF;
@@ -270,7 +283,7 @@ flex-direction:column;
 margin-top:-3rem;
 `
 
-export const Aliado =styled.img`
+export const Aliado = styled.img`
 clip-path: circle(50% at 50% 50%);
 height:85%;
 width:80%;
@@ -302,7 +315,7 @@ justify-content:space-between;
 align-items:center;
 `
 
-export const Image  = styled.img`
+export const Image = styled.img`
 @media (max-width:700px) {
     display:none;
     
@@ -315,7 +328,7 @@ font-weight:700;
 font-size:0.8rem;`
 
 
-export const Ali=styled.p`
+export const Ali = styled.p`
 padding-top:0.5rem;
 color:white;
 font-size:1.2rem;
@@ -365,7 +378,7 @@ padding: 3rem;
 }
 `
 
-export const Tarjetas= styled.div`
+export const Tarjetas = styled.div`
 background-color:white;
 display: flex;
 flex-direction:column;

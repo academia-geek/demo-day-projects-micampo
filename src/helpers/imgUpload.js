@@ -11,7 +11,7 @@ export const imgUpload = async (file) => {
       body: formData
    })
    const data = await resp.json();
-   console.log(data)
+   //console.log(data)
 
    return data.secure_url
 
