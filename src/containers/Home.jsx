@@ -79,7 +79,11 @@ const Home = () => {
           </Carousel.Item>
         </Carousel>
         <div className="carousel"><Grande>Compra, cultiva y desarrolla</Grande> <Text>Bienvenido a MiCampo, una app en la que podras vender o comprar productos agrícolas de todo tipo, podrás ver el movimiento del mercado de cualquier producto, y podras contactarte con cualquiera de nuestros aliados.</Text>
-          <ContBotones><Productos onClick={() => navigate('/aliados')}>Productos <BsLayoutSidebar /></Productos><Productos><TbMessages /></Productos></ContBotones></div>
+          <ContBotones><Productos onClick={() =>
+                                 navigate(
+                                    logged ? 'productos' : '/lg/productos'
+                                 )
+                              }>Productos <BsLayoutSidebar /></Productos><Productos><TbMessages /></Productos></ContBotones></div>
       </Fondo>
       <Search> 
      <Search1/> <App/> </Search>
