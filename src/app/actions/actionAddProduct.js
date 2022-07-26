@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../firebase/firebaseConfig'
 
 export const addProdAsync = (pro) => {
@@ -19,4 +19,19 @@ export const listarPro = async () => {
    });
 
    return datos
+}
+
+
+export const deletePro = (nombre) => {
+   return async () => {
+      const collectionPro = collection(db, "productos")
+      const q = query(collectionPro, where("nombre", "==", nombre))
+
+      const datosQ = await getDocs(q)
+      //console.log(datosQ)
+
+      datosQ.forEach(docu => {
+         deleteDoc(doc(db, "productos", docu.id))
+      })
+   }
 }

@@ -11,6 +11,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import App from '../components/Dropdown';
 import Footer from '../components/Footer';
 import Nosotros from '../components/Nosotros';
+import { useSelector } from 'react-redux';
 
 
 
@@ -18,6 +19,7 @@ const Home = () => {
   const [productos, setProductos] = useState([])
   const [agroinsumos,setAgroinsumos]= useState([])
   const navigate = useNavigate()
+  const logged = useSelector((state) => state.loginCheck.loginCheck);
   const collectionData = async (coleccion) => {
     const DatosCol = await getDocs(collection(db,coleccion))
     const datos = []
