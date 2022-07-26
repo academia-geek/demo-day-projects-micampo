@@ -38,10 +38,10 @@ const Productos = () => {
         <Tercera style={{alignItems:'center'}}><TituloCont><ProductosA>También podría interesarte</ProductosA></TituloCont>
       <Carousel fade className='carousel'>
           <Carousel.Item>
-            <Agro>Productos</Agro>
-            <Divi>
+          <Agro>Agroinsumos</Agro>
+            <Divi >
               {
-                prod6.map((element, index) => (
+                agro6.map((element, index) => (
                   <Tarjeta key={index}><Imagro src={element.img} alt="" /> <Texto><H4>{element.nombre}
                     <br /><TbTruckDelivery />Envío Nacional</H4></Texto></Tarjeta>
                 ))
