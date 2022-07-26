@@ -1,3 +1,4 @@
+import { style } from '@mui/system'
 import styled from 'styled-components'
 export const Colores = {
     green: '#699A07',
@@ -28,7 +29,6 @@ export const Fondo = styled.div`
 background: rgba(0, 0, 0, 0.73) url(https://res.cloudinary.com/dcsn54xoj/image/upload/v1657990544/MiCampo/28170bbfb63600885e97bf5ecf9def3b_jr9vcf.png);
 background-size: cover;
 height:100vh;
-margin-top:-1rem; 
 background-blend-mode: darken;
 display: flex;
 flex-direction: row ;
@@ -180,7 +180,7 @@ top:0;
 left:0;
 right:0;
 bottom:0;
-padding: 3rem;
+padding:3rem;
 }
 `
 export const Tercera = styled.div`
@@ -224,13 +224,13 @@ padding:3rem 5rem;
     flex-direction:column;
 }`
 
-export const ContImagen= styled.div`
+export const ContImagen = styled.div`
 border-radius:10%; 
 width:90%;
 height:90%;
 overflow: hidden;`
 
-export const ProdImg= styled.img`
+export const ProdImg = styled.img`
 height:100%;
 width:100%;
 overflow: hidden;
@@ -254,13 +254,25 @@ margin-bottom:2rem;
     width:30%;
 }`
 
+export const BotonAdd = styled.button`
+    background-color:#699A07; 
+    border-radius:15px;
+    color: white;
+    border: 1px #699A07 solid;
+    font-weight:600;
+    padding:0.5rem;
+    :hover{
+        color: #FF9D00;
+    }
+`
+
 export const TituloCont = styled.div`
 display:flex;
 flex-direction:row;
 align-items:center;
 justify-content:center;
 margin:0;
-padding:0;` 
+padding:0;`
 
 export const Cuarta = styled.div`
 background-color: #FFFFFF;
@@ -270,7 +282,7 @@ flex-direction:column;
 margin-top:-3rem;
 `
 
-export const Aliado =styled.img`
+export const Aliado = styled.img`
 clip-path: circle(50% at 50% 50%);
 height:85%;
 width:80%;
@@ -302,7 +314,7 @@ justify-content:space-between;
 align-items:center;
 `
 
-export const Image  = styled.img`
+export const Image = styled.img`
 @media (max-width:700px) {
     display:none;
     
@@ -315,7 +327,7 @@ font-weight:700;
 font-size:0.8rem;`
 
 
-export const Ali=styled.p`
+export const Ali = styled.p`
 padding-top:0.5rem;
 color:white;
 font-size:1.2rem;
@@ -339,35 +351,27 @@ flex-direction:column;
 overflow:hidden;`
 
 
-export const Quinta = styled.div`
-background-size:contain;
-background-repeat:no-repeat;
-margin:0rem;
-display:grid;
-grid-template-columns: 1fr 1fr 1fr;
-position:relative;
-width:100%;
-padding:3rem;
-grid-gap: 2rem;
-&::before{
-content:'';
+export const Quinta = styled.div`   
 background-image:url(https://res.cloudinary.com/dcsn54xoj/image/upload/v1658438220/MiCampo/Rectangle_1_sfhife.png);
-opacity:0.4;
-background-size:cover;
-background-repeat:no-repeat;
-margin:0rem;
-position:absolute;
-top:0;
-left:0;
-right:0;
-bottom:0;
-padding: 3rem;
-}
+display:grid;
+grid-template-columns:1fr 1fr 1fr; 
+padding:5rem;
+justify-items:center;
+height:100vh;
+grid-gap:1rem;
+margin-bottom:5rem;
 `
-
 export const Tarjetas= styled.div`
-background-color:white;
+background:white;
 display: flex;
 flex-direction:column;
-height:90%;
+height:100%;
+width:100%;
+padding:1rem;
+align-items:center;
+border-radius:5%;
 `
+
+export const Icono = styled.img`
+height:40%;
+width:25%;`

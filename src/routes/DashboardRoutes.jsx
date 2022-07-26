@@ -9,6 +9,12 @@ import Validations from '../containers/validations/Validations';
 import Aliados from '../containers/Aliados';
 import Agroinsumos from '../containers/Agroinsumos';
 import Mercado from '../containers/Mercado';
+<<<<<<< HEAD
+=======
+import Productos from '../containers/Productos';
+import GlobalChat from '../components/chat/GlobalChat';
+import ValidateUbication from '../containers/validations/ValidateUbication';
+>>>>>>> a12abbf3b509992ff57da705539d7074954d75e9
 import MapView from '../components/MapView';
 import GlobalChat from '../components/chat/GlobalChat';
 
@@ -24,6 +30,7 @@ const DashboardRoutes = () => {
             <Route path='/aliados' element={<Aliados/>} />
             <Route path='/agroinsumos' element={<Agroinsumos/>} />
             <Route path='/mercado' element={<Mercado/>} />
+            <Route path='/productos' element={<Productos/>} />
             <Route path='/sobre-nosotros' element={<QuienesSomos />} />
             <Route path='validaciones' element={<Validations />} />
             <Route path='map' element={<MapView />} />
