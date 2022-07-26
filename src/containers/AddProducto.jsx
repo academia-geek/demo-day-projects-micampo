@@ -1,19 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useForm from '../hooks/useForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, FloatingLabel, Form, Modal } from "react-bootstrap";
 import { imgUpload } from '../helpers/imgUpload';
-import { addProdAsync } from '../app/actions/actionAddProduct';
+import { addProdAsync, listarPro } from '../app/actions/actionAddProduct';
 import { ToastContainer, toast } from 'react-toastify';
-import { BotonAdd, BotVerde } from '../Styles/Home';
+import { BotonAdd } from '../Styles/Home';
+import { misPro } from '../filter/misPro';
 
 const AddProducto = () => {
    const [show, setShow] = useState(false);
    const handleClose = () => setShow(false);
    const handleShow = () => setShow(true);
+   const [pro, setPro] = useState([])
+
+   const { uid } = useSelector(store => store.user)
+
+   useEffect(() => {
+      listarPro().then(res => setPro(res))
+   }, [pro])
+
+   useEffect(() => {
+      console.log(pro);
+      const r = misPro(pro, uid);
+      console.log(r);
+   }, [])
+
+
 
    const dispatch = useDispatch();
-   const { uid } = useSelector(store => store.user)
 
    const [value, reset, handleChange] = useForm({
       img: '',
