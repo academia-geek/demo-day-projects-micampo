@@ -59,7 +59,7 @@ const GlobalChat = () => {
    };
    
    useEffect(() => {
-      // collectionData();
+      collectionData();
    }, []);
 
    return (
