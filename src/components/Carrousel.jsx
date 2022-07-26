@@ -3,11 +3,11 @@ import { Carousel } from 'react-bootstrap'
 import { Agro, Divi, H4, Imagro, Tarjeta, Texto } from '../Styles/Home'
 import {TbTruckDelivery} from 'react-icons/tb'
 
-const Carrousel = (Título, arreglo1,arreglo2,arreglo3) => {
+const Carrousel = ({titulo1,titulo2,titulo3, arreglo1,arreglo2,arreglo3}) => {
   return (
     <Carousel fade className='carousel'>
           <Carousel.Item>
-            <Agro>{Título}</Agro>
+            <Agro>{titulo1}</Agro>
             <Divi >
               {
                 arreglo1.map((element, index) => (
@@ -19,7 +19,7 @@ const Carrousel = (Título, arreglo1,arreglo2,arreglo3) => {
             </Divi>
           </Carousel.Item>
           <Carousel.Item>
-          <Agro>{Título}</Agro>
+          <Agro>{titulo2}</Agro>
             <Divi >
               {
                 arreglo2.map((element, index) => (
@@ -31,7 +31,7 @@ const Carrousel = (Título, arreglo1,arreglo2,arreglo3) => {
             </Divi>
           </Carousel.Item>
           <Carousel.Item>
-          <Agro>{Título}</Agro>
+          <Agro>{titulo3}</Agro>
             <Divi >
               {
                 arreglo3.map((element, index) => (

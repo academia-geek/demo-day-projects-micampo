@@ -16,21 +16,23 @@ import Nosotros from '../components/Nosotros';
 
 const Home = () => {
   const [productos, setProductos] = useState([])
+  const [agroinsumos,setAgroinsumos]= useState([])
   const navigate = useNavigate()
-  const collectionData = async () => {
-    const DatosCol = await getDocs(collection(db, "productos"))
+  const collectionData = async (coleccion) => {
+    const DatosCol = await getDocs(collection(db,coleccion))
     const datos = []
     DatosCol.forEach(element => {
       datos.push({ ...element.data() })
     })
-    console.log(datos)
     return datos
   }
   const prod6= productos.slice(0,5)
-  console.log(prod6)
+  const agro6=agroinsumos.slice(0,5)
+  console.log(prod6,"prod6",agro6)
 
   useEffect(() => {
-    collectionData().then(res => setProductos(res))
+    collectionData("productos").then(res => setProductos(res))
+    collectionData("agroinsumos").then(res => setAgroinsumos(res))
 
   }, [])
   return (
@@ -50,16 +52,16 @@ const Home = () => {
             </Divi>
           </Carousel.Item>
           <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="holder.js/800x400?text=Second slide&bg=282c34"
-              alt="Second slide"
-            />
+          <Agro>Agroinsumos</Agro>
+            <Divi >
+              {
+                agro6.map((element, index) => (
+                  <Tarjeta key={index}><Imagro src={element.img} alt="" /> <Texto><H4>{element.nombre}
+                    <br /><TbTruckDelivery />Envío Nacional</H4></Texto></Tarjeta>
+                ))
+              }
 
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
+            </Divi>
           </Carousel.Item>
           <Carousel.Item>
             <img
@@ -83,12 +85,24 @@ const Home = () => {
      <Search1/> <App/> </Search>
 
       <Tercera><TituloCont><ProductosA>Productos agrícolas</ProductosA><Image src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658099454/MiCampo/Vector_lgqq8t.png" alt="" /></TituloCont><Linea>{prod6.map((element, index) =>
-        <ContImagen key={index}> <ProdImg src={element.img} alt="" /><div><p>Nombre<br />Localización </p></div></ContImagen>)}</Linea><BotVerde onClick={() => navigate("/aliados")}>Ver más</BotVerde></Tercera>
+        <ContImagen key={index}> <ProdImg src={element.img} alt="" /><div><p>Nombre<br />Localización </p></div></ContImagen>)}</Linea><BotVerde onClick={() =>
+          navigate(
+             logged ? 'productos' : '/lg/productos'
+          )
+       }>Ver más</BotVerde></Tercera>
 
       <Cuarta><TituloCont><ProductosA>Nuestros aliados</ProductosA><Image src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658259882/MiCampo/Group_anru90.png" alt="" /></TituloCont><Linea>
-        <TarjetaAliado><Aliado src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658260704/MiCampo/image_2_poo7fg.png" alt="" /><Negro> <Ali> Don Carlos <br /> <Spali><GoLocation />Finca el rocío</Spali></Ali> <Enter>Contactar Aliado <BsArrowRightShort /></Enter></Negro></TarjetaAliado></Linea><BotVerde onClick={() => navigate("/aliados")}>Ver más</BotVerde></Cuarta>
+        <TarjetaAliado><Aliado src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658260704/MiCampo/image_2_poo7fg.png" alt="" /><Negro> <Ali> Don Carlos <br /> <Spali><GoLocation />Finca el rocío</Spali></Ali> <Enter>Contactar Aliado <BsArrowRightShort /></Enter></Negro></TarjetaAliado></Linea><BotVerde  onClick={() =>
+                                 navigate(logged ? '/aliados' : '/lg/aliados')
+                              }>Ver más</BotVerde></Cuarta>
 
-      <Tercera><TituloCont><ProductosA>AgroInsumos</ProductosA><Image src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658431991/MiCampo/Vector_1_cfagxz.png" alt="" /></TituloCont><Linea><Agroin><img src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658000712/MiCampo/image_1_qzzjzf.png" alt="" /><Negro> <Ali>Agroinsumo <br /> <Spali><GoLocation />Finca el rocío</Spali></Ali> <Enter>Contactar Aliado <BsArrowRightShort /></Enter></Negro></Agroin></Linea><BotVerde onClick={() => navigate("/aliados")}>Ver más</BotVerde></Tercera>
+      <Tercera><TituloCont><ProductosA>AgroInsumos</ProductosA><Image src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658431991/MiCampo/Vector_1_cfagxz.png" alt="" /></TituloCont>
+      <Linea>{agro6.map((element,index)=>(<Agroin key={index}><img src={element.img} alt="" /><Negro> <Ali>{element.nombre} <br /> <Spali><GoLocation />{element.ubi}</Spali></Ali> <Enter>Contactar Aliado <BsArrowRightShort /></Enter></Negro></Agroin>))}</Linea>
+      <BotVerde onClick={() =>
+                                 navigate(
+                                    logged ? 'agroinsumos' : '/lg/agroinsumos'
+                                 )
+                              }>Ver más</BotVerde></Tercera>
       <Quinta> <Tarjetas> <Icono src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658494100/MiCampo/icon-park-solid_good-two_apuvrk.png" alt="" /> <h4>Calidad</h4> <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p></Tarjetas><Tarjetas> <Icono src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658493982/MiCampo/Vector_3_agq7y3.png" alt="" /><h4>Ubicación</h4><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> </Tarjetas><Tarjetas> <Icono src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658099454/MiCampo/Vector_lgqq8t.png" alt="" /> <h4>Productos agrícolas</h4><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> </Tarjetas><Tarjetas> <Icono src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658493981/MiCampo/carbon_delivery_emoz5p.png" alt="" /><h4>Velocidad</h4><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> </Tarjetas><Tarjetas> <Icono src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658493980/MiCampo/ic_baseline-security_gxhy2w.png" alt="" /><h4>Seguridad</h4><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> </Tarjetas><Tarjetas> <Icono src="" alt="" /> </Tarjetas>  </Quinta>
       <Nosotros/>
     </>
