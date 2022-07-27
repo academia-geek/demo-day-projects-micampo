@@ -380,6 +380,10 @@ width:100%;
 padding:1rem;
 align-items:center;
 border-radius:5%;
+&:hover{
+    background:#699A07;
+    color:white;
+}
 `
 
 export const Icono = styled.img`

@@ -18,27 +18,26 @@ const Nosotros = () => {
         </div>
       </Carousel.Item>
       <Carousel.Item>
+      <div className='item'>
         <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=Second slide&bg=282c34"
-          alt="Second slide"
+        className='imgC'
+        src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658887993/MiCampo/000256088W_cafdoe.jpg"
         />
+        <div><h1>"</h1><p>Gracias a MiCampo logramos terminar de pagar el préstamo para expandir la cosecha y tenemos más clientes.</p> <img src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658695538/MiCampo/Group_1_pm1dc1.png" alt="" /><p>Doña Maria</p></div>
+        </div>
 
 
       </Carousel.Item>
       <Carousel.Item>
+      <div className='item'>
         <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=Third slide&bg=20232a"
-          alt="Third slide"
+        className='imgC'
+        src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658888222/MiCampo/BR4LUWLMTZEWBBZDW7JIKC4H4M_s6t9uy.jpg"
         />
+        <div><h1>"</h1><p>MiCampo nos ayudó a concretar clientes en Bogotá sin necesidad de intermediarios, tenemos un negocio más grande y una buena relación con nuestros clientes</p> <img src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658695538/MiCampo/Group_1_pm1dc1.png" alt="" /><p>José y Marina</p></div>
+        </div>
 
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
+
       </Carousel.Item>
     </Carousel>
 </Cuarta></>

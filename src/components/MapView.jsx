@@ -36,7 +36,8 @@ const MapView = ({ newData }) => {
          setLat(latitude);
          setLng(longitude);
       });
-   };
+    }
+  ;
 
    const dragend = () => {
       const marker = markerRef.current;
