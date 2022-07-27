@@ -56,7 +56,9 @@ const Home = () => {
        }>Ver más</BotVerde></Tercera>
 
       <Cuarta><TituloCont><ProductosA>Agricultores</ProductosA><Image src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658259882/MiCampo/Group_anru90.png" alt="" /></TituloCont><Linea>
-        <TarjetaAliado><Aliado src="https://res.cloudinary.com/dcsn54xoj/image/upload/v1658260704/MiCampo/image_2_poo7fg.png" alt="" /><Negro> <Ali> Don Carlos <br /> <Spali><GoLocation />Finca el rocío</Spali></Ali> <Enter>Contactar Agricultor <BsArrowRightShort /></Enter></Negro></TarjetaAliado></Linea><BotVerde  onClick={() =>
+       {agri6.map((element, index)=>(<TarjetaAliado key={index}><Aliado src={element.data.photoURL} alt="" /><Negro> <Ali> {element.data.name}<br /> <Spali><GoLocation />{element.data.ubication}</Spali></Ali> <Enter>Contactar Agricultor <BsArrowRightShort /></Enter></Negro></TarjetaAliado>))}
+
+        </Linea><BotVerde  onClick={() =>
                                  navigate(logged ? '/aliados' : '/lg/aliados')
                               }>Ver más</BotVerde></Cuarta>
 

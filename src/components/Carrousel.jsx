@@ -52,7 +52,7 @@ const Carrousel = () => {
       <Divi >
         {
           agri6.map((element, index) => (
-            <Tarjeta key={index}><Imagro src={element.img} alt="" /> <Texto><H4>{element.nombre}
+            <Tarjeta key={index}><Imagro src={element.data.photoURL} alt="" /> <Texto><H4>{element.data.name}
               </H4></Texto></Tarjeta>
           ))
         }
