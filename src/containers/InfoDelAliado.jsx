@@ -46,8 +46,9 @@ const InfoDelAliado = () => {
                   </div>
                </div>
                {user.data.ubication.lat && user.data.ubication.lng ? (
-                  <div>
-                     <h2>Ubicacion</h2>
+                  <div className='aliado-ubication'>
+                     <h2>Ubicacion de {user.data.name}</h2>
+                     <p>{user.data.ubication.textPosition}</p>
                      <UserMap
                         lat={user.data.ubication.lat}
                         lng={user.data.ubication.lng}
