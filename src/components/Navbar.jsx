@@ -40,12 +40,6 @@ const Nav1 = () => {
       }
    }, [users]);
 
-   if (logged) {
-      if (!user) {
-         return <div>...</div>;
-      }
-   }
-
    const handleOpenSnackbar = () => {
       setIsOpen(true);
    };
@@ -123,7 +117,7 @@ const Nav1 = () => {
                               }>
                               Productos
                            </Nav.Link>
-                           {logged ? (
+                           {logged && user ? (
                               <>
                                  {user.data.type !== 'comprador' && (
                                     <Nav.Link

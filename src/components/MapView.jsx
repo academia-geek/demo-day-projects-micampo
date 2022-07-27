@@ -56,7 +56,12 @@ const MapView = ({ newData }) => {
             ubication: { textPosition, lat, lng },
          },
       });
-      dispatch(updateUserAppDataAction(newData));
+      dispatch(
+         updateUserAppDataAction({
+            ...newData,
+            ubication: { textPosition, lat, lng },
+         })
+      );
       navigate('/home');
    };
 
