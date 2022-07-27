@@ -13,6 +13,7 @@ import ModalInfo from '../components/ModalInfo';
 import LoadingScreen from '../components/LoadingScreen';
 import '../styles/User.css';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
    display: 'flex',
@@ -45,7 +46,7 @@ const User = () => {
    const [photo, setPhoto] = useState();
    const [hasPhoto, setHasPhoto] = useState(false);
    const [isDeletingUser, setIsDeletingUser] = useState(false);
-
+   const navigate = useNavigate();
    const handleOpen = () => setIsEditingPhoto(true);
    const handleClose = () => setIsEditingPhoto(false);
 
@@ -278,6 +279,20 @@ const User = () => {
                   <button
                      className='edit-user-button'
                      onClick={() => {
+                        navigate('/add');
+                     }}>
+                     Añadir un producto
+                  </button>
+                  <button
+                     className='edit-user-button'
+                     onClick={() => {
+                        navigate('/map');
+                     }}>
+                     Añadir tu ubicación
+                  </button>
+                  <button
+                     className='edit-user-button'
+                     onClick={() => {
                         setIsEditing(true);
                      }}>
                      Editar Cuenta
@@ -325,14 +340,6 @@ const User = () => {
                         </Modal>
                      </>
                   )}
-
-                  {/* <div>
-                  <small><p>
-                     SECCION NUEVA DONDE APARECERAN SELECCIONES DEL USUARIO,
-                     DEPENDIENDO DE TIPO DE USUARIO (COMPRADOR,VENDEDOR DE
-                     PRODUCTOS AGRICOLAS O VENDEDOR DE INSUMOS)
-                  </p></small>
-               </div> */}
                </div>
             )}
          </div>

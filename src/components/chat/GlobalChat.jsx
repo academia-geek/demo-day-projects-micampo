@@ -11,6 +11,8 @@ import { db } from '../../firebase/firebaseConfig';
 import SendIcon from '@mui/icons-material/Send';
 import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
+import { Productos } from '../../styles/Home';
+import { TbMessages } from 'react-icons/tb';
 
 const GlobalChat = () => {
    const [chatOpen, setChatOpen] = useState(false);
@@ -57,7 +59,7 @@ const GlobalChat = () => {
       );
       setMessages(orderMessagesByServerTimestamp);
    };
-   
+
    useEffect(() => {
       collectionData();
    }, []);
@@ -65,11 +67,8 @@ const GlobalChat = () => {
    return (
       <>
          {chatOpen ? (
-            <div className='chat-container'>
-               <button
-                  className='chat-close-button'
-                  onClick={handleChatClose}
-               >
+            <div className='animate__animated animate__backInUp animate__fadeInUp chat-container'>
+               <button className='chat-close-button' onClick={handleChatClose}>
                   <CloseIcon />
                </button>
                <div className='msgs'>
@@ -108,7 +107,7 @@ const GlobalChat = () => {
                   )}
                </div>
                <div className='sendMsg-container'>
-                  <form onSubmit={(e)=> sendMessage(e)}>
+                  <form onSubmit={(e) => sendMessage(e)}>
                      <div className='sendMsg'>
                         <input
                            placeholder='Mensaje'
@@ -116,9 +115,7 @@ const GlobalChat = () => {
                            value={msg}
                            onChange={(e) => setMsg(e.target.value)}
                         />
-                        <button
-                           className='send-message-button'
-                           type='submit'>
+                        <button className='send-message-button' type='submit'>
                            <SendIcon />
                         </button>
                      </div>
@@ -127,9 +124,11 @@ const GlobalChat = () => {
                <div ref={scroll}></div>
             </div>
          ) : (
-            <button className='chat-button' onClick={handleChatOpen}>
-               <ChatIcon />
-            </button>
+            <Productos
+               className='animate__animated animate__infinite	infinite animate__tada animate__slow chat-button'
+               onClick={handleChatOpen}>
+               <TbMessages />
+            </Productos>
          )}
       </>
    );
