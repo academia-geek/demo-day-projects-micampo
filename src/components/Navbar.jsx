@@ -73,7 +73,7 @@ const Nav1 = () => {
                               className='navbar'
                               onClick={() =>
                                  navigate(
-                                    logged ? 'productos' : '/lg/productos'
+                                    logged ? '/productos' : '/lg/productos'
                                  )
                               }>
                               Productos
@@ -82,7 +82,7 @@ const Nav1 = () => {
                               className='navbar'
                               onClick={() =>
                                  navigate(
-                                    logged ? 'agroinsumos' : '/lg/agroinsumos'
+                                    logged ? '/agroinsumos' : '/lg/agroinsumos'
                                  )
                               }>
                               Agroinsumos

@@ -77,6 +77,10 @@
         padding:1rem;
         
     }
+    /* .navbar{
+        flex-direction: column;
+        color: red !important;
+    } */
 }
 
 @media (min-width: 700px){
@@ -87,13 +91,10 @@
         padding:1rem;
         
     }
+    
 }
 
-.offcanvas{
-    color:red !important;
-    display:flex;
-    flex-direction: column;
-}
+    
 
 .carousel2{
     display:flex;

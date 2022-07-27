@@ -28,24 +28,24 @@ import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import { db } from "../firebase/firebaseConfig";
+import { collectionAgricultor, collectionData } from "../helpers/collection";
+import { useSelector } from "react-redux";
 const Agroinsumos = () => {
-  const [productos, setProductos] = useState([]);
-  const [agroinsumos, setAgroinsumos] = useState([]);
-  const navigate = useNavigate();
-  const collectionData = async (coleccion) => {
-    const DatosCol = await getDocs(collection(db, coleccion));
-    const datos = [];
-    DatosCol.forEach((element) => {
-      datos.push({ ...element.data() });
-    });
-    return datos;
-  };
-  const prod6 = productos.slice(0, 5);
+  const [productos, setProductos] = useState([])
+  const [agroinsumos,setAgroinsumos]= useState([])
+  const [agricultores,setAgricultores]=useState([])
+  const navigate = useNavigate()
+  const logged = useSelector((state) => state.loginCheck.loginCheck);
+  const prod6= productos.slice(0,3)
+  const agro6=agroinsumos.slice(0,3)
+  const agri6=agricultores.slice(0,3)
 
   useEffect(() => {
-    collectionData("productos").then((res) => setProductos(res));
-    collectionData("agroinsumos").then((res) => setAgroinsumos(res));
-  }, []);
+    collectionData("productos").then(res => setProductos(res))
+    collectionData("agroinsumos").then(res => setAgroinsumos(res))
+    collectionAgricultor().then(res => setAgricultores(res))
+
+  }, [])
   return (
     <>
       <Search>
@@ -86,52 +86,7 @@ const Agroinsumos = () => {
         <TituloCont>
           <ProductosA>También podría interesarte</ProductosA>
         </TituloCont>
-        <Carousel fade className="carousel">
-          <Carousel.Item>
-            <Agro>Productos</Agro>
-            <Divi>
-              {prod6.map((element, index) => (
-                <Tarjeta key={index}>
-                  <Imagro src={element.img} alt="" />{" "}
-                  <Texto>
-                    <H4>
-                      {element.nombre}
-                      <br />
-                      <TbTruckDelivery />
-                      Envío Nacional
-                    </H4>
-                  </Texto>
-                </Tarjeta>
-              ))}
-            </Divi>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="holder.js/800x400?text=Second slide&bg=282c34"
-              alt="Second slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="holder.js/800x400?text=Third slide&bg=20232a"
-              alt="Third slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
+        <Carrousel/>
       </Tercera>
     </>
   );
