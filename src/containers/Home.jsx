@@ -51,7 +51,6 @@ const Home = () => {
    const [agroinsumos, setAgroinsumos] = useState([]);
    const navigate = useNavigate();
    const logged = useSelector((state) => state.loginCheck.loginCheck);
-   const users = useSelector((state) => state.users);
    const collectionData = async (coleccion) => {
       const DatosCol = await getDocs(collection(db, coleccion));
       const datos = [];
@@ -62,12 +61,6 @@ const Home = () => {
    };
    const prod6 = productos.slice(0, 5);
    const agro6 = agroinsumos.slice(0, 5);
-
-   useEffect(() => {
-      if (!users.isLoading) {
-         console.log(users);
-      }
-   }, [users])
 
    useEffect(() => {
       collectionData('productos').then((res) => setProductos(res));

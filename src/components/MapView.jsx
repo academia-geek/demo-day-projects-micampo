@@ -11,11 +11,21 @@ const MapView = ({ newData }) => {
    const [actualPositionOrMove, setActualPositionOrMove] = useState(true);
    const [lat, setLat] = useState(0);
    const [lng, setLng] = useState(0);
+   const [textPosition, setTextPosition] = useState('');
    const [position, setPosition] = useState(null);
    const user = useSelector((state) => state.user);
    const dispatch = useDispatch();
    const markerRef = useRef(null);
    const navigate = useNavigate();
+
+   const latitudeAndLongitudeToAddress = async (lat, lng) => {
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/pereira.json?proximity=${lat}%2C${lng}&types=place%2Cpostcode%2Caddress&access_token=pk.eyJ1IjoiZ2FydG5lcjI0IiwiYSI6ImNsNjM5NGcycjBtaWMzY3BmOGlvOGppZWUifQ.VyVP-P-Gny2TtaakGLVtGw`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const address = data.features[0].place_name;
+      setTextPosition(address);
+   };
+
    const getActualPosition = () => {
       navigator.geolocation.getCurrentPosition((position) => {
          const { latitude, longitude } = position.coords;
@@ -39,10 +49,11 @@ const MapView = ({ newData }) => {
 
    const handleSend = () => {
       const docRef = doc(db, 'usuarios', user.uid);
+      latitudeAndLongitudeToAddress(lat, lng);
       updateDoc(docRef, {
          data: {
             ...newData,
-            ubication: [lat, lng],
+            ubication: { textPosition, lat, lng },
          },
       });
       dispatch(updateUserAppDataAction(newData));
@@ -50,12 +61,14 @@ const MapView = ({ newData }) => {
    };
 
    useEffect(() => {
-      console.log('newData', newData);
       getActualPosition();
    }, []);
    useEffect(() => {
       getActualPosition();
    }, [actualPositionOrMove]);
+   useEffect(() => {
+      latitudeAndLongitudeToAddress(lat, lng);
+   }, [position, lat, lng]);
 
    return (
       <div
@@ -103,7 +116,10 @@ const MapView = ({ newData }) => {
                <div className='map-buttons'>
                   <button
                      className='change-map-button'
-                     onClick={() => setActualPositionOrMove(true)}>
+                     onClick={() => {
+                        setActualPositionOrMove(true);
+                        getActualPosition();
+                     }}>
                      Cambiar a mi ubicación actual
                   </button>
                </div>
