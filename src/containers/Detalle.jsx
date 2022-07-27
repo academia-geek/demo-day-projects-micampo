@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { listarPro } from '../app/actions/actionAddProduct';
 import { BotonAdd } from '../Styles/Home';
+import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 
 const Detalle = () => {
    const [pro, setPro] = useState([]);
@@ -17,7 +17,7 @@ const Detalle = () => {
 
    return (
       <div className='container mt-5'>
-         <BotonAdd onClick={() => navigate(-1)}>Atras</BotonAdd>
+         <BotonAdd onClick={() => navigate(-1)}> <MdOutlineArrowBackIosNew /> Atrás</BotonAdd>
          {
             captura.map((res, index) =>
                <div key={index} className="container d-flex mt-3 justify-content-center">
