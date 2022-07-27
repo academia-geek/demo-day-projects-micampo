@@ -1,13 +1,31 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { doc, updateDoc } from 'firebase/firestore';
+import React, { useEffect, useRef, useState } from 'react';
 import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserAppDataAction } from '../app/actions/userAppData.actions';
+import { db } from '../firebase/firebaseConfig';
 import LoadingScreen from './LoadingScreen';
+import { useNavigate } from 'react-router-dom';
 
-const MapView = () => {
+const MapView = ({ newData }) => {
    const [actualPositionOrMove, setActualPositionOrMove] = useState(true);
    const [lat, setLat] = useState(0);
    const [lng, setLng] = useState(0);
+   const [textPosition, setTextPosition] = useState('');
    const [position, setPosition] = useState(null);
+   const user = useSelector((state) => state.user);
+   const dispatch = useDispatch();
    const markerRef = useRef(null);
+   const navigate = useNavigate();
+
+   const latitudeAndLongitudeToAddress = async (lat, lng) => {
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/pereira.json?proximity=${lat}%2C${lng}&types=place%2Cpostcode%2Caddress&access_token=pk.eyJ1IjoiZ2FydG5lcjI0IiwiYSI6ImNsNjM5NGcycjBtaWMzY3BmOGlvOGppZWUifQ.VyVP-P-Gny2TtaakGLVtGw`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const address = data.features[0].place_name;
+      setTextPosition(address);
+   };
+
    const getActualPosition = () => {
       navigator.geolocation.getCurrentPosition((position) => {
          const { latitude, longitude } = position.coords;
@@ -24,9 +42,27 @@ const MapView = () => {
       const marker = markerRef.current;
       if (marker != null) {
          setPosition(marker.getLatLng());
-          setLat(marker.getLatLng().lat);
-          setLng(marker.getLatLng().lng);
+         setLat(marker.getLatLng().lat);
+         setLng(marker.getLatLng().lng);
       }
+   };
+
+   const handleSend = () => {
+      const docRef = doc(db, 'usuarios', user.uid);
+      latitudeAndLongitudeToAddress(lat, lng);
+      updateDoc(docRef, {
+         data: {
+            ...newData,
+            ubication: { textPosition, lat, lng },
+         },
+      });
+      dispatch(
+         updateUserAppDataAction({
+            ...newData,
+            ubication: { textPosition, lat, lng },
+         })
+      );
+      navigate('/home');
    };
 
    useEffect(() => {
@@ -35,26 +71,28 @@ const MapView = () => {
    useEffect(() => {
       getActualPosition();
    }, [actualPositionOrMove]);
+   useEffect(() => {
+      latitudeAndLongitudeToAddress(lat, lng);
+   }, [position, lat, lng]);
 
    return (
       <div
          style={{
             width: '100vw',
-            height: '80vh',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
          }}>
-         <h1>¿Que quieres hacer?</h1>
          {actualPositionOrMove ? (
             <>
-               <button onClick={() => console.log(`lat: ${lat} - lng: ${lng}`)}>
-                  Guardar mi ubicación actual
-               </button>
-               <button onClick={() => setActualPositionOrMove(false)}>
-                  Cambiar a otra ubicación
-               </button>
+               <div className='map-buttons'>
+                  <button
+                     className='change-map-button'
+                     onClick={() => setActualPositionOrMove(false)}>
+                     Cambiar a otra ubicación
+                  </button>
+               </div>
                {lat !== 0 && lng !== 0 ? (
                   <MapContainer
                      center={[lat, lng]}
@@ -80,14 +118,24 @@ const MapView = () => {
             </>
          ) : (
             <>
-               <button onClick={() => setActualPositionOrMove(true)}>
-                  Cambiar a mi ubicación actual
-               </button>
-               <button onClick={() => console.log(`lat: ${lat} - lng: ${lng}`)}>
-                  Guardar esta ubicacion
-               </button>
-
-               <strong>Arrastra el marcador para cambiar la ubicación</strong>
+               <div className='map-buttons'>
+                  <button
+                     className='change-map-button'
+                     onClick={() => {
+                        setActualPositionOrMove(true);
+                        getActualPosition();
+                     }}>
+                     Cambiar a mi ubicación actual
+                  </button>
+               </div>
+               <p
+                  style={{
+                     color: 'red',
+                  }}>
+                  <strong>
+                     Arrastra el marcador para cambiar la ubicación
+                  </strong>
+               </p>
                {lat !== 0 && lng !== 0 ? (
                   <MapContainer
                      center={position}
@@ -130,6 +178,9 @@ const MapView = () => {
                )}
             </>
          )}
+         <div className='validation-buttons'>
+            <button onClick={() => handleSend()}>Confirmar</button>
+         </div>
       </div>
    );
 };

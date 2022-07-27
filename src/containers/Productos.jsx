@@ -21,6 +21,7 @@ const Productos = () => {
     return datos
   }
   const prod6= productos.slice(0,5)
+  const agro6=productos.slice(0,5)
   console.log(prod6)
 
   useEffect(() => {

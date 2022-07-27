@@ -13,6 +13,7 @@ import ModalInfo from '../components/ModalInfo';
 import LoadingScreen from '../components/LoadingScreen';
 import '../styles/User.css';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
    display: 'flex',
@@ -43,9 +44,10 @@ const User = () => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [photo, setPhoto] = useState();
+   const [providerId, setProviderId] = useState('');
    const [hasPhoto, setHasPhoto] = useState(false);
    const [isDeletingUser, setIsDeletingUser] = useState(false);
-
+   const navigate = useNavigate();
    const handleOpen = () => setIsEditingPhoto(true);
    const handleClose = () => setIsEditingPhoto(false);
 
@@ -64,6 +66,7 @@ const User = () => {
          setName(user.name);
          setEmail(user.email);
          setPhoto(user.photoURL);
+         setProviderId(user.data.providerData[0].providerId);
       } else {
          setIsLoading(true);
       }
@@ -173,94 +176,105 @@ const User = () => {
                         </div>
                      )}
                   </>
-                  <>
-                     {isEditingEmail ? (
-                        <div className='edit-complete-field'>
-                           <input
-                              className='input-edit-user'
-                              type='email'
-                              name='email'
-                              placeholder='Nuevo email'
-                              autoComplete='off'
-                              onChange={(e) => setEmail(e.target.value)}
-                           />
-                           <button
-                              className='save-user-button'
-                              onClick={() => {
-                                 setIsEditingEmail(false);
-                                 dispatch(updateEmailAction(user.data, email));
-                              }}>
-                              Save
-                           </button>
-                           <button
-                              className='cancel-user-button'
-                              onClick={() => {
-                                 setIsEditingEmail(false);
-                                 setEmail(user.email);
-                              }}>
-                              Cancel
-                           </button>
-                        </div>
-                     ) : (
-                        <div className='edit-complete-field'>
-                           <span className='edit-user-span'>
-                              Email: {user.email}
-                           </span>
-                           <button
-                              className='open-edit-user-button'
-                              onClick={() => {
-                                 setIsEditingEmail(true);
-                              }}>
-                              Edit
-                           </button>
-                        </div>
-                     )}
-                  </>
-                  <>
-                     {isEditingPassword ? (
-                        <div className='edit-complete-field'>
-                           <input
-                              className='input-edit-user'
-                              type='password'
-                              name='password'
-                              placeholder='Nueva contraseña'
-                              autoComplete='off'
-                              onChange={(e) => setPassword(e.target.value)}
-                           />
-                           <button
-                              className='save-user-button'
-                              onClick={() => {
-                                 setIsEditingPassword(false);
-                                 dispatch(
-                                    updatePasswordAction(user.data, password)
-                                 );
-                              }}>
-                              Save
-                           </button>
-                           <button
-                              className='cancel-user-button'
-                              onClick={() => {
-                                 setIsEditingPassword(false);
-                                 setPassword(user.password);
-                              }}>
-                              Cancel
-                           </button>
-                        </div>
-                     ) : (
-                        <div className='edit-complete-field'>
-                           <span className='edit-user-span'>
-                              Password: **********
-                           </span>
-                           <button
-                              className='open-edit-user-button'
-                              onClick={() => {
-                                 setIsEditingPassword(true);
-                              }}>
-                              Edit
-                           </button>
-                        </div>
-                     )}
-                  </>
+                  {providerId === 'google.com' || providerId === 'facebook.com' ? null : (
+                     <>
+                        <>
+                           {isEditingEmail ? (
+                              <div className='edit-complete-field'>
+                                 <input
+                                    className='input-edit-user'
+                                    type='email'
+                                    name='email'
+                                    placeholder='Nuevo email'
+                                    autoComplete='off'
+                                    onChange={(e) => setEmail(e.target.value)}
+                                 />
+                                 <button
+                                    className='save-user-button'
+                                    onClick={() => {
+                                       setIsEditingEmail(false);
+                                       dispatch(
+                                          updateEmailAction(user.data, email)
+                                       );
+                                    }}>
+                                    Save
+                                 </button>
+                                 <button
+                                    className='cancel-user-button'
+                                    onClick={() => {
+                                       setIsEditingEmail(false);
+                                       setEmail(user.email);
+                                    }}>
+                                    Cancel
+                                 </button>
+                              </div>
+                           ) : (
+                              <div className='edit-complete-field'>
+                                 <span className='edit-user-span'>
+                                    Email: {user.email}
+                                 </span>
+                                 <button
+                                    className='open-edit-user-button'
+                                    onClick={() => {
+                                       setIsEditingEmail(true);
+                                    }}>
+                                    Edit
+                                 </button>
+                              </div>
+                           )}
+                        </>
+                        <>
+                           {isEditingPassword ? (
+                              <div className='edit-complete-field'>
+                                 <input
+                                    className='input-edit-user'
+                                    type='password'
+                                    name='password'
+                                    placeholder='Nueva contraseña'
+                                    autoComplete='off'
+                                    onChange={(e) =>
+                                       setPassword(e.target.value)
+                                    }
+                                 />
+                                 <button
+                                    className='save-user-button'
+                                    onClick={() => {
+                                       setIsEditingPassword(false);
+                                       dispatch(
+                                          updatePasswordAction(
+                                             user.data,
+                                             password
+                                          )
+                                       );
+                                    }}>
+                                    Save
+                                 </button>
+                                 <button
+                                    className='cancel-user-button'
+                                    onClick={() => {
+                                       setIsEditingPassword(false);
+                                       setPassword(user.password);
+                                    }}>
+                                    Cancel
+                                 </button>
+                              </div>
+                           ) : (
+                              <div className='edit-complete-field'>
+                                 <span className='edit-user-span'>
+                                    Password: **********
+                                 </span>
+                                 <button
+                                    className='open-edit-user-button'
+                                    onClick={() => {
+                                       setIsEditingPassword(true);
+                                    }}>
+                                    Edit
+                                 </button>
+                              </div>
+                           )}
+                        </>
+                     </>
+                  )}
                   <button
                      className='cancel-button'
                      onClick={() => {
@@ -275,6 +289,13 @@ const User = () => {
             ) : (
                <div className='edit-components'>
                   <h2 className='subtitle'>¿Que deseas hacer?</h2>
+                  <button
+                     className='edit-user-button'
+                     onClick={() => {
+                        navigate('/add');
+                     }}>
+                     Añadir un producto
+                  </button>
                   <button
                      className='edit-user-button'
                      onClick={() => {
@@ -325,14 +346,6 @@ const User = () => {
                         </Modal>
                      </>
                   )}
-
-                  {/* <div>
-                  <small><p>
-                     SECCION NUEVA DONDE APARECERAN SELECCIONES DEL USUARIO,
-                     DEPENDIENDO DE TIPO DE USUARIO (COMPRADOR,VENDEDOR DE
-                     PRODUCTOS AGRICOLAS O VENDEDOR DE INSUMOS)
-                  </p></small>
-               </div> */}
                </div>
             )}
          </div>
