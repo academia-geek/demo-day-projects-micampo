@@ -4,14 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateUserAppDataAction } from '../../app/actions/userAppData.actions';
 import LoadingScreen from '../../components/LoadingScreen';
+import MapView from '../../components/MapView';
 import { db } from '../../firebase/firebaseConfig';
-import ValidateUbication from './ValidateUbication';
 
 const Validations = () => {
    const [ageOpen, setAgeOpen] = useState(true);
    const [GenderOpen, setGenderOpen] = useState(false);
    const [TypeUserOpen, setTypeUserOpen] = useState(false);
    const [ubicationOpen, setUbicationOpen] = useState(false);
+   const [buttonLeft, setButtonLeft] = useState(false);
+   const [buttonRight, setButtonRight] = useState(true);
+   const [confirmButton, setConfirmButton] = useState(false);
    const [finished, setFinished] = useState(false);
    const user = useSelector((state) => state.user);
    const [newData, setNewData] = useState({
@@ -33,19 +36,29 @@ const Validations = () => {
    const handleNext = () => {
       switch (true) {
          case ageOpen:
+            setButtonLeft(true);
+            setButtonRight(true);
             setAgeOpen(false);
             setGenderOpen(true);
             break;
          case GenderOpen:
+            setButtonLeft(true);
+            setButtonRight(true);
             setGenderOpen(false);
             setTypeUserOpen(true);
             break;
          case TypeUserOpen:
+            setButtonLeft(true);
+            setButtonRight(false);
             setTypeUserOpen(false);
             setUbicationOpen(true);
+            setConfirmButton(false);
             break;
          case ubicationOpen:
+            setButtonLeft(true);
+            setButtonRight(false);
             setUbicationOpen(true);
+            setConfirmButton(true);
          default:
             break;
       }
@@ -54,20 +67,29 @@ const Validations = () => {
    const handleBack = () => {
       switch (true) {
          case ageOpen:
+            setButtonLeft(false);
+            setButtonRight(true);
             setAgeOpen(true);
             setGenderOpen(false);
             break;
          case GenderOpen:
+            setButtonLeft(false);
+            setButtonRight(true);
             setGenderOpen(false);
             setAgeOpen(true);
             break;
          case TypeUserOpen:
+            setButtonLeft(true);
+            setButtonRight(true);
             setTypeUserOpen(false);
             setGenderOpen(true);
             break;
          case ubicationOpen:
+            setButtonLeft(true);
+            setButtonRight(false);
             setUbicationOpen(false);
             setTypeUserOpen(true);
+            setConfirmButton(true);
          default:
             break;
       }
@@ -88,15 +110,8 @@ const Validations = () => {
    };
 
    const handleSend = () => {
-      // UPDATEFIREBASEDATA
-      const docRef = doc(db, 'usuarios', user.uid);
-      updateDoc(docRef, {
-         data: {
-            ...newData,
-         },
-      });
       dispatch(updateUserAppDataAction(newData));
-      navigate('/home');
+      setConfirmButton(true);
    };
 
    if (
@@ -108,13 +123,14 @@ const Validations = () => {
    }
 
    return (
-      <>
-         <h2>Ayudanos verificando estos datos acerca de ti</h2>
+      <div className='validations-box'>
+         <h1>Ayudanos verificando estos datos acerca de ti</h1>
          {ageOpen && (
             <>
+               <h2>Ingresa tu edad:</h2>
                <input
                   type='number'
-                  placeholder='14'
+                  placeholder='ej .14'
                   min={14}
                   name='age'
                   onChange={handleChange}
@@ -124,6 +140,7 @@ const Validations = () => {
          )}
          {GenderOpen && (
             <>
+               <h2>Selecciona tu género:</h2>
                <input
                   type='text'
                   name='gender'
@@ -158,6 +175,7 @@ const Validations = () => {
          )}
          {TypeUserOpen && (
             <>
+               <h2>Selecciona tu tipo de usuario:</h2>
                <input
                   type='text'
                   name='type'
@@ -166,7 +184,7 @@ const Validations = () => {
                   value={typeValue}
                   disabled
                />
-               <div>
+               <div className='type-user-buttons'>
                   <button
                      type='button'
                      name='type'
@@ -191,11 +209,20 @@ const Validations = () => {
                </div>
             </>
          )}
-         {/* {ubicationOpen && <ValidateUbication />} */}
-         <button onClick={handleBack}>Atrás</button>
-         <button onClick={handleNext}>Siguiente</button>
+         {ubicationOpen && (
+            <>
+               <h2>Selecciona tu ubicacion</h2>
+               <MapView newData={newData} setNewData={setNewData} />
+            </>
+         )}
+         <div className='validation-buttons'>
+            {buttonLeft && <button onClick={handleBack}>Atrás</button>}
+            {buttonRight && <button onClick={handleNext}>Confirmar</button>}
+            {confirmButton && (
+               <button onClick={() => handleSend()}>Confirmar</button>
+            )}
+         </div>
 
-         <button onClick={() => handleSend()}>Confirmar</button>
          {finished && (
             <div>
                <h2>Gracias por completar tu registro</h2>
@@ -211,7 +238,7 @@ const Validations = () => {
                </button>
             </div>
          )}
-      </>
+      </div>
    );
 };
 

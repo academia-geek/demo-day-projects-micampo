@@ -11,6 +11,8 @@ import { db } from '../../firebase/firebaseConfig';
 import SendIcon from '@mui/icons-material/Send';
 import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
+import { Productos } from '../../styles/Home';
+import { TbMessages } from 'react-icons/tb';
 
 const GlobalChat = () => {
    const [chatOpen, setChatOpen] = useState(false);
@@ -57,7 +59,7 @@ const GlobalChat = () => {
       );
       setMessages(orderMessagesByServerTimestamp);
    };
-   
+
    useEffect(() => {
       collectionData();
    }, []);
@@ -65,34 +67,31 @@ const GlobalChat = () => {
    return (
       <>
          {chatOpen ? (
-            <div className='chat-container'>
-               <button
-                  className='chat-close-button'
-                  onClick={handleChatClose}
-               >
+            <div className='animate__animated animate__backInUp animate__fadeInUp chat-container'>
+               <button className='chat-close-button' onClick={handleChatClose}>
                   <CloseIcon />
                </button>
                <div className='msgs'>
                   {messages.map(
-                     ({ id, text, photoURL, uid, createdAt, name }) => (
-                        <div key={id}>
+                     ({ id, text, photoURL, uid, createdAt, name, display }) => (
+                        <div key={id} style={{display: display}}>
                            <div
                               className={`msg ${
                                  uid === auth.currentUser.uid
                                     ? 'sent'
                                     : 'received'
                               }`}>
-                              <div style={{ display: 'flex' }}>
-                                 <img width={50} src={photoURL} alt='' />
+                              <div className='message-info-container'>
+                                 <img className='chat-user-image' width={50} src={photoURL} alt='' />
                                  <div>
                                     <small
                                        style={{
                                           display: 'flex',
                                           flexDirection: 'column',
                                        }}>
-                                       <span>{name}</span>
+                                       <span className='chat-name'>{name}</span>
                                        {createdAt && (
-                                          <span>
+                                          <span className='chat-time'>
                                              {createdAt
                                                 .toDate()
                                                 .toLocaleTimeString()}
@@ -108,7 +107,7 @@ const GlobalChat = () => {
                   )}
                </div>
                <div className='sendMsg-container'>
-                  <form onSubmit={(e)=> sendMessage(e)}>
+                  <form onSubmit={(e) => sendMessage(e)}>
                      <div className='sendMsg'>
                         <input
                            placeholder='Mensaje'
@@ -116,20 +115,20 @@ const GlobalChat = () => {
                            value={msg}
                            onChange={(e) => setMsg(e.target.value)}
                         />
-                        <button
-                           className='send-message-button'
-                           type='submit'>
+                        <Productos className='send-message-button' type='submit'>
                            <SendIcon />
-                        </button>
+                        </Productos>
                      </div>
                   </form>
                </div>
                <div ref={scroll}></div>
             </div>
          ) : (
-            <button className='chat-button' onClick={handleChatOpen}>
-               <ChatIcon />
-            </button>
+            <Productos
+               className='animate__animated animate__infinite infinite animate__tada animate__slow chat-button'
+               onClick={handleChatOpen}>
+               <TbMessages />
+            </Productos>
          )}
       </>
    );

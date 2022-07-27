@@ -134,11 +134,7 @@ const LogIn = () => {
                         Login via Google
                      </button>
                      <button
-                        onClick={() =>
-                           dispatch(loginWithFacebook()).catch((error) => {
-                              console.log(error);
-                           })
-                        }
+                        onClick={() => dispatch(loginWithFacebook())}
                         className='facebook-button'>
                         <img
                            src='https://res.cloudinary.com/gartners/image/upload/v1658112708/DemoDay/Facebook_sesmhm.svg'

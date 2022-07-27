@@ -305,7 +305,12 @@ border-bottom-left-radius:5%;
 border-bottom-right-radius:5%;
 align-items:center;
 background-color:#FCFCFC;
-overflow: hidden;`
+overflow: hidden;
+&:hover {
+    cursor: pointer;
+    background-color: #F8F8F8;
+}
+`
 
 export const Negro = styled.div`
 background-color:#1d1d1d;
@@ -366,7 +371,7 @@ height:100vh;
 grid-gap:1rem;
 margin-bottom:5rem;
 `
-export const Tarjetas= styled.div`
+export const Tarjetas = styled.div`
 background:white;
 display: flex;
 flex-direction:column;

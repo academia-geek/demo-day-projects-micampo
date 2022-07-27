@@ -1,5 +1,5 @@
 import { typesUser } from "../types/types";
-import { deleteUser, getAuth, onAuthStateChanged, RecaptchaVerifier, signInWithPhoneNumber, updateEmail, updateProfile } from "firebase/auth";
+import { deleteUser, getAuth, onAuthStateChanged, RecaptchaVerifier, signInWithPhoneNumber, updateEmail, updatePassword, updateProfile } from "firebase/auth";
 
 export const getUserAction = () => {
     const auth = getAuth();
@@ -23,10 +23,10 @@ export const updateUserAction = (user, name) => {
         await updateProfile(auth.currentUser, { displayName: name, })
             .then(() => {
                 dispatch({ type: typesUser.UPDATE_USER_SUCCESS, payload: user });
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 dispatch({ type: typesUser.UPDATE_USER_FAILURE, payload: error.message });
-            }
-            );
+            });
     }
 }
 
@@ -50,12 +50,13 @@ export const updatePasswordAction = (user, password) => {
     const auth = getAuth();
     return (dispatch) => {
         dispatch({ type: typesUser.UPDATE_PASSWORD });
-        auth.currentUser.updatePassword(password).then(() => {
-            dispatch({ type: typesUser.UPDATE_PASSWORD_SUCCESS, payload: user });
-        }).catch((error) => {
-            dispatch({ type: typesUser.UPDATE_PASSWORD_FAILURE, payload: error.message });
-        }
-        );
+        updatePassword(auth.currentUser, password)
+            .then(() => {
+                dispatch({ type: typesUser.UPDATE_PASSWORD_SUCCESS, payload: user });
+            }).catch((error) => {
+                dispatch({ type: typesUser.UPDATE_PASSWORD_FAILURE, payload: error.message });
+            }
+            );
     }
 }
 
