@@ -110,13 +110,6 @@ const Validations = () => {
    };
 
    const handleSend = () => {
-      // UPDATEFIREBASEDATA
-      // const docRef = doc(db, 'usuarios', user.uid);
-      // updateDoc(docRef, {
-      //    data: {
-      //       ...newData,
-      //    },
-      // });
       dispatch(updateUserAppDataAction(newData));
       setConfirmButton(true);
    };

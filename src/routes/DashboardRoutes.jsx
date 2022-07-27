@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Logeado from '../containers/Logeado';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import AddProducto from '../containers/AddProducto';
 import Home from '../containers/Home';
@@ -12,6 +11,7 @@ import Mercado from '../containers/Mercado';
 import Productos from '../containers/Productos';
 import MapView from '../components/MapView';
 import GlobalChat from '../components/chat/GlobalChat';
+import InfoDelAliado from '../containers/InfoDelAliado';
 
 const DashboardRoutes = () => {
    return (
@@ -29,6 +29,8 @@ const DashboardRoutes = () => {
             <Route path='/sobre-nosotros' element={<QuienesSomos />} />
             <Route path='validaciones' element={<Validations />} />
             <Route path='map' element={<MapView />} />
+            <Route path='/aliado/:uid' element={<InfoDelAliado />} />
+
             <Route path='*' element={<Navigate to='/home' />} />
          </Routes>
       </>

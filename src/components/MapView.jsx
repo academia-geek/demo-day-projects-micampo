@@ -46,6 +46,7 @@ const MapView = ({ newData }) => {
          },
       });
       dispatch(updateUserAppDataAction(newData));
+      navigate('/home');
    };
 
    useEffect(() => {

@@ -23,6 +23,8 @@ import Productos from '../containers/Productos';
 import { getUserAppDataAction } from '../app/actions/userAppData.actions';
 import { getUserAction } from '../app/actions/user.actions';
 import User from '../containers/User';
+import InfoDelAliado from '../containers/InfoDelAliado';
+import { getAllUsersAction } from '../app/actions/getAllUsers.actions';
 
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true);
@@ -59,6 +61,7 @@ const AppRoutes = () => {
    };
 
    useEffect(() => {
+      getAllUsersAction();
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
          if (user?.uid) {
@@ -170,6 +173,15 @@ const AppRoutes = () => {
                   <PublicRoutes isAuth={isLogget}>
                      <Productos />
                   </PublicRoutes>
+               }
+            />
+
+            <Route
+               path='/lg/aliado/:uid'
+               element={
+                  <PrivateRoutes isAuth={isLogget}>
+                     <InfoDelAliado />
+                  </PrivateRoutes>
                }
             />
 
