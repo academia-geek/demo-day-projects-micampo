@@ -13,6 +13,7 @@ import Productos from '../containers/Productos';
 import ValidateUbication from '../containers/validations/ValidateUbication';
 import MapView from '../components/MapView';
 import GlobalChat from '../components/chat/GlobalChat';
+import Detalle from '../containers/Detalle';
 
 const DashboardRoutes = () => {
    return (
@@ -23,11 +24,11 @@ const DashboardRoutes = () => {
             <Route path='/add' element={<AddProducto />} />
             <Route path='/home' element={<Home />} />
             <Route path='/perfil-usuario' element={<User />} />
-            <Route path='/aliados' element={<Aliados/>} />
-            <Route path='/agroinsumos' element={<Agroinsumos/>} />
-            <Route path='/mercado' element={<Mercado/>} />
-            <Route path='/productos' element={<Productos/>} />
+            <Route path='/aliados' element={<Aliados />} />
+            <Route path='/agroinsumos' element={<Agroinsumos />} />
+            <Route path='/mercado' element={<Mercado />} />
             <Route path='/sobre-nosotros' element={<QuienesSomos />} />
+            <Route path='/detalle/:nombre' element={<Detalle />} />
             <Route path='validaciones' element={<Validations />} />
             <Route path='map' element={<MapView />} />
             <Route path='*' element={<Navigate to='/home' />} />
