@@ -1,10 +1,9 @@
-import { typeGetALlUsers } from "../types/types";
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
+import { typeGetALlUsers } from "../types/types";
 
-export const getAllUsersAction = async () => {
+export const getAllUsersAction = () => {
     return async (dispatch) => {
-        console.log('getAllUsersAction');
         dispatch({
             type: typeGetALlUsers.GET_ALL_USERS,
         });
@@ -15,17 +14,15 @@ export const getAllUsersAction = async () => {
             docs.forEach((element) => {
                 users.push({ ...element.data() });
             })
-            console.log(users);
             dispatch({
                 type: typeGetALlUsers.GET_ALL_USERS_SUCCESS,
                 payload: users,
             })
-        } catch {
+        } catch (error) {
             dispatch({
                 type: typeGetALlUsers.GET_ALL_USERS_FAILURE,
-                payload: 'Error',
-            })
+                payload: error,
+            });
         }
-            
     }
 }

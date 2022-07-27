@@ -16,7 +16,7 @@ import Register from '../components/auth/Register';
 import LoadingScreen from '../components/LoadingScreen';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { loginCheckAction } from '../app/actions/loginCheck.actions';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 import Footer from '../components/Footer';
 import Productos from '../containers/Productos';
@@ -61,7 +61,10 @@ const AppRoutes = () => {
    };
 
    useEffect(() => {
-      getAllUsersAction();
+      dispatch(getAllUsersAction());
+   }, []);
+
+   useEffect(() => {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
          if (user?.uid) {
