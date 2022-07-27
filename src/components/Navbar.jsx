@@ -150,7 +150,7 @@ const Nav1 = () => {
                               onClick={() =>
                                  navigate(logged ? '/mercado' : '/lg/mercado')
                               }>
-                              Mercado
+                              Estadisticas
                            </Nav.Link>
                            {/* <Nav.Link
                               className='navbar'

@@ -159,7 +159,7 @@ const Home = () => {
                      <ProdImg src={element.img} alt='' />
                      <div>
                         <p>
-                           Nombre
+                           {element.nombre}
                            <br />
                            Localización{' '}
                         </p>

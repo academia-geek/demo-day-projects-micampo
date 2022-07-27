@@ -44,10 +44,6 @@ const Prueba = ({ user }) => {
       setIsLoading(false);
    };
 
-   const handleUpdateUser = async (e, currentUser) => {
-      e.preventDefault();
-   };
-
    const handleOnChangeImage = (e) => {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -64,7 +60,6 @@ const Prueba = ({ user }) => {
    const handleOnClick = (e) => {
       e.preventDefault();
       handleUpload(e, photo, auth.currentUser);
-      handleUpdateUser(e, auth.currentUser);
    };
 
    useEffect(() => {
