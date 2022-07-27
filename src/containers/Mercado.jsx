@@ -12,25 +12,70 @@ const Mercado = () => {
          name: 'Mercado 2',
          value: 200,
       },
+      {
+          name: 'Mercado 3',
+          value: 300,
+      },
+      {
+          name: 'Mercado 4',
+          value: 400,
+      },
+      {
+          name: 'Mercado 5',
+          value: 500,
+      },
+      {
+          name: 'Mercado 6',
+          value: 600,
+      }
    ];
 
    return (
-      <div style={{ display: 'flex', width: '100vw', height: '85vh' }}>
-         <AnyChart
-            width={500}
-            title='productos-a-la-venta'
-            id='productos a la venta'
-            type='pie'
-            data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+      <div
+         style={{
+            display: 'flex',
+            width: '100vw',
+            height: '85vh',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+         }}>
+         <h1
+            style={{
+              textAlign: 'center',
+              fontSize: '2rem',
+              fontWeight: '700',
+              marginTop: '3rem',
+            }}
+         >
+            Estadisticas del mercado
+         </h1>
+         <div
+            style={{
+               display: 'flex',
+               width: '100vw',
+               height: '85vh',
+               justifyContent: 'center',
+               alignItems: 'center',
+            }}>
+            <AnyChart
+               width={500}
+               height={500}
+               title='productos-a-la-venta'
+               id='productos a la venta'
+               type='pie'
+               data={data}
             />
 
-         <AnyChart
-            width={700}
-            title='productos vendidos'
-            id='productos-vendidos'
-            type='column'
-            data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
-         />
+            <AnyChart
+               width={700}
+               height={500}
+               title='productos vendidos'
+               id='productos-vendidos'
+               type='column'
+               data={[20, 2, 5, 6, 7, 39, 9, 58]}
+            />
+         </div>
       </div>
    );
 };
