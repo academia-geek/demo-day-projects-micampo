@@ -231,8 +231,8 @@ height:90%;
 overflow: hidden;`
 
 export const ProdImg = styled.img`
-height:100%;
-width:100%;
+height:80%;
+width:80%;
 overflow: hidden;
 position:relative;
 

@@ -18,7 +18,6 @@ const Carrousel = () => {
     collectionData("productos").then((res) => setProductos(res));
     collectionData("agroinsumos").then((res) => setAgroinsumos(res));
     collectionAgricultor().then((res) => setAgricultores(res));
-    console.log(agricultores);
   }, []);
   return (
     <Carousel fade className="carousel">

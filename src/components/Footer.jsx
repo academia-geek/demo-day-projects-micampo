@@ -5,9 +5,6 @@ import { useSelector } from "react-redux";
 const Footer = () => {
   const navigate = useNavigate();
   const logged = useSelector((state) => state.loginCheck.loginCheck);
-  useEffect(() => {
-    console.log(logged, "navbar");
-  }, [logged]);
   return (
     <Foot>
       <ContFoot>

@@ -3,32 +3,6 @@ import AnyChart from 'anychart-react';
 import anychart from 'anychart';
 
 const Mercado = () => {
-   const data = [
-      {
-         name: 'Mercado 1',
-         value: 100,
-      },
-      {
-         name: 'Mercado 2',
-         value: 200,
-      },
-      {
-          name: 'Mercado 3',
-          value: 300,
-      },
-      {
-          name: 'Mercado 4',
-          value: 400,
-      },
-      {
-          name: 'Mercado 5',
-          value: 500,
-      },
-      {
-          name: 'Mercado 6',
-          value: 600,
-      }
-   ];
 
    return (
       <div
@@ -64,7 +38,7 @@ const Mercado = () => {
                title='productos-a-la-venta'
                id='productos a la venta'
                type='pie'
-               data={data}
+               data={[20, 2, 5, 6, 7, 39, 9, 58]}
             />
 
             <AnyChart
