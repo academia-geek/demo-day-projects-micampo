@@ -1,0 +1,40 @@
+.aliado-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 85vh;
+    background-color: #f5f5f5;
+    background-image: url('https://res.cloudinary.com/gartners/image/upload/v1658909457/DemoDay/aliadoportada_df5ic6.png');
+}
+
+.aliado-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 55%;
+    height: 100%;
+    color: #FFFFFF;
+}
+
+.aliado-image {
+    border-radius: 50%;
+    width: 35%;
+    height: auto;
+    margin-right: 2%;
+}
+
+.aliado-info h1 {
+    color: #FFFFFF;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 2%;
+}
+
+.aliado-info p {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2%;
+}

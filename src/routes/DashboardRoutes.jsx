@@ -29,7 +29,7 @@ const DashboardRoutes = () => {
             <Route path='/sobre-nosotros' element={<QuienesSomos />} />
             <Route path='validaciones' element={<Validations />} />
             <Route path='map' element={<MapView />} />
-            <Route path='/aliado/:uid' element={<InfoDelAliado />} />
+            <Route path='/aliado/:name/:uid' element={<InfoDelAliado />} />
 
             <Route path='*' element={<Navigate to='/home' />} />
          </Routes>

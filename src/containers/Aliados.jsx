@@ -72,7 +72,7 @@ const Aliados = () => {
                            <TarjetaAliado
                               key={user.data.uid}
                               onClick={() =>
-                                 navigate('/aliado/' + user.data.uid)
+                                 navigate('/aliado/'+ user.data.name + '/' + user.data.uid)
                               }>
                               <Aliado src={user.data.photoURL} alt='' />
                               <Negro>

@@ -180,7 +180,7 @@ const AppRoutes = () => {
             />
 
             <Route
-               path='/lg/aliado/:uid'
+               path='/lg/aliado/:name/:uid'
                element={
                   <PrivateRoutes isAuth={isLogget}>
                      <InfoDelAliado />
