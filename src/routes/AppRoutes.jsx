@@ -27,6 +27,7 @@ import User from '../containers/User';
 const AppRoutes = () => {
    const [checkAuth, setCheckAut] = useState(true);
    const [isLogget, setIsLogget] = useState(false);
+   const [infoDocValidation, setInfoDocValidation] = useState(null);
    const dispatch = useDispatch();
    const userDataInitialState = {
       type: '',
@@ -35,7 +36,7 @@ const AppRoutes = () => {
       ubication: '',
       uid: '',
       name: '',
-      photoURL: ''
+      photoURL: '',
    };
 
    const searchDocOrCreateDoc = async (userUID) => {
@@ -45,22 +46,14 @@ const AppRoutes = () => {
       if (consult.exists()) {
          const infoDoc = consult.data();
          dispatch(getUserAppDataAction(infoDoc.data));
-         if (
-            infoDoc.data.age === '' ||
-            infoDoc.data.gender === '' ||
-            infoDoc.data.type === ''
-
-         ) {
-            if (window.location.pathname !== '/validaciones') {
-               window.location.href = '/validaciones';
-            }
-         }
+         setInfoDocValidation(infoDoc.data);
          return infoDoc;
       } else {
          await setDoc(docRef, { data: { ...userDataInitialState } });
          const consult = await getDoc(docRef);
          const infoDoc = consult.data();
          dispatch(getUserAppDataAction(infoDoc));
+         setInfoDocValidation(infoDoc.data);
          return infoDoc;
       }
    };
@@ -80,6 +73,17 @@ const AppRoutes = () => {
          setCheckAut(false);
       });
    }, [setIsLogget, setCheckAut]);
+
+   if (
+      infoDocValidation?.age === '' ||
+      infoDocValidation?.gender === '' ||
+      infoDocValidation?.type === '' ||
+      infoDocValidation?.ubication === ''
+   ) {
+      if (window.location.pathname !== '/validaciones') {
+         window.location.href = '/validaciones';
+      }
+   }
 
    if (checkAuth) {
       return <LoadingScreen />;
@@ -143,7 +147,6 @@ const AppRoutes = () => {
                }
             />
 
-
             <Route
                path='/lg/sobre-nosotros'
                element={
@@ -179,7 +182,7 @@ const AppRoutes = () => {
                }
             />
          </Routes>
-         <Footer/>
+         <Footer />
       </BrowserRouter>
    );
 };

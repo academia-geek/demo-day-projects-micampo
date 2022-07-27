@@ -30,7 +30,6 @@ const Home = () => {
   }
   const prod6= productos.slice(0,5)
   const agro6=agroinsumos.slice(0,5)
-  console.log(prod6,"prod6",agro6)
 
   useEffect(() => {
     collectionData("productos").then(res => setProductos(res))

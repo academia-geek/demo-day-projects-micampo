@@ -1,13 +1,21 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { doc, updateDoc } from 'firebase/firestore';
+import React, { useEffect, useRef, useState } from 'react';
 import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserAppDataAction } from '../app/actions/userAppData.actions';
+import { db } from '../firebase/firebaseConfig';
 import LoadingScreen from './LoadingScreen';
+import { useNavigate } from 'react-router-dom';
 
-const MapView = () => {
+const MapView = ({ newData }) => {
    const [actualPositionOrMove, setActualPositionOrMove] = useState(true);
    const [lat, setLat] = useState(0);
    const [lng, setLng] = useState(0);
    const [position, setPosition] = useState(null);
+   const user = useSelector((state) => state.user);
+   const dispatch = useDispatch();
    const markerRef = useRef(null);
+   const navigate = useNavigate();
    const getActualPosition = () => {
       navigator.geolocation.getCurrentPosition((position) => {
          const { latitude, longitude } = position.coords;
@@ -24,12 +32,24 @@ const MapView = () => {
       const marker = markerRef.current;
       if (marker != null) {
          setPosition(marker.getLatLng());
-          setLat(marker.getLatLng().lat);
-          setLng(marker.getLatLng().lng);
+         setLat(marker.getLatLng().lat);
+         setLng(marker.getLatLng().lng);
       }
    };
 
+   const handleSend = () => {
+      const docRef = doc(db, 'usuarios', user.uid);
+      updateDoc(docRef, {
+         data: {
+            ...newData,
+            ubication: [lat, lng],
+         },
+      });
+      dispatch(updateUserAppDataAction(newData));
+   };
+
    useEffect(() => {
+      console.log('newData', newData);
       getActualPosition();
    }, []);
    useEffect(() => {
@@ -40,21 +60,20 @@ const MapView = () => {
       <div
          style={{
             width: '100vw',
-            height: '80vh',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
          }}>
-         <h1>¿Que quieres hacer?</h1>
          {actualPositionOrMove ? (
             <>
-               <button onClick={() => console.log(`lat: ${lat} - lng: ${lng}`)}>
-                  Guardar mi ubicación actual
-               </button>
-               <button onClick={() => setActualPositionOrMove(false)}>
-                  Cambiar a otra ubicación
-               </button>
+               <div className='map-buttons'>
+                  <button
+                     className='change-map-button'
+                     onClick={() => setActualPositionOrMove(false)}>
+                     Cambiar a otra ubicación
+                  </button>
+               </div>
                {lat !== 0 && lng !== 0 ? (
                   <MapContainer
                      center={[lat, lng]}
@@ -80,14 +99,21 @@ const MapView = () => {
             </>
          ) : (
             <>
-               <button onClick={() => setActualPositionOrMove(true)}>
-                  Cambiar a mi ubicación actual
-               </button>
-               <button onClick={() => console.log(`lat: ${lat} - lng: ${lng}`)}>
-                  Guardar esta ubicacion
-               </button>
-
-               <strong>Arrastra el marcador para cambiar la ubicación</strong>
+               <div className='map-buttons'>
+                  <button
+                     className='change-map-button'
+                     onClick={() => setActualPositionOrMove(true)}>
+                     Cambiar a mi ubicación actual
+                  </button>
+               </div>
+               <p
+                  style={{
+                     color: 'red',
+                  }}>
+                  <strong>
+                     Arrastra el marcador para cambiar la ubicación
+                  </strong>
+               </p>
                {lat !== 0 && lng !== 0 ? (
                   <MapContainer
                      center={position}
@@ -130,6 +156,9 @@ const MapView = () => {
                )}
             </>
          )}
+         <div className='validation-buttons'>
+            <button onClick={() => handleSend()}>Confirmar</button>
+         </div>
       </div>
    );
 };

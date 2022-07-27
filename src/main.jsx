@@ -13,6 +13,7 @@ import './styles/Register.css'
 import './styles/User.css'
 import 'leaflet/dist/leaflet.css'
 import './styles/chat.css'
+import './styles/validations.css'
 import AppRoutes from './routes/AppRoutes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

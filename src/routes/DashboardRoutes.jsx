@@ -10,7 +10,6 @@ import Aliados from '../containers/Aliados';
 import Agroinsumos from '../containers/Agroinsumos';
 import Mercado from '../containers/Mercado';
 import Productos from '../containers/Productos';
-import ValidateUbication from '../containers/validations/ValidateUbication';
 import MapView from '../components/MapView';
 import GlobalChat from '../components/chat/GlobalChat';
 
