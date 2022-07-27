@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDMsAkaxWddakWgpni0-JX9W2b5kDR4Bfc",
-    authDomain: "micampoapp-fffd6.firebaseapp.com",
-    projectId: "micampoapp-fffd6",
-    storageBucket: "micampoapp-fffd6.appspot.com",
-    messagingSenderId: "188711649752",
-    appId: "1:188711649752:web:3800b9207a86b844ab32ad"
+    apiKey: "AIzaSyDZ7NbQObnxTN1b0HcpAl5ohjh8lNOX6-s",
+    authDomain: "micampo-63199.firebaseapp.com",
+    projectId: "micampo-63199",
+    storageBucket: "micampo-63199.appspot.com",
+    messagingSenderId: "450008464949",
+    appId: "1:450008464949:web:80151236fccc6c3cd27b7c"
 };
 
 const app = initializeApp(firebaseConfig);

@@ -16,7 +16,7 @@
 }
 
 .chat-button {
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     right: 20px;
     width: 50px;
@@ -29,25 +29,22 @@
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
 }
-.chat-close-button{
+
+.chat-close-button {
     position: sticky;
     top: 10px;
     left: 240px;
     width: 30px;
     height: 30px;
-    background-color: #fff;
+    background: linear-gradient(269.96deg, #FF9D00 0%, #FEA311 35.28%, #FF9D00 95.4%);
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 9999;
     transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
 }
 
 .sendMsg-container {
     position: sticky;
     bottom: 0;
-    right: 20px;
     width: 100%;
     height: 50px;
     background-color: #fff;
@@ -73,6 +70,7 @@
     z-index: 9999;
     transition: all 0.3s ease-in-out;
 }
+
 
 .sendMsg {
     display: flex;
@@ -109,4 +107,67 @@
 
 .sendMsg button:hover {
     border: 1px solid #000;
+}
+
+.message-info-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-start;
+    position: relative;
+    width: 93%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    margin-inline: 10px;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.msg p {
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #000;
+    margin: 0;
+}
+
+.msg img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat-name {
+    width: 100%;
+    height: 100%;
+    padding-inline: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.chat-time {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #000;
+    margin: 0;
 }

@@ -1,0 +1,207 @@
+.validations-box {
+    width: 100vw;
+    height: 88vh;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.validations-box h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: #87AE39;
+    text-align: center;
+    line-height: 50px;
+}
+
+.validations-box h2, .validations-box p {
+    margin: 0;
+}
+
+.validation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.validation-buttons button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 8px;
+    background: #FFFFFF;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+    color: #000000;
+    transition: all 0.2s ease-in-out;
+}
+
+.validation-buttons button:hover {
+    background: #87AE39;
+    border: 1px solid #1D1D1D;
+    box-shadow: 4px 4px 0px #1D1D1D;
+    color: #FFFFFF;
+}
+
+.validations-box input[type="number"] {
+    background: #FFFFFF;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    width: 150px;
+    height: 170px;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    padding: 1rem;
+    margin: 1rem;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+.validations-box input[type="number"]::placeholder {
+    color: #87AE39;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.validations-box input[type="number"]:hover,
+.validations-box input[type="number"]:focus {
+    background: #1D1D1D;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    color: #FFFFFF;
+}
+
+.validations-box input[type="number"]::-webkit-outer-spin-button,
+.validations-box input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.validations-box input[type="text"] {
+    background: #FFFFFF;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    width: 550px;
+    height: 170px;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    padding: 1rem;
+    margin: 1rem;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+.validations-box input[type="text"]::placeholder {
+    color: #87AE39;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.validations-box button[name="gender"] {
+    background: #1D1D1D;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    color: #FFFFFF;
+    width: 150px;
+    height: 50px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 10px;
+    padding: 1rem;
+    margin: 1rem;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+.validations-box button[name="gender"]:hover {
+    transform: scale(1.1);
+    background: #303030;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.type-user-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.type-user-buttons button[name="type"] {
+    background: #1D1D1D;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    color: #FFFFFF;
+    width: 350px;
+    height: 50px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 10px;
+    padding: 1rem;
+    margin: 5px;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+.type-user-buttons button[name="type"]:hover {
+    transform: scale(1.1);
+    background: #303030;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.map-buttons {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.map-buttons .change-map-button {
+    background: #1D1D1D;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    color: #FFFFFF;
+    width: 250px;
+    height: 50px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 10px;
+    padding: 1rem;
+    margin: 10px;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+.map-buttons button:hover {
+    transform: scale(1.1);
+    background: #303030;
+    border: 1px solid #87AE39;
+    box-shadow: 4px 4px 0px #87AE39;
+    color: #FFFFFF;
+    border-radius: 5px;
+}
