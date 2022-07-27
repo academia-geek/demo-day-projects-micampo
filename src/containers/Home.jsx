@@ -38,7 +38,7 @@ import Search1 from '../components/Search';
 import { TbTruckDelivery, TbMessages } from 'react-icons/tb';
 import { GoLocation } from 'react-icons/go';
 import { BsLayoutSidebar, BsArrowRightShort } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../firebase/firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 import App from '../components/Dropdown';
@@ -102,7 +102,7 @@ const Home = () => {
             </TituloCont>
             <Linea>
                {prod6.map((element, index) => (
-                  <ContImagen key={index}>
+                  <ContImagen key={index} as={Link} to={`/detalle/${element.nombre}`}>
                      <ProdImg src={element.img} alt='' />
                      <div>
                         <p>
