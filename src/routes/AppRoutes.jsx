@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
-
 import Home from '../containers/Home';
 import QuienesSomos from '../containers/QuienesSomos';
 import DashboardRoutes from './DashboardRoutes';

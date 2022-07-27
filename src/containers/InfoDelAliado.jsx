@@ -31,27 +31,34 @@ const InfoDelAliado = () => {
             <LoadingScreen />
          ) : (
             <div>
-              <div className='aliado-container'>
-                 <div className='aliado-info'>
-                    <Image
-                       src={user.data.photoURL}
-                       alt={user.data.name}
-                       className='aliado-image'
-                    />
-                    <div>
-                       <h1>{user.data.name}</h1>
-                       <p>{user.data.type}</p>
-                       <p>{user.data.ubication.textPosition}</p>
-                    </div>
-                 </div>
-              </div>
-              <div>
-                  <h2>Ubicacion</h2>
-                  <UserMap
-                     lat={user.data.ubication.lat}
-                     lng={user.data.ubication.lng}
-                  />
+               <div className='aliado-container'>
+                  <div className='aliado-info'>
+                     <Image
+                        src={user.data.photoURL}
+                        alt={user.data.name}
+                        className='aliado-image'
+                     />
+                     <div>
+                        <h1>{user.data.name}</h1>
+                        <p>{user.data.type}</p>
+                        <p>{user.data.ubication.textPosition}</p>
+                     </div>
+                  </div>
                </div>
+               {user.data.ubication.lat && user.data.ubication.lng ? (
+                  <div>
+                     <h2>Ubicacion</h2>
+                     <UserMap
+                        lat={user.data.ubication.lat}
+                        lng={user.data.ubication.lng}
+                     />
+                  </div>
+               ) : (
+                  <div>
+                     <h2>Ubicacion</h2>
+                     <p>No disponible</p>
+                  </div>
+               )}
             </div>
          )}
       </>

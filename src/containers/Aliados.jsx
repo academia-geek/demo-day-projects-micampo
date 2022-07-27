@@ -41,6 +41,7 @@ import LoadingScreen from '../components/LoadingScreen';
 import { useNavigate } from 'react-router-dom';
 
 const Aliados = () => {
+   const logged = useSelector((state) => state.loginCheck.loginCheck);
    const isLoading = useSelector((state) => state.users.isLoading);
    const users = useSelector((state) => state.users.users);
    const navigate = useNavigate();
@@ -72,7 +73,11 @@ const Aliados = () => {
                            <TarjetaAliado
                               key={user.data.uid}
                               onClick={() =>
-                                 navigate('/aliado/'+ user.data.name + '/' + user.data.uid)
+                                 navigate(
+                                    logged
+                                       ? `/aliado/${user.data.name}/${user.data.uid}`
+                                       : `/lg/aliado/${user.data.name}/${user.data.uid}`
+                                 )
                               }>
                               <Aliado src={user.data.photoURL} alt='' />
                               <Negro>

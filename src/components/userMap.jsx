@@ -1,7 +1,12 @@
 import React from 'react';
 import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet';
+import LoadingScreen from './LoadingScreen';
 
-const UserMap = ({lat, lng}) => {
+const UserMap = ({ lat, lng }) => {
+   if (!lat || !lng) {
+      return <LoadingScreen />;
+   }
+
    return (
       <>
          <MapContainer

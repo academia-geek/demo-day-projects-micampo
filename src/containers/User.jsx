@@ -67,7 +67,6 @@ const User = () => {
          setEmail(user.email);
          setPhoto(user.photoURL);
          setProviderId(user.data.providerData[0].providerId);
-         console.log(user.data.providerData[0].providerId);
       } else {
          setIsLoading(true);
       }
@@ -296,13 +295,6 @@ const User = () => {
                         navigate('/add');
                      }}>
                      Añadir un producto
-                  </button>
-                  <button
-                     className='edit-user-button'
-                     onClick={() => {
-                        navigate('/map');
-                     }}>
-                     Añadir tu ubicación
                   </button>
                   <button
                      className='edit-user-button'
