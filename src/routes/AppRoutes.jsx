@@ -181,9 +181,9 @@ const AppRoutes = () => {
             <Route
                path='/lg/aliado/:name/:uid'
                element={
-                  <PrivateRoutes isAuth={isLogget}>
+                  <PublicRoutes isAuth={isLogget}>
                      <InfoDelAliado />
-                  </PrivateRoutes>
+                  </PublicRoutes>
                }
             />
 

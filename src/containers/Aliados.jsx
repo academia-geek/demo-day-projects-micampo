@@ -72,6 +72,7 @@ const Aliados = () => {
                         return (
                            <TarjetaAliado
                               key={user.data.uid}
+                              id={user.data.uid}
                               onClick={() =>
                                  navigate(
                                     logged
@@ -79,7 +80,14 @@ const Aliados = () => {
                                        : `/lg/aliado/${user.data.name}/${user.data.uid}`
                                  )
                               }>
-                              <Aliado src={user.data.photoURL} alt='' />
+                              <Aliado
+                                 src={
+                                    user.data.photoURL
+                                       ? user.data.photoURL
+                                       : 'https://res.cloudinary.com/gartners/image/upload/v1658122846/DemoDay/146-1468843_profile-icon-orange-png-transparent-png_qsx0un.png'
+                                 }
+                                 alt=''
+                              />
                               <Negro>
                                  <Ali>
                                     {user.data.name}

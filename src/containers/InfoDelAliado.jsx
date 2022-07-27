@@ -34,7 +34,11 @@ const InfoDelAliado = () => {
                <div className='aliado-container'>
                   <div className='aliado-info'>
                      <Image
-                        src={user.data.photoURL}
+                        src={
+                           user.data.photoURL
+                              ? user.data.photoURL
+                              : 'https://res.cloudinary.com/gartners/image/upload/v1658122846/DemoDay/146-1468843_profile-icon-orange-png-transparent-png_qsx0un.png'
+                        }
                         alt={user.data.name}
                         className='aliado-image'
                      />

@@ -48,7 +48,6 @@ const Nav1 = () => {
       if (reason === 'clickaway') {
          return;
       }
-
       setIsOpen(false);
    };
 

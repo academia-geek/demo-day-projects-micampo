@@ -34,7 +34,6 @@ const Register = () => {
    const login = useSelector((state) => state.login);
 
    useEffect(() => {
-      console.log(login)
       if (login.isError) {
          switch (login.message.code) {
             case 'auth/account-exists-with-different-credential':

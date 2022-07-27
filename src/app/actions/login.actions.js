@@ -85,11 +85,10 @@ export const registerAction = (email, password, name) => {
         dispatch({ type: typesLogin.REGISTER });
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
-                updateProfile(auth, { displayName: name })
+                updateProfile(auth.currentUser, { displayName: name })
                     .then(() => {
                         dispatch({ type: typesLogin.REGISTER_SUCCESS, payload: result });
-                    }
-                    )
+                    })
                     .catch(error => {
                         const code = error.code;
                         const message = error.message;
