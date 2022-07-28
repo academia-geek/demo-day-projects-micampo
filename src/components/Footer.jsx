@@ -16,8 +16,10 @@ const Footer = () => {
             height="60"
           />
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias
-            odit mollitia quam quae corrupti est numquam aliquid.
+          MiCampo, una app en la que podras vender o
+                  comprar productos agrícolas de todo tipo, podrás ver el
+                  movimiento del mercado de cualquier producto, y podras
+                  contactarte con cualquiera de nuestros aliados.
           </p>
         </div>
         <Lista>

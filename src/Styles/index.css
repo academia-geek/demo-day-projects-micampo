@@ -94,6 +94,17 @@
     
 }
 
+@media (min-width: 1000px){
+    .carousel{
+        width: 50%;
+        height:80%;
+        margin:1rem;
+        padding:1rem;
+        
+    }
+    
+}
+
     
 
 .carousel2{
@@ -127,12 +138,13 @@
 
 }
 
-.item p, h1 {
+.item p, h4 {
 width:100%;
 color:black;
 font-weight:700;
 margin:0;
-padding:0;}
+padding:0;
+text-align:center;}
 
 .item div{
     background: rgba(255, 255, 255, 0.8);
@@ -147,4 +159,34 @@ padding:0;}
     z-index:2;
 
     
+}
+.pe{
+    text-align: center;
+    color:black;
+}
+
+.final{
+    text-align:center;
+}
+
+.tarverde{
+    background-color:#699A07;
+    color:white;
+    padding:1rem;
+    border-radius:10%;
+}
+.tarverde h1 h3 p{
+    color:white
+}
+.tarverd{
+    font-weight:700;
+    font-size:3rem;
+}
+
+.numero h1,h3,p{
+    color:black;
+
+}
+.tarverd1{
+    color:white;
 }

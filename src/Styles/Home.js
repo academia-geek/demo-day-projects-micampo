@@ -40,6 +40,12 @@ padding:3rem 5rem;
     padding: 2rem;
     justify-content: center;
 }
+@media (min-width:1000px){
+    height:100vh;
+    padding: 2rem;
+    justify-content: center;
+
+}
 `
 
 export const Text = styled.p`
@@ -122,8 +128,8 @@ padding:0rem;
     margin:0rem;
     padding:0rem;
 }
-@media (min-width:700px){
-    font-size:2.5rem; 
+@media (min-width:900px){
+    font-size:4rem; 
     margin:0rem;
     padding:0rem;
 }
@@ -367,9 +373,7 @@ display:grid;
 grid-template-columns:1fr 1fr 1fr; 
 padding:5rem;
 justify-items:center;
-height:100vh;
 grid-gap:1rem;
-margin-bottom:5rem;
 `
 export const Tarjetas = styled.div`
 background:white;
@@ -384,8 +388,22 @@ border-radius:5%;
     background:#699A07;
     color:white;
 }
+@media(max-width:700px){
+    width:40%;
+}
 `
 
 export const Icono = styled.img`
 height:40%;
 width:25%;`
+
+export const TextP= styled.p`
+color:#699A07;
+font-weight:700;
+font-size:2rem;`
+export const BotN = styled.button`
+border:none;
+background-color:#FF9D00;
+padding:0.5rem;
+border-radius:10%;
+margin-top:4rem;`
