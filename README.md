@@ -34,8 +34,13 @@ npm run dev
 
 ## Autores
 [Santiago Valencia]
+***
 [Diego Villalba]
+***
 [Danna Bastidas]
+***
+
+
 [Danna Bastidas]:https://github.com/dannabas2001
 [Santiago Valencia]:https://github.com/Gartner24
 [Diego Villalba]:https://github.com/Villalbad10
