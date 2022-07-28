@@ -1,4 +1,4 @@
-# MiCampo
+# MiCampo:sunflower:
 
 [![MiCampo](https://res.cloudinary.com/villalbad10/image/upload/v1657638689/micampo/IMG_1657638185108_1_o8gzy3.png "MiCampo")](https://res.cloudinary.com/villalbad10/image/upload/v1657638689/micampo/IMG_1657638185108_1_o8gzy3.png "MiCampo")
 Somos una plataforma que busca acercar a los campesinos colombianos con sus compradores ideales. 
@@ -19,8 +19,8 @@ Buscamos aumentar los ingresos del pequeño y mediano agricultor, acercandolo a 
 
 ## Backend
 - Firebase
-- 
-## Instalación
+
+## Instalación :chart:
 Clonar repositorio:
 git clone[ https://github.com/academia-geek/demo-day-projects-patitas-happy](https://github.com/academia-geek/demo-day-projects-micampo.git)
 
@@ -33,7 +33,9 @@ npm run dev
 
 
 ## Autores
-Santiago Valencia
-Diego Villalba
-Danna Bastidas
-
+[Santiago Valencia]
+[Diego Villalba]
+[Danna Bastidas]
+[Danna Bastidas]:https://github.com/dannabas2001
+[Santiago Valencia]:https://github.com/Gartner24
+[Diego Villalba]:https://github.com/Villalbad10
