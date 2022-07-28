@@ -93,7 +93,7 @@ const Home = () => {
             </div>
          </Fondo>
          <Search>
-            <Search1 /> <App />
+            {/* <Search1 /> <App /> */}
          </Search>
 
          <Tercera>
