@@ -51,6 +51,7 @@ padding:3rem 5rem;
 export const Text = styled.p`
 font-size:1rem;
 width:100%;
+color:white;
 @media (max-width:700px){
     font-size:0.7rem;
     padding:0.5rem;
@@ -195,6 +196,11 @@ padding:3rem;
 display:flex; 
 flex-direction:column;
 margin-top:-3rem;
+@media (max-width:700px){
+    margin-top:0rem;
+    width:100%;
+    padding:0px;
+}
 `
 export const ProductosA = styled.h1`
 font-weight:700;
@@ -283,7 +289,10 @@ flex-direction:row;
 align-items:center;
 justify-content:center;
 margin:0;
-padding:0;`
+padding:0;
+
+`
+
 
 export const Cuarta = styled.div`
 background-color: #FFFFFF;
@@ -291,6 +300,11 @@ padding:3rem;
 display:flex; 
 flex-direction:column;
 margin-top:-3rem;
+@media (max-width:700px){
+    margin-top:0rem;
+    width:100%;
+    padding:0px;
+}
 `
 
 export const Aliado = styled.img`
@@ -374,6 +388,15 @@ grid-template-columns:1fr 1fr 1fr;
 padding:5rem;
 justify-items:center;
 grid-gap:1rem;
+@media (max-width:700px){
+    display:flex;
+    flex-direction:column;
+    padding:0px;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    padding-bottom:3rem;
+}
 `
 export const Tarjetas = styled.div`
 background:white;
@@ -389,7 +412,7 @@ border-radius:5%;
     color:white;
 }
 @media(max-width:700px){
-    width:40%;
+    width:80%;
 }
 `
 
@@ -397,7 +420,7 @@ export const Icono = styled.img`
 height:40%;
 width:25%;`
 
-export const TextP= styled.p`
+export const TextP = styled.p`
 color:#699A07;
 font-weight:700;
 font-size:2rem;`

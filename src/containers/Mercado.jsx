@@ -3,7 +3,6 @@ import AnyChart from 'anychart-react';
 import anychart from 'anychart';
 
 const Mercado = () => {
-
    return (
       <div
          style={{
@@ -16,17 +15,17 @@ const Mercado = () => {
          }}>
          <h1
             style={{
-              textAlign: 'center',
-              fontSize: '2rem',
-              fontWeight: '700',
-              marginTop: '3rem',
-            }}
-         >
+               textAlign: 'center',
+               fontSize: '2rem',
+               fontWeight: '700',
+               marginTop: '3rem',
+            }}>
             Estadisticas del mercado
          </h1>
          <div
             style={{
                display: 'flex',
+               flexWrap: 'wrap',
                width: '100vw',
                height: '85vh',
                justifyContent: 'center',

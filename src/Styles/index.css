@@ -61,7 +61,10 @@
     border-radius: 30px;
     color: white;
     display: flex;
+    padding: 60px;
     flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     padding: 1.5rem;
     margin: 0rem 3rem;
