@@ -93,18 +93,18 @@ const Aliados = () => {
             <LoadingScreen />
          ) : (
             <>
-               <Search>
-                  <Search1 />
-               </Search>
+               <Search></Search>
+               <div className='search-section'>
+                  <input
+                     type='text'
+                     placeholder='Buscar'
+                     value={value}
+                     onChange={handleChange}
+                  />
+               </div>
                <Cuarta>
                   <TituloCont>
                      <ProductosA>Nuestros campesinos</ProductosA>
-                     <input
-                        type='text'
-                        placeholder='Buscar'
-                        value={value}
-                        onChange={handleChange}
-                     />
                      <Image
                         src='https://res.cloudinary.com/dcsn54xoj/image/upload/v1658259882/MiCampo/Group_anru90.png'
                         alt=''

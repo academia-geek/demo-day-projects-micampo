@@ -44,22 +44,6 @@ const Agroinsumos = () => {
    const handleOnChange = (e) => {
       setValue(e.target.value);
    };
-   const filterByAgroInsumos = (e) => {
-      e.preventDefault();
-      const filter = agroinsumos
-         .filter((agroinsumo) => {
-            return agroinsumo.nombre
-               .toLowerCase()
-               .includes(value.toLowerCase());
-         })
-         .slice(0, 3);
-      setAgroinsumos(filter);
-   };
-
-   const handleOnSubmit = (e) => {
-      e.preventDefault();
-      navigate('/search', { state: { value } });
-   };
 
    const getAgroInsumos = async () => {
       collectionData('productos').then((res) => setProductos(res));
@@ -81,7 +65,7 @@ const Agroinsumos = () => {
          .slice(0, 3);
       setAgroinsumos(filter);
       if (value === '') {
-        getAgroInsumos();
+         getAgroInsumos();
          setAgroinsumos(agroinsumos);
       }
    }, [value]);
@@ -89,10 +73,12 @@ const Agroinsumos = () => {
    return (
       <>
          <Search>
-            <Search1 />
-            <App />
+            {/* <Search1 />
+            <App /> */}
          </Search>
-         <input type='text' value={value} onChange={handleOnChange} />
+         <div className='search-section'>
+            <input type='text' value={value} placeholder='buscar...' onChange={handleOnChange} />
+         </div>
          <Tercera>
             <TituloCont>
                <ProductosA>AgroInsumos</ProductosA>
