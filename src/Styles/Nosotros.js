@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const Back = styled.div`
 background-image:url(https://res.cloudinary.com/dcsn54xoj/image/upload/v1658714175/MiCampo/Rectangle_2_rd1sb4.png);
 display:flex;
-height:90vh;
 flex-direction:row;
 padding:3rem 10rem  0rem 5rem;
 justify-content: space-between;`
@@ -27,7 +26,17 @@ color:#699A07;
 font-size:2rem;
 font-weight:700;
 margin-top:2rem;
-margin-bottom:2rem;`
+margin-bottom:2rem;
+text-align:left;`
 
 export const Parr = styled.div`
 font-size:1.5rem;`
+
+export const Hor =  styled.div`
+display:flex;flex-direction:row;
+align-items:center;`
+
+export const  Logui = styled.img`
+margin-left:1rem;
+height:70%;`
+

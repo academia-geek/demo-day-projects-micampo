@@ -33,6 +33,9 @@ import {
    Tarjetas,
    Iconos,
    Icono,
+   TextP,
+   BotN,
+   Boton,
 } from '../Styles/Home';
 import Search1 from '../components/Search';
 import { TbTruckDelivery, TbMessages } from 'react-icons/tb';
@@ -46,6 +49,7 @@ import Footer from '../components/Footer';
 import Nosotros from '../components/Nosotros';
 import { useSelector } from 'react-redux';
 import { collectionAgricultor, collectionData } from '../helpers/collection';
+import {AiOutlineLogin} from 'react-icons/ai';
 import Carrousel from '../components/Carrousel';
 
 const Home = () => {
@@ -105,11 +109,9 @@ const Home = () => {
                   <ContImagen key={index} as={Link} to={`/detalle/${element.nombre}`}>
                      <ProdImg src={element.img} alt='' />
                      <div>
-                        <p>
-                           Nombre
-                           <br />
-                           Localización
-                        </p>
+                        <TextP>
+                           {element.nombre}
+                        </TextP>
                      </div>
                   </ContImagen>
                ))}
@@ -198,8 +200,7 @@ const Home = () => {
                />
                <h4>Calidad</h4>
                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                  Te garantizamos los mejores productos al mejor precio.
                </p>
             </Tarjetas>
             <Tarjetas>
@@ -209,8 +210,7 @@ const Home = () => {
                />
                <h4>Ubicación</h4>
                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                  Decide el proveedor según la cercanía al lugar en el que estés.
                </p>
             </Tarjetas>
             <Tarjetas>
@@ -220,8 +220,7 @@ const Home = () => {
                />
                <h4>Productos agrícolas</h4>
                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                  Gran variedad de productos disponibles para tu negocio.
                </p>
             </Tarjetas>
             <Tarjetas>
@@ -231,8 +230,7 @@ const Home = () => {
                />
                <h4>Velocidad</h4>
                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                  Obtén lo que buscas en tiempos óptimos.
                </p>
             </Tarjetas>
             <Tarjetas>
@@ -242,12 +240,16 @@ const Home = () => {
                />
                <h4>Seguridad</h4>
                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                  Seleccionamos nuestros vendedores cuidadosamente para el bienestar de tu negocio. 
                </p>
             </Tarjetas>
             <Tarjetas>
-               <Icono src='' alt='' />
+               <h4> Te ayudamos a empezar </h4>
+               {!logged && (
+                           <Boton onClick={() => navigate(!logged && '/login')}>
+                              Iniciar Sesión <AiOutlineLogin />{' '}
+                           </Boton>
+                        )}
             </Tarjetas>
          </Quinta>
          <Nosotros />

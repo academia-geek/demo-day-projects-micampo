@@ -152,7 +152,7 @@ const Nav1 = () => {
                               }>
                               Estadisticas
                            </Nav.Link>
-                           {/* <Nav.Link
+                           <Nav.Link
                               className='navbar'
                               onClick={() =>
                                  navigate(
@@ -162,7 +162,7 @@ const Nav1 = () => {
                                  )
                               }>
                               Sobre Nosotros
-                           </Nav.Link> */}
+                           </Nav.Link>
                         </Iconos>
                         {!logged && (
                            <Boton onClick={() => navigate(!logged && '/login')}>
