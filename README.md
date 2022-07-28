@@ -31,9 +31,12 @@ npm install
 Inicia el proyecto con:
 npm run dev
 
+## Video Demo 📹
+[Ver video] 
 
 
-## Autores
+
+## Autores ✍️
 [Santiago Valencia]
 ***
 [Diego Villalba]
@@ -45,3 +48,4 @@ npm run dev
 [Danna Bastidas]:https://github.com/dannabas2001
 [Santiago Valencia]:https://github.com/Gartner24
 [Diego Villalba]:https://github.com/Villalbad10
+[Ver video]:https://drive.google.com/file/d/1lQ6JRjJ_rPIRebn5R2uWX2OoMBuLsosj/view?usp=sharing
