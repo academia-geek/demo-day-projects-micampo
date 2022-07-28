@@ -15,7 +15,7 @@ const Footer = () => {
             width="60"
             height="60"
           />
-          <p>
+          <p style={{color: '#FFF'}}>
           MiCampo, una app en la que podras vender o
                   comprar productos agrícolas de todo tipo, podrás ver el
                   movimiento del mercado de cualquier producto, y podras
@@ -30,7 +30,7 @@ const Footer = () => {
             Agroinsumos
           </a>
           <a onClick={() => navigate(logged ? "/aliados" : "/lg/aliados")}>
-            Aliados
+            Agricultores
           </a>
           <a onClick={() => navigate(logged ? "/mercado" : "/lg/mercado")}>
             Mercado

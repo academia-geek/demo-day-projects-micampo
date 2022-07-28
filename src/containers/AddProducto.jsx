@@ -59,7 +59,7 @@ const AddProducto = () => {
    }
 
    return (
-      <div className='container'>
+      <div className='container' style={{minHeight: '60vh'}}>
          <ToastContainer />
          <br /> <h2 className='text-center'>Mis Productos</h2>
 
