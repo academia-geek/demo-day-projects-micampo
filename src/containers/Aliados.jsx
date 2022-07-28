@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Search1 from '../components/Search';
 import {
    Agro,
@@ -45,6 +45,43 @@ const Aliados = () => {
    const isLoading = useSelector((state) => state.users.isLoading);
    const users = useSelector((state) => state.users.users);
    const navigate = useNavigate();
+   const [value, setValue] = useState('');
+
+   const [agricultores, setAgricultores] = useState([]);
+
+   const filterAgricultores = () => {
+      const agricultores = users.filter(
+         (user) => user.data.type === 'agricultor'
+      );
+      setAgricultores(agricultores);
+   };
+
+   const handleChange = (e) => {
+      setValue(e.target.value);
+   };
+   const filterByName = () => {
+      const agricultores = users.filter((user) =>
+         user.data.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setAgricultores(agricultores);
+   };
+
+   useEffect(() => {
+      if (!isLoading) {
+         filterAgricultores();
+      }
+   }, [users]);
+
+   useEffect(() => {
+      if (!isLoading) {
+         if (value !== '') {
+            filterByName();
+         }
+         if (value === '') {
+            filterAgricultores();
+         }
+      }
+   }, [value]);
 
    if (isLoading) {
       return <LoadingScreen />;
@@ -56,19 +93,25 @@ const Aliados = () => {
             <LoadingScreen />
          ) : (
             <>
-               <Search>
-                  <Search1 />
-               </Search>
+               <Search></Search>
+               <div className='search-section'>
+                  <input
+                     type='text'
+                     placeholder='Buscar'
+                     value={value}
+                     onChange={handleChange}
+                  />
+               </div>
                <Cuarta>
                   <TituloCont>
-                     <ProductosA>Nuestros aliados</ProductosA>
+                     <ProductosA>Nuestros campesinos</ProductosA>
                      <Image
                         src='https://res.cloudinary.com/dcsn54xoj/image/upload/v1658259882/MiCampo/Group_anru90.png'
                         alt=''
                      />
                   </TituloCont>
                   <Linea>
-                     {users.map((user) => {
+                     {agricultores.map((user) => {
                         return (
                            <TarjetaAliado
                               key={user.data.uid}

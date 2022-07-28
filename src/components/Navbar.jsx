@@ -105,7 +105,7 @@ const Nav1 = () => {
                               onClick={() =>
                                  navigate(logged ? '/aliados' : '/lg/aliados')
                               }>
-                              Aliados
+                                 Agricultores
                            </Nav.Link>
                            <Nav.Link
                               className='navbar'

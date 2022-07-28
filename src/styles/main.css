@@ -91,6 +91,12 @@ body {
     margin-right: 66px;
 }
 
+@media (max-width: 768px) {
+    .advertisement-main-box {
+        display: none;
+    }
+}
+
 .advertisement-main-box img {
     width: 80%;
     height: auto;
@@ -125,4 +131,25 @@ body {
     text-align: center;
     font-weight: 700;
     width: 301px;
+}
+
+.search-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.search-section input {
+    background: #FFFFFF !important;
+    border: 1px solid #87AE39 !important;
+    box-shadow: 4px 4px 0px #87AE39 !important;
+    width: 301px !important;
+    height: 40px !important;
+    font-weight: 300 !important;
+    font-size: 16px !important;
+    line-height: 50px !important;
+    padding: 1rem !important;
 }
