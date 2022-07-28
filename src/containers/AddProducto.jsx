@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { BotonAdd, ContMispro } from '../Styles/Home';
 import { misPro } from '../filter/misPro';
 import { AiFillDelete } from 'react-icons/ai';
+import { FaEdit } from 'react-icons/fa';
 
 const AddProducto = () => {
    const [show, setShow] = useState(false);
@@ -111,10 +112,13 @@ const AddProducto = () => {
                      <Card.Img variant="top" src={res.img} />
                      <Card.Body>
                         <Card.Title> {res.nombre} </Card.Title>
-                        <Button variant="outline-danger" onClick={() => handleDeletePro(res.nombre)}> <AiFillDelete /> </Button>
+                        <div className='d-flex justify-content-between'>
+                           <Button variant="outline-danger" onClick={() => handleDeletePro(res.nombre)}> <AiFillDelete /> </Button>
+                           <Button variant="outline-warning" > <FaEdit /> </Button>
+                        </div>
+
                      </Card.Body>
                   </Card>
-
                )
             }
          </ContMispro>
