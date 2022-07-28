@@ -98,7 +98,7 @@ const Aliados = () => {
                </Search>
                <Cuarta>
                   <TituloCont>
-                     <ProductosA>Nuestros aliados</ProductosA>
+                     <ProductosA>Nuestros campesinos</ProductosA>
                      <input
                         type='text'
                         placeholder='Buscar'

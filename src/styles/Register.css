@@ -24,6 +24,12 @@
     padding-top: 45px;
 }
 
+    @media (max-width: 768px) {
+        .register-main-box {
+            width: 100%;
+        }
+    }
+
 .register-content {
     display: flex;
     flex-direction: column;
@@ -36,6 +42,12 @@
     border-radius: 0px 5px 5px 0px;
     padding-top: 50px;
     padding-bottom: 50px;
+}
+
+@media (max-width: 768px) {
+    .register-content {
+        width: 100%;
+    }
 }
 
 .register-input {

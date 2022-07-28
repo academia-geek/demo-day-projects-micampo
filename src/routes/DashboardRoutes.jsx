@@ -28,10 +28,10 @@ const DashboardRoutes = () => {
             <Route path='/mercado' element={<Mercado />} />
             <Route path='/sobre-nosotros' element={<QuienesSomos />} />
             <Route path='/detalle/:nombre' element={<Detalle />} />
-            <Route path='validaciones' element={<Validations />} />
             <Route path='map' element={<MapView />} />
             <Route path='/validaciones' element={<Validations />} />
             <Route path='/aliado/:name/:uid' element={<InfoDelAliado />} />
+            <Route path='/productos' element={<Productos />} />
 
             <Route path='*' element={<Navigate to='/home' />} />
          </Routes>

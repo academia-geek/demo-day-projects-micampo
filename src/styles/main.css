@@ -91,6 +91,12 @@ body {
     margin-right: 66px;
 }
 
+@media (max-width: 768px) {
+    .advertisement-main-box {
+        display: none;
+    }
+}
+
 .advertisement-main-box img {
     width: 80%;
     height: auto;
